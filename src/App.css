@@ -1,38 +1,234 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a {
+  color: #FFF;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a, a:hover, a:visited, a:active {
+  text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Menu */
+.navbar-brand, .navbar {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  left: 0px;
+}
+
+.navbar-brand {
+  height: 4rem;
+  top: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color:#FFF;
+}
+
+.navbar-brand span {
+  position: absolute;
+  left: 16rem;
+}
+
+.navbar {
+  background-color: #2D2B2F !important;
+  height: 6rem;
+  top: 4rem;
+}
+
+.navbar-collapse {
+  position: absolute;
+  left: 16rem;
+}
+
+.nav-item {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 35px;
+  margin-right: 5rem;
+
+  color: #FFFFFF;
+}
+
+/* Banner */
+.banner {
+  position: relative;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.banner-header {
+  position: absolute;
+  width: 31.5rem;
+  height: 10.6rem;
+  left: 22rem;
+  top: 36rem;
+
+  font-style: normal;
+  font-weight: 100;
+  font-size: 4.5rem;
+  line-height: 5rem;
+
+  color: #FFFFFF;
+}
+
+/* Footer */
+.footer {
+  color: #FFF;
+  background-color: #2D2B2F !important;
+  font-size: 24px;
+}
+
+.footer-contacts img {
+  padding: 15px 36px 15px 0;
+}
+
+h5 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.footer-subscription {
+  margin-bottom: 45px;
+}
+
+form[data-id*="subscription-form" i] input {
+  font-size: 24px;
+  width: 440px;
+  height: 60px;
+  padding: 17px 21px;
+}
+
+form[data-id*="subscription-form" i] button {
+  font-size: 24px;
+  width: 169px;
+  height: 60px;
+}
+
+.footer-social-link {
+  display: inline-block;
+  width: 36px;
+  height: 30px;
+  margin-right: 30px;
+  background-repeat: no-repeat;
+}
+
+.footer-social-link-youtube {
+  background-image: url(../src/images/youtube.svg);
+}
+
+.footer-social-link-instagram {
+  background-image: url(../src/images/instagram.svg);
+}
+
+.footer-social-link-google {
+  width: 48px;
+  background-image: url(../src/images/google.svg);
+}
+
+.footer-social-link-facebook {
+  background-image: url(../src/images/facebook.svg);
+}
+
+.footer-social-link-twitter {
+  background-image: url(../src/images/twitter.svg);
+}
+
+.footer-description {
+  padding: 2.1rem 12rem 2.1rem 15rem;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.footer-copyright {
+  padding: 0 256px;
+  height: 96px;  
+}
+
+.footer-copyright-section {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.arrow-up {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background-image: url(../src/images/arrow.svg);
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Main */
+main {
+  border-top: 9px solid #FFA800;
+}
+
+.about-main {
+  border-left: 9px solid #FFA800;
+  padding-left: 20px;
+}
+
+.about {
+  padding: 9rem 16rem 7rem;
+}
+
+.about-process {
+  background-image: url(../src/images/banner-main.svg);
+  height: 36rem;
+  padding: 4.5rem 16rem 6rem;
+  color: #FFFFFF;
+}
+
+.about-process .text-uppercase {
+  font-weight: 500;
+}
+
+.about-process button {
+  width: 325px;
+  height: 60px;
+  font-weight: 700;
+}
+
+.about-item-img {
+  width: 162px;
+  height: 162px;
+  margin-bottom: 35px;
+}
+
+.feedback {
+  height: 748px;
+  padding: 9.5rem 16rem 7.6rem;
+}
+
+.feedback-item-img {
+  width: 215px;
+  height: 215px;
+}
+
+.feedback-item {
+  width: 750px;
+  gap: 20px;
+}
+
+.feedback-slider {
+  gap: 11px;
+}
+
+.slider-item {
+  width: 19px;
+  height: 19px;
+  background-color: #E4E4E4;
+  border-radius: 50%;
+}
+
+.slider-item.active {
+  background-color: #C4C4C4;
 }
