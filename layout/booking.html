@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="../src/index.css">
+</head>
+<body>
+  <header class="container-fluid px-0">
+    <div class="row">
+      <div class="col">
+        <nav class="navbar-brand">
+          <span>Лого</span>
+        </nav>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+          <div class="collapase navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/">О нас</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/">Как это работает</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/">Отзывы</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/">Контакты</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="banner">
+          <img src="../src/images/banner-booking.svg" class="img-fluid" alt="banner">
+        </div>         
+        <form data-id="search-form-booking">
+          <div class="d-flex justify-content-between">
+            <div class="search-form-booking__item">
+              <label>Направление</label>
+              <div class="search-form__group d-flex justify-content-between">
+                <input class="form-control search-form-place" placeholder="Откуда">
+                <img src="../src/images/ic_cached.svg" alt="round">
+                <input class="form-control search-form-place" placeholder="Куда">
+              </div>
+            </div>
+            <div class="search-form-booking__item">
+              <label>Дата</label>
+              <div class="search-form__group d-flex justify-content-between">
+                <input type="text" class="form-control search-form-date" placeholder="ДД/ММ/ГГ">
+                <input type="text" class="form-control search-form-date" placeholder="ДД/ММ/ГГ">
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline-light text-uppercase py-2">найти билеты</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <main></main>
+
+  <footer class="container-fluid bg-dark footer">
+    <div class="row footer-description">
+      <div class="col">
+        <section class="footer-contacts nav flex-column">
+          <h5>Свяжитесь с нами</h5>
+          <a class="footer-contacts-phone" href="tel:+7-800-000-00-00">
+            <img src="../src/images/phone.svg" alt="phone">
+            <span>8(800) 000 00 00</span>
+          </a>
+          <a class="footer-contacts-email" href="mailto:inbox@mail.ru">
+            <img src="../src/images/mail.svg" alt="mail">
+            <span>inbox@mail.ru</span>
+          </a>
+          <a class="footer-contacts-skype" href="skype:tu.train.tickets">
+            <img src="../src/images/skype.svg" alt="skype">
+            <span>tu.train.tickets</span>
+          </a>
+          <address class="footer-contacts-address">
+            <img src="../src/images/address.svg" alt="address">
+            <span>г. Москва<br>ул. Московская 27-35<br>555 555</span>
+          </address>
+        </section>
+      </div>
+      <div class="col">
+        <section class="footer-subscription">
+          <h5>Подписка</h5>
+          <label for="subscription-form">Будьте в курсе событий</label>
+          <form data-id="subscription-form" class="d-flex justify-content-between py-3">
+            <input class="form-control" placeholder="e-mail">
+            <button type="button" class="btn btn-outline-light">ОТПРАВИТЬ</button>
+          </form>
+        </section>
+        <section class="footer-social">
+          <h5>Подписывайтесь на нас</h5>
+          <div class="footer-social-links">
+            <div class="footer-social-link footer-social-link-youtube"></div>
+            <div class="footer-social-link footer-social-link-instagram"></div>
+            <div class="footer-social-link footer-social-link-google"></div>
+            <div class="footer-social-link footer-social-link-facebook"></div>
+            <div class="footer-social-link footer-social-link-twitter"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="row footer-copyright">
+      <div class="col footer-copyright-section">
+        <div>Лого</div>
+        <div class="arrow-up"></div>
+        <div>2018 WEB</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

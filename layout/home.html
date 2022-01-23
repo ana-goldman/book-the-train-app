@@ -7,7 +7,7 @@
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="../src/App.css">
+    <link rel="stylesheet" href="../src/index.css">
 </head>
 <body>
   <header class="container-fluid px-0">
@@ -23,13 +23,13 @@
                 <a class="nav-link" href="/">О нас</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="/catalog.html">Как это работает</a>
+                <a class="nav-link" href="/">Как это работает</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="/about.html">Отзывы</a>
+                <a class="nav-link" href="/">Отзывы</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="/contacts.html">Контакты</a>
+                <a class="nav-link" href="/">Контакты</a>
               </li>
             </ul>
           </div>
@@ -42,6 +42,24 @@
             </div>
           </div>
         </div>
+        <form data-id="search-form-main">
+          <div>
+            <label>Направление</label>
+            <div class="search-form__group d-flex justify-content-between">
+              <input class="form-control search-form-place" placeholder="Откуда">
+              <img src="../src/images/ic_cached.svg" alt="round">
+              <input class="form-control search-form-place" placeholder="Куда">
+            </div>
+          </div>
+          <div>
+            <label>Дата</label>
+            <div class="search-form__group d-flex justify-content-between">
+              <input type="text" class="form-control search-form-date" placeholder="ДД/ММ/ГГ">
+              <input type="text" class="form-control search-form-date" placeholder="ДД/ММ/ГГ">
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline-light text-uppercase py-2">найти билеты</button>
+        </form>
       </div>
     </div>
   </header>
@@ -67,15 +85,15 @@
         <button type="button" class="btn btn-outline-light">Узнать больше</button>
       </div>
       <div class="d-flex justify-content-evenly">
-        <div class="about-item d-flex flex-column text-center">
+        <div class="about-item d-flex flex-column text-center align-items-center">
           <img class="about-item-img" src="../src/images/about1.svg" alt="">
           <span>Удобный заказ<br>на сайте</span>
         </div>
-        <div class="about-item d-flex flex-column text-center">
+        <div class="about-item d-flex flex-column text-center align-items-center">
           <img class="about-item-img" src="../src/images/about2.svg" alt="">
           <span>Нет необходимости<br>ехать в офис</span>
         </div>
-        <div class="about-item d-flex flex-column text-center">
+        <div class="about-item d-flex flex-column text-center align-items-center">
           <img class="about-item-img" src="../src/images/about3.svg" alt="">
           <span>Огромный выбор<br>направлений</span>
         </div>
@@ -113,7 +131,7 @@
           </div>
         </div>
       </div>
-      <div class="feedback-slider d-flex flex-row justify-content-center">
+      <div class="feedback-slider d-flex flex-row justify-content-center my-5">
         <div class="slider-item active"></div>
         <div class="slider-item"></div>
         <div class="slider-item"></div>

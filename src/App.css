@@ -5,6 +5,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
+  font-size: 1.25vw;
 }
 
 a {
@@ -24,7 +25,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .navbar-brand {
-  height: 4rem;
+  height: 9%;
   top: 0;
   background: rgba(0, 0, 0, 0.6);
   color:#FFF;
@@ -32,25 +33,25 @@ a, a:hover, a:visited, a:active {
 
 .navbar-brand span {
   position: absolute;
-  left: 16rem;
+  left: 13%;
 }
 
 .navbar {
   background-color: #2D2B2F !important;
-  height: 6rem;
-  top: 4rem;
+  height: 13.5%;
+  top: 8.5%;
 }
 
 .navbar-collapse {
   position: absolute;
-  left: 16rem;
+  left: 13%;
 }
 
 .nav-item {
   font-style: normal;
   font-weight: 300;
-  font-size: 30px;
-  line-height: 35px;
+  font-size: 1.5vw;
+  line-height: 1.8vw;
   margin-right: 5rem;
 
   color: #FFFFFF;
@@ -67,32 +68,79 @@ a, a:hover, a:visited, a:active {
 
 .banner-header {
   position: absolute;
-  width: 31.5rem;
-  height: 10.6rem;
-  left: 22rem;
-  top: 36rem;
-
+  width: 26%;
+  height: 8.85%;
+  left: 18%;
+  top: 58%;
+  
   font-style: normal;
   font-weight: 100;
-  font-size: 4.5rem;
-  line-height: 5rem;
+  font-size: 3.75vw;
+  line-height: 4.3vw;
 
   color: #FFFFFF;
+}
+
+/* Search form */
+form[data-id*="search-form-main" i] {
+  width: 38%;
+  height: 30vw;
+  background: rgba(41, 41, 41, 0.8);
+  position: absolute;
+  left: 50%;
+  top: 21.3vw;
+  padding: 4% 1.4% 3%;
+  color: #FFF;
+}
+
+form[data-id*="search-form-main" i] button {
+  width: 48%;
+  height: 60px;
+  float: right;
+
+  color: #292929;
+  background-color: #FFA800;
+  border: 1px solid #FFA800;
+  border-radius: 5px;
+}
+
+form[data-id*="search-form-main" i] input {
+  width: 47%;
+  height: 60px;
+  font-weight: 100;
+  font-size: 18px;
+  color: #E5E5E5;
+  padding: 19px 38px 11px 21px;
+} 
+
+.search-form-place {
+  background-image: url(../src/images/location.svg);
+  background-repeat: no-repeat;
+  background-position: 95%;
+} 
+
+.search-form-date {
+  background-image: url(../src/images/calendar.svg);
+  background-repeat: no-repeat;
+  background-position: 95%;
+} 
+
+.search-form__group {
+  margin: 5px 0 60px;
 }
 
 /* Footer */
 .footer {
   color: #FFF;
   background-color: #2D2B2F !important;
-  font-size: 24px;
 }
 
 .footer-contacts img {
-  padding: 15px 36px 15px 0;
+  padding: 2% 5% 2% 0;
 }
 
 h5 {
-  font-size: 30px;
+  font-size: 1.56vw;
   margin-bottom: 15px;
 }
 
@@ -101,15 +149,16 @@ h5 {
 }
 
 form[data-id*="subscription-form" i] input {
-  font-size: 24px;
-  width: 440px;
+  font-size: 1.25vw;
+  width: 68%;
   height: 60px;
   padding: 17px 21px;
+ 
 }
 
 form[data-id*="subscription-form" i] button {
-  font-size: 24px;
-  width: 169px;
+  font-size: 1.25vw;
+  width: 26%;
   height: 60px;
 }
 
@@ -143,12 +192,12 @@ form[data-id*="subscription-form" i] button {
 }
 
 .footer-description {
-  padding: 2.1rem 12rem 2.1rem 15rem;
+  padding: 2.6% 12% 2.6% 18%;
   border-bottom: 1px solid #E5E5E5;
 }
 
 .footer-copyright {
-  padding: 0 256px;
+  padding: 0 12%;
   height: 96px;  
 }
 
@@ -177,13 +226,13 @@ main {
 }
 
 .about {
-  padding: 9rem 16rem 7rem;
+  padding: 10.5% 12% 8.5%;
 }
 
 .about-process {
   background-image: url(../src/images/banner-main.svg);
   height: 36rem;
-  padding: 4.5rem 16rem 6rem;
+  padding: 3.8% 13.4% 5%;
   color: #FFFFFF;
 }
 
@@ -205,7 +254,7 @@ main {
 
 .feedback {
   height: 748px;
-  padding: 9.5rem 16rem 7.6rem;
+  padding: 7.5% 11.5% 6%;
 }
 
 .feedback-item-img {
@@ -214,8 +263,9 @@ main {
 }
 
 .feedback-item {
-  width: 750px;
+  width: calc((100%-20px)/2);
   gap: 20px;
+  font-size: 18px;
 }
 
 .feedback-slider {
