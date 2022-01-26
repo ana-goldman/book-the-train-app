@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <Fragment>
       <HeaderHome/>
-        <main>
+        <main style={{borderTop: '9px solid #FFA800'}}>
           <About/>
           <AboutProcess/>
           <Feedback/>

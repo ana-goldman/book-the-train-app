@@ -59,9 +59,211 @@
         </form>
       </div>
     </div>
+    <div class="progress-line d-flex">
+      <ol>
+        <li class="progress-line__item active">
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="progress-line__item-number">1</div>
+              <span>Билеты</span>
+            </div>
+        </li>
+        <li class="progress-line__item">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="progress-line__item-number">2</div>
+            <span>Пассажиры</span>
+          </div>
+        </li>
+        <li class="progress-line__item">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="progress-line__item-number">3</div>
+            <span>Оплата</span>
+          </div>
+        </li>
+        <li class="progress-line__item">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="progress-line__item-number">4</div>
+            <span>Проверка</span>
+          </div>
+        </li>
+      </ol>
+    </div>
   </header>
 
-  <main></main>
+  <main class="main-booking d-flex justify-content-between">
+    <aside class="side-container">
+      
+      <div class='filters__wrap'>
+        <div class="filters__item d-flex flex-column">
+          <span class="filters__item-name">Дата поездки</span>
+          <input type="text" class="form-control filter-form-date" placeholder="ДД/ММ/ГГ">
+          <span class="filters__item-name">Дата возвращения</span>
+          <input type="text" class="form-control filter-form-date" placeholder="ДД/ММ/ГГ">
+        </div>
+        <div class="filters__item d-flex flex-column">
+          <div class="item__train-type d-flex justify-content-between">
+            <div class="d-flex">
+              <img src="../src/images/kupe.svg" alt="Купе">
+              <span>Купе </span>
+            </div>
+            <div id='type-slider'></div>
+          </div>
+          <div class="item__train-type d-flex justify-content-between">
+            <div class="d-flex">
+              <img src="../src/images/platskart.svg" alt="Плацкарт ">
+              <span>Плацкарт </span>
+            </div>
+            <div id='type-slider'></div>
+          </div>
+          <div class="item__train-type d-flex justify-content-between">
+            <div class="d-flex">
+              <img src="../src/images/sidyachii.svg" alt="Сидячий">
+              <span>Сидячий</span>
+            </div>
+            <div id='type-slider'></div>
+          </div>
+          <div class="item__train-type d-flex justify-content-between">
+            <div class="d-flex">
+              <img src="../src/images/lux.svg" alt="Люкс">
+              <span>Люкс</span>
+            </div>
+            <div id='type-slider'></div>
+          </div>
+          <div class="item__train-type d-flex justify-content-between">
+            <div class="d-flex">
+              <img src="../src/images/wifi.svg" alt="Wi-Fi ">
+              <span>Wi-Fi </span>
+            </div>
+            <div id='type-slider'></div>
+          </div>
+          <div class="item__train-type d-flex justify-content-between">
+            <div class="d-flex">
+              <img src="../src/images/express.svg" alt="Экспресс">
+              <span>Экспресс</span>
+            </div>
+            <div id='type-slider'></div>
+          </div>
+        </div>
+ 
+        <div class="filters__item d-flex flex-column">
+          <span class="filters__item-name">Стоимость</span>
+        </div>
+
+        <div class="filters__item d-flex flex-column">
+          <div class="item__direction">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <img src="../src/images/arrow-there.svg" alt="">
+                <span class="filters__item-name">Туда</span>
+              </div>
+              <div class="drop-down-toggle"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filters__item d-flex flex-column">
+          <div class="item__direction">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <img src="../src/images/arrow-back.svg" alt="">
+                <span class="filters__item-name">Обратно</span>
+              </div>
+              <div class="drop-down-toggle"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="side__latest">
+        <h3 class="text-uppercase">Последние билеты</h3>
+        <div class="latest-group">
+          <div class="latest-item d-flex flex-column justify-content-between">
+            <div class="latest__body d-flex justify-content-between">
+              <div class="latest__from text-start">
+                <div class="latest__city">Санкт-Петербург</div>
+                <div class="latest__station">Курский<br>вокзал</div>
+              </div>
+              <div class="latest__to text-end">
+                <div class="latest__city">Самара</div>
+                <div class="latest__station">Московский<br>вокзал</div>
+              </div>
+            </div>
+            <div class="latest__footer d-flex justify-content-between align-items-center">
+              <div class="latest__quality">
+                <img src="../src/images/train-includes.svg" alt="quality">
+              </div>
+              <div class="latest__price">от
+                <span>2 500</span>
+                <img src="../src/images/currency.svg" alt="rub">
+              </div>
+            </div>
+          </div>
+          <div class="latest-item d-flex flex-column justify-content-between">
+            <div class="latest__body d-flex justify-content-between">
+              <div class="latest__from text-start">
+                <div class="latest__city">Санкт-Петербург</div>
+                <div class="latest__station">Курский<br>вокзал</div>
+              </div>
+              <div class="latest__to text-end">
+                <div class="latest__city">Самара</div>
+                <div class="latest__station">Московский<br>вокзал</div>
+              </div>
+            </div>
+            <div class="latest__footer d-flex justify-content-between align-items-center">
+              <div class="latest__quality">
+                <img src="../src/images/train-includes.svg" alt="quality">
+              </div>
+              <div class="latest__price">от
+                <span>2 500</span>
+                <img src="../src/images/currency.svg" alt="rub">
+              </div>
+            </div>
+          </div>
+          <div class="latest-item d-flex flex-column justify-content-between">
+            <div class="latest__body d-flex justify-content-between">
+              <div class="latest__from text-start">
+                <div class="latest__city">Санкт-Петербург</div>
+                <div class="latest__station">Курский<br>вокзал</div>
+              </div>
+              <div class="latest__to text-end">
+                <div class="latest__city">Самара</div>
+                <div class="latest__station">Московский<br>вокзал</div>
+              </div>
+            </div>
+            <div class="latest__footer d-flex justify-content-between align-items-center">
+              <div class="latest__quality">
+                <img src="../src/images/train-includes.svg" alt="quality">
+              </div>
+              <div class="latest__price">от
+                <span>2 500</span>
+                <img src="../src/images/currency.svg" alt="rub">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="trains-container">
+      <div class="trains-header d-flex justify-content-between">
+        <div class="trains-header__total">найдено 20</div>
+        <div class="trains-header__sorting">сортировать по:</div>
+        <div class="trains-header__page-quantity">показывать по:</div>
+      </div>
+      <div class="trains-group"></div>
+      <div class="pages-control d-flex justify-content-end text-center gap-4">
+        <div class="pages-control__item arrows ">
+          <div class="arrow-back"></div>
+        </div>
+        <span class="pages-control__item active">1</span>
+        <span class="pages-control__item">2</span>
+        <span class="pages-control__item">3</span>
+        <div class="pages-control__item arrows">
+          <div class="arrow-forward"></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="container-fluid bg-dark footer">
     <div class="row footer-description">

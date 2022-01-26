@@ -31,9 +31,9 @@ export default function Footer() {
         <div className="col">
           <section className="footer-subscription">
             <h5>Подписка</h5>
-            <label for="subscription-form">Будьте в курсе событий</label>
+            <label htmlFor="subscription-form">Будьте в курсе событий</label>
             <form data-id="subscription-form" className="d-flex justify-content-between py-3">
-              <input class="form-control" placeholder="e-mail"/>
+              <input className="form-control" placeholder="e-mail"/>
               <button type="button" className="btn btn-outline-light">ОТПРАВИТЬ</button>
             </form>
           </section>
