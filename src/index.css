@@ -519,6 +519,59 @@ ol > li:not(:last-child) > div:before {
   opacity: 1;
 }
 
+/* Direction and Price sliders  */
+.item__direction .rc-slider,
+.item__price .rc-slider {
+  margin: 19px 10px;
+}
+
+.item__direction .rc-slider-rail {
+  height: 10px;  
+  border: 1px solid #C4C4C4;
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+.item__direction .rc-slider-track {
+  height: 10px;
+  background-color: #FFA800;
+}
+
+.item__direction .rc-slider-handle-1,
+.item__direction .rc-slider-handle-2 {
+  width: 18px;
+  height: 18px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  border: none;
+}
+
+.rc-slider-handle-dragging {
+  border-color: transparent !important;
+  box-shadow: unset !important;
+}
+
+.item__price .rc-slider-rail {
+  height: 19px;  
+  border: 1px solid #C4C4C4;
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+.item__price .rc-slider-track {
+  height: 19px;
+  background-color: #FFA800;
+}
+
+.item__price .rc-slider-handle-1,
+.item__price .rc-slider-handle-2 {
+  width: 26px;
+  height: 26px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  border: none;
+}
+
 /*  */
 .drop-down-toggle {
   width: 20px;

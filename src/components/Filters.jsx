@@ -8,9 +8,8 @@ import arrowThere from '../images/arrow-there.svg';
 import arrowBack from '../images/arrow-back.svg';
 
 import { Switch } from '@mui/material';
-// import { Slider } from '@mui/material';
-// import { styled } from '@mui/material/styles';
-import TimeSlider from './TimeSlider';
+import { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 export default function Filters() {  
 
@@ -67,8 +66,9 @@ export default function Filters() {
           </div>
         </div>
  
-        <div className="filters__item d-flex flex-column">
+        <div className="filters__item item__price d-flex flex-column">
           <span className="filters__item-name">Стоимость</span>
+          <Range/>
         </div>
 
         <div className="filters__item d-flex flex-column">
@@ -80,14 +80,14 @@ export default function Filters() {
               </div>
               <div className="drop-down-toggle"></div>
             </div>
-            {/* <TimeSlider/> */}
-            {/* <Slider
-              value={value}
-              // onChange={handleChange}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              getAriaValueText={valuetext}
-            /> */}
+            <div>
+              <span>Время отбытия</span>
+              <Range />
+            </div>
+            <div class='text-end'>
+              <span className="">Время прибытия</span>
+              <Range />
+            </div>
           </div>
         </div>
 
@@ -99,6 +99,14 @@ export default function Filters() {
                 <span className="filters__item-name">Обратно</span>
               </div>
               <div className="drop-down-toggle"></div>
+            </div>
+            <div>
+              <span>Время отбытия</span>
+              <Range />
+            </div>
+            <div class='text-end'>
+              <span className="">Время прибытия</span>
+              <Range />
             </div>
           </div>
         </div>
