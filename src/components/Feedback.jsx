@@ -5,7 +5,7 @@ import quote2 from '../images/”.svg';
 
 export default function Feedback() {
   return (
-    <section className="feedback d-flex flex-column justify-content-between">
+    <section className="feedback d-flex flex-column justify-content-between" id='feedback'>
       <h2 className="text-start text-uppercase mb-4">Отзывы</h2>
       <div className="d-flex flex-row justify-content-between">
         <div className="feedback-item d-flex flex-row mx-3">

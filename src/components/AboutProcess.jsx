@@ -4,7 +4,7 @@ import about3 from '../images/about3.svg';
 
 export default function AboutProcess() {
   return (
-    <section className="about-process d-flex flex-column justify-content-between">
+    <section className="about-process d-flex flex-column justify-content-between" id="about-process">
       <div className="d-flex flex-row justify-content-between">
         <h2 className="text-start text-uppercase mb-4">Как это работает</h2>
         <button type="button" className="btn btn-outline-light">Узнать больше</button>

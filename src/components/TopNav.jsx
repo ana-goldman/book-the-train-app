@@ -1,4 +1,5 @@
-import { Fragment } from "react"
+import { Fragment } from "react";
+import { HashLink } from 'react-router-hash-link';
 
 export default function TopNav() {
   return (
@@ -10,16 +11,16 @@ export default function TopNav() {
           <div className="collapase navbar-collapse" id="navbarMain">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a className="nav-link" href="/">О нас</a>
+                <HashLink smooth to="/#about">О нас</HashLink>
               </li>
               <li className="nav-item active">
-                <a className="nav-link" href="/">Как это работает</a>
+                <HashLink smooth to="/#about-process">Как это работает</HashLink>
               </li>
               <li className="nav-item active">
-                <a className="nav-link" href="/">Отзывы</a>
+                <HashLink smooth to="/#feedback">Отзывы</HashLink>
               </li>
               <li className="nav-item active">
-                <a className="nav-link" href="/">Контакты</a>
+                <HashLink smooth to="/#contacts">Контакты</HashLink>
               </li>
             </ul>
           </div>

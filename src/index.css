@@ -81,7 +81,7 @@ a, a:hover, a:visited, a:active {
   color: #FFFFFF;
 }
 
-/* Search form Home*/
+/* Search group*/
 form[data-id*="search-form-main" i] {
   width: 38%;
   height: 30vw;
@@ -93,13 +93,14 @@ form[data-id*="search-form-main" i] {
   color: #FFF;
 }
 
-form[data-id*="search-form-main" i] label,
+/* form[data-id*="search-form-main" i] label,
 form[data-id*="search-form-booking" i] label {
   font-size: 1.55vw;
-}
+  color: #E5E5E5;
+} */
 
-form[data-id*="search-form-main" i] button,
-form[data-id*="search-form-booking" i] button {
+form[data-id*="search-form-main" i] .btn-submit,
+form[data-id*="search-form-booking" i] .btn-submit {
   width: 48%;
   height: 60px;
   float: right;
@@ -111,14 +112,14 @@ form[data-id*="search-form-booking" i] button {
   border-radius: 5px;
 }
 
-form[data-id*="search-form-main" i] input,
-form[data-id*="search-form-booking" i] input {
+form[data-id*="search-form-main" i] .search-form__place-group input,
+form[data-id*="search-form-booking" i] .search-form__place-group input {
   width: 47%;
   height: 60px;
 
   font-weight: 100;
   font-size: 18px;
-  color: #E5E5E5;
+  color: #292929;
   padding: 17px 38px 13px 21px;
 } 
 
@@ -128,14 +129,62 @@ form[data-id*="search-form-booking" i] input {
   background-position: 95%;
 } 
 
-.search-form-date {
-  background-image: url(../src/images/calendar.svg);
-  background-repeat: no-repeat;
-  background-position: 95%;
-} 
-
-.search-form__group {
+.search-form__place-group,
+.search-form__date-group {
   margin: 5px 0 50px;
+  position: relative;
+}
+
+.search-form__date-group .fiirft{
+  background-color: #FFF;
+  width: 47%;
+  border-radius: 3px;
+}
+
+.search-form__date-group [data-testid*="CalendarIcon" i] {
+  font-size: 2.5rem;
+  color: #E5E5E5;
+}
+
+.search-form__date-group input {
+  height: 1.65em;
+}
+
+.search-form__date-group label {
+  font-weight: 100;
+  font-size: 18px;
+}
+
+.sc-hGPBjI.cwQmpu {
+  display: none;
+}
+
+.search-form__tooltip {
+  display: none;
+  position: absolute;
+  top: 65px;
+  width: 16.5vw;
+  z-index: 3;
+
+  background-color: #F5F4F6;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  list-style: none;
+  padding: 14px 28px;
+
+  color: #292929;
+  font-size: 18px;
+  line-height: 21px;
+  font-variant: small-caps;
+}
+
+.search-form__place-group input:focus + .search-form__tooltip { 
+  display: block;
+}
+
+.search-form__place-group .search-form__tooltip li:hover {
+  background-color: #C4C4C4;
+  cursor: pointer;
 }
 
 /* Search form Booking*/
@@ -154,7 +203,7 @@ form[data-id*="search-form-booking" i] {
   width: calc(100%/2 - 2%);
 }
 
-form[data-id*="search-form-booking" i] button {
+form[data-id*="search-form-booking" i] .btn-submit {
   width: 22.5%;
 }
 
@@ -454,11 +503,10 @@ ol > li:not(:last-child) > div:before {
 
 /* Aside  */
 
-/* criteria */
+/* filters */
 .filters__wrap {
   width: 360px;
   background-color: #3E3C41;
-  /* padding: 43px 32px 0; */
   margin-bottom: 94px;
   color: #FFF;
 }
@@ -469,21 +517,23 @@ ol > li:not(:last-child) > div:before {
   gap: 17px;
 }
 
+.search__item-name,
 .filters__item-name{
   font-size: 30px;
 }
 
-.filter-form-date {
-  width: 295px;
-  height: 43px;
-
+.search-form-filter .MuiInputBase-formControl {
+  background-color: #FFF;
+  font-weight: 100;
+  font-size: 18px;
   color: #292929;
   background: #FFFFFF;
   border-radius: 3px;
-  
-  background-image: url(../src/images/calendar.svg);
-  background-repeat: no-repeat;
-  background-position: 95%;
+} 
+
+.search-form-filter [data-testid*="CalendarIcon" i] {
+  font-size: 2rem;
+  color: #E5E5E5;
 }
 
 .item__train-type {

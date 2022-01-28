@@ -11,15 +11,17 @@ import { Switch } from '@mui/material';
 import { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
+import BasicDatePicker from './BasicDatePicker';
+
 export default function Filters() {  
 
   return (
     <div className='filters__wrap'>
-        <div className="filters__item d-flex flex-column">
+        <div className="filters__item search-form-filter d-flex flex-column">
           <span className="filters__item-name">Дата поездки</span>
-          <input type="text" className="form-control filter-form-date" placeholder="ДД/ММ/ГГ"/>
+          <BasicDatePicker label={"ДД/ММ/ГГ"}/>
           <span className="filters__item-name">Дата возвращения</span>
-          <input type="text" className="form-control filter-form-date" placeholder="ДД/ММ/ГГ"/>
+          <BasicDatePicker label={"ДД/ММ/ГГ"}/>
         </div>
         <div className="filters__item d-flex flex-column">
           <div className="item__train-type d-flex justify-content-between align-items-center">
@@ -84,7 +86,7 @@ export default function Filters() {
               <span>Время отбытия</span>
               <Range />
             </div>
-            <div class='text-end'>
+            <div className='text-end'>
               <span className="">Время прибытия</span>
               <Range />
             </div>
@@ -104,7 +106,7 @@ export default function Filters() {
               <span>Время отбытия</span>
               <Range />
             </div>
-            <div class='text-end'>
+            <div className='text-end'>
               <span className="">Время прибытия</span>
               <Range />
             </div>

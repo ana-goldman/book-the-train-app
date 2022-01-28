@@ -8,7 +8,7 @@ export default function Latest() {
         <div className="latest-group">
           <div className="latest-item d-flex flex-column justify-content-between">
             <div className="latest__body d-flex justify-content-between">
-              <div clclassNameass="latest__from text-start">
+              <div className="latest__from text-start">
                 <div className="latest__city">Санкт-Петербург</div>
                 <div className="latest__station">Курский<br/>вокзал</div>
               </div>

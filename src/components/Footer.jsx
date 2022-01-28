@@ -5,7 +5,7 @@ import address from '../images/address.svg';
 
 export default function Footer() {
   return (
-    <footer className="container-fluid bg-dark footer">
+    <footer className="container-fluid bg-dark footer" id='contacts'>
       <div className="row footer-description">
         <div className="col">
           <section className="footer-contacts nav flex-column">

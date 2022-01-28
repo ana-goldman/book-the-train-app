@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section className="about">
+    <section className="about" id='about'>
       <h2 className="text-start text-uppercase mb-4">О нас</h2>
       <div className="about-main">
         <p>Мы рады видеть вас! Мы рботаем для Вас с 2003 года. 14 лет мы наблюдаем, как с каждым днем 
