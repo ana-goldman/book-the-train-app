@@ -131,7 +131,7 @@ form[data-id*="search-form-booking" i] .search-form__place-group input {
 
 .search-form__place-group,
 .search-form__date-group {
-  margin: 5px 0 50px;
+  margin: 1vh 0 2.9vw;
   position: relative;
 }
 
@@ -693,4 +693,47 @@ ol > li:not(:last-child) > div:before {
 
 .latest__price img {
   vertical-align: baseline;
+}
+
+/* Modal  */
+.modal {
+  border: 1px solid #C4C4C4;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header, .modal-footer {
+  height: 84px;
+  background-color: rgba(255, 245, 0, 0.36);
+}
+
+.modal-info .modal-header {
+  background-color: rgba(255, 245, 0, 0.36);
+}
+
+.modal-error .modal-header {
+  background: rgba(255, 61, 0, 0.38);
+}
+
+.modal-info .modal-title {
+  background-image: url(../src/images/info-img.svg);
+  width: 32px;
+  height: 32px;
+}
+
+.modal-error .modal-title {
+  background-image: url(../src/images/error-img.svg);
+  width: 32px;
+  height: 32px;
+}
+
+.modal-body, .modal-footer {
+  background-color: #FBFBFB;
+}
+
+.modal .btn {
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+  border: 1px solid #292929;
+  border-radius: 5px;
 }

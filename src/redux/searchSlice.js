@@ -62,5 +62,5 @@ const searchSlice = createSlice({
   }
 });
 
-export const cartActions = searchSlice.actions;
+export const searchActions = searchSlice.actions;
 export default searchSlice.reducer;
