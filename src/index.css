@@ -688,6 +688,7 @@ ol > li:not(:last-child) > div:before {
   font-size: 36px;
   line-height: 42px;
 
+  padding: 0 5px;
   color: #FFA800;
 }
 

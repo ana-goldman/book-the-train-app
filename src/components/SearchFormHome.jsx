@@ -12,13 +12,13 @@ export default function SearchFormHome() {
 
   useEffect(() => { 
     if (from) {
-      dispatch(fetchCities(from));
+      dispatch(fetchCities(`${process.env.REACT_APP_BASE_URL}routes/cities?name=${from}`));
     } 
   }, [dispatch, from]);
 
   useEffect(() => { 
     if (to) {
-      dispatch(fetchCities(to));
+      dispatch(fetchCities(`${process.env.REACT_APP_BASE_URL}routes/cities?name=${to}`));
     }
   }, [dispatch, to]);
 

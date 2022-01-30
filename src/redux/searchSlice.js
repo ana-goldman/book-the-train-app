@@ -5,13 +5,7 @@ const initialState = {
   status: 'idle' 
 };
 
-export const fetchCities = createAsyncThunk('searchSlice/fetchCities', async (name, { rejectWithValue }) => {
-  let url;
-  if (name !== '') {
-    url = `${process.env.REACT_APP_BASE_URL}routes/cities?name=${name}`
-  } else {
-    url = `${process.env.REACT_APP_BASE_URL}routes/cities`
-  }
+export const fetchCities = createAsyncThunk('searchSlice/fetchCities', async (url, { rejectWithValue }) => {
 
   try {
     const result = await fetch(url)
