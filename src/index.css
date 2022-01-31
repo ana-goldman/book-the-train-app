@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
@@ -93,12 +94,6 @@ form[data-id*="search-form-main" i] {
   color: #FFF;
 }
 
-/* form[data-id*="search-form-main" i] label,
-form[data-id*="search-form-booking" i] label {
-  font-size: 1.55vw;
-  color: #E5E5E5;
-} */
-
 form[data-id*="search-form-main" i] .btn-submit,
 form[data-id*="search-form-booking" i] .btn-submit {
   width: 48%;
@@ -178,14 +173,18 @@ form[data-id*="search-form-booking" i] .search-form__place-group input {
   font-variant: small-caps;
 }
 
+/* .search-form__place-group input~.open + .search-form__tooltip {
+  display: block;
+} */
 .search-form__place-group input:focus + .search-form__tooltip { 
   display: block;
 }
 
 .search-form__place-group .search-form__tooltip li:hover {
-  background-color: #C4C4C4;
+  font-weight: 300;
   cursor: pointer;
 }
+
 
 /* Search form Booking*/
 form[data-id*="search-form-booking" i] {
@@ -441,7 +440,7 @@ ol > li:not(:last-child) > div:before {
 /* Main booking */
 .main-booking {
   padding: 95px 256px 190px;
-  background-color: #E5E5E5;
+  background-color: #F7F5F9;
 }
 
 .trains-container {
@@ -737,4 +736,184 @@ ol > li:not(:last-child) > div:before {
   width: 35%;
   border: 1px solid #292929;
   border-radius: 5px;
+}
+
+/* BODY  */
+.trains-header {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 18px;
+  line-height: 21px;
+  color: #928F94;
+}
+
+.trains-header__sorting {
+  position: relative;
+}
+
+.trains-header__sorting span {
+  padding-left: 5px;
+  color: #292929;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.select-sorting {
+  display: none;
+  width: 139px;
+  background-color: #F7F5F9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  list-style: none;
+  font-weight: 100;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 63%;
+  color: #292929;
+}
+
+.select-sorting.open {
+  display: block;
+}
+
+.select-sorting li {
+  height: 37px;
+  padding: 5px 10px;
+  border-bottom: 1px solid #E5E5E5;
+  cursor: pointer;
+}
+
+.select-quantity {
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.trains-header__sorting span:hover,
+.select-sorting li:hover,
+.select-quantity:hover {
+  font-weight: 300;
+  color: #292929;
+}
+
+.select-quantity.active {
+  color: #292929;
+  font-weight: 300;
+}
+
+.trains-group__item {
+  height: 354px;
+  width: 959px;
+  background-color: #FFFFFF;
+  border: 1px solid #C4C4C4;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.trains-group__item:focus {
+  border: 1px solid #FFA800;
+}
+
+.item__short-info {
+  width: 20.5%;
+  padding: 30px 20px;
+  background-color: #E4E0E9;
+}
+
+.item__short-info__logo {
+  background-image: url(./images/train-logo.svg);
+  width: 86px;
+  height: 86px;
+}
+
+.item__short-info__direction {
+  font-size: 16px;
+}
+
+.item__short-info__number,
+.item__body__from__time,
+.item__body__to__time {
+  font-weight: 500;
+}
+
+.item__body {
+  width: 50%;
+  border-right: 1px dashed #E5E5E5;
+}
+
+.item__body__one-way,
+.item__body__way-back {
+  padding: 54px 39px 30px;
+}
+
+.item__body__from__city,
+.item__body__to__city {
+  font-size: 16px;
+  color: #000;
+}
+
+.item__body__from__station,
+.item__body__to__station {
+  font-size: 16px; 
+  color: #928F94;
+}
+
+.item__body__direction__time {
+  font-size: 18px;
+  color: #C4C4C4;
+}
+
+.item__body__direction__arrow,
+.item__body__direction__arrow-back {
+  background-image: url(./images/arrow-colored.svg);
+  width: 30px;
+  height: 20px;
+}
+
+.item__body__direction__arrow {
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.item__options-info {
+  width: 29.5%;
+  padding: 37px 25px 22px;
+}
+
+.item__options-info__carriage {
+  font-size: 16px;
+  color: #3E3C41;
+  padding-bottom: 24px;
+}
+
+.carriage__type {
+  width: 35%;
+}
+
+.carriage__available {
+  color: #FFA800;
+  width: 20%;
+}
+
+.carriage__price {
+  color: #928F94;
+  width: 45%;
+}
+
+.carriage__price span {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+  padding: 0 5px;
+  color: #2D2B2F;
+}
+
+.carriage__price img  {
+  vertical-align: text-bottom;
+}
+
+.item__options-info .btn {
+  width: 228px;
+  height: 39px;
+  background-color: #FFA800;
+  border-radius: 5px;
+  color: #FFF;
+  margin-top: 10px;
 }

@@ -3,7 +3,7 @@ import HeaderBooking from '../components/HeaderBooking';
 import Footer from '../components/Footer';
 import Filters from '../components/Filters';
 import Latest from '../components/Latest';
-
+import BodyContainer from '../components/BodyContainer';
 
 export default function Booking() {
   return (
@@ -14,7 +14,7 @@ export default function Booking() {
             <Filters/>
             <Latest/>
           </aside>
-          <section className="trains-container"></section>          
+          <BodyContainer></BodyContainer>          
         </main>
       <Footer/>
     </Fragment>

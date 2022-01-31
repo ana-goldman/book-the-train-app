@@ -2,10 +2,12 @@ import cached from '../images/ic_cached.svg';
 import BasicDatePicker from './BasicDatePicker';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { fetchCities } from "../redux/searchSlice";
 
 export default function SearchFormHome() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cities } = useSelector((store) => store.searchSlice);
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
@@ -22,7 +24,12 @@ export default function SearchFormHome() {
     }
   }, [dispatch, to]);
 
-  const handleSubmit = () => {}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(from, to);
+    
+    navigate('/booking');
+  }
 
   return (
     <form data-id="search-form-main" onSubmit={handleSubmit}>
@@ -32,8 +39,9 @@ export default function SearchFormHome() {
           <input className="form-control search-form-place" 
                  value={from}
                  onChange={e => setFrom(e.target.value)}
-                 placeholder="Откуда"/>
-          {cities && <ul className="search-form__tooltip">{cities.map(o => <li key={o._id} onClick={() => console.log(o.name)}>{o.name}</li>)}</ul>}
+                 placeholder="Откуда"
+                 />
+          {cities && <ul className="search-form__tooltip">{cities.map(o => <li key={o._id} onClick={(e) => setFrom(e.target.value)}>{o.name}</li>)}</ul>}
           <img src={cached} alt="round"/>
           <input className="form-control search-form-place" 
                  value={to}
@@ -49,7 +57,7 @@ export default function SearchFormHome() {
           <BasicDatePicker label={"ДД/ММ/ГГ"}/>
         </div>
       </div>
-      <button type="button" className="btn btn-submit btn-outline-light text-uppercase py-2">найти билеты</button>
+      <button type="submit" className="btn btn-submit btn-outline-light text-uppercase py-2">найти билеты</button>
     </form>
   )
 }

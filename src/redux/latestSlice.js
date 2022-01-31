@@ -10,11 +10,6 @@ export const fetchLatest = createAsyncThunk('latestSlice/fetchLatest', async (ur
   try {
     const result = await fetch(url)
       .then( response => response.json())
-      // .then( data => {
-      //   data.forEach( el => {
-      //       console.log('el', el)
-      //   })
-      // });
     return result
   } catch (error) {
     return rejectWithValue('Opps there seems to be an error')
