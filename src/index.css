@@ -107,27 +107,57 @@ form[data-id*="search-form-booking" i] .btn-submit {
   border-radius: 5px;
 }
 
-form[data-id*="search-form-main" i] .search-form__place-group input,
-form[data-id*="search-form-booking" i] .search-form__place-group input {
-  width: 47%;
-  height: 60px;
-
-  font-weight: 100;
-  font-size: 18px;
-  color: #292929;
-  padding: 17px 38px 13px 21px;
-} 
-
 .search-form-place {
   background-image: url(../src/images/location.svg);
   background-repeat: no-repeat;
   background-position: 95%;
 } 
 
+.search-form-place .css-1hb7zxy-IndicatorsContainer {
+  display: none;
+}
+
+.search-form-place .css-319lph-ValueContainer,
+.search-form-place .css-6j8wv5-Input {
+  padding: 0;
+  margin: 0;
+  height: 57px;
+}
+
+.search-form-place .css-319lph-ValueContainer {
+  padding: 0 38px 0 21px;
+  background-image: url(../src/images/location.svg);
+  background-repeat: no-repeat;
+  background-position: 95%;
+}
+
+.place-form {
+  display: block;
+  width: 47%;
+  height: 57px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #292929;
+  border-radius: 3px;
+}
+
 .search-form__place-group,
 .search-form__date-group {
   margin: 1vh 0 2.9vw;
   position: relative;
+}
+
+#react-select-3-listbox {
+  z-index: 50;
+  font-feature-settings: "smcp";
+  font-variant: small-caps;
+  background-color: #F5F4F6;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 14px 28px;
 }
 
 .search-form__date-group .fiirft{

@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = { 
   cities: '',
+  cityFrom: '',
+  cityTo: '',
   status: 'idle' 
 };
 
