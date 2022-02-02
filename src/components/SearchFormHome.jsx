@@ -1,20 +1,19 @@
 import cached from '../images/ic_cached.svg';
 import BasicDatePicker from './BasicDatePicker';
-import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { fetchCities } from "../redux/searchSlice";
 import SearchItem from './SearchItem';
+import { fetchRoutes } from '../redux/searchSlice';
 
 export default function SearchFormHome() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { cities } = useSelector((store) => store.searchSlice);
-  const [collabs, setCollabs] = useState("");
-
+  const { cityFrom, cityTo } = useSelector((store) => store.searchSlice);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
+    dispatch(fetchRoutes(url));
     navigate('/booking');
   }
 
@@ -23,9 +22,9 @@ export default function SearchFormHome() {
       <div>
         <label className="search__item-name">Направление</label>
         <div className="search-form__place-group d-flex justify-content-between">
-          <SearchItem setCollabs={setCollabs} placeholder={'Откуда'}/>
+          <SearchItem placeholder={'Откуда'} type={'from'}/>
           <img src={cached} alt="round"/>
-          <SearchItem setCollabs={setCollabs} placeholder={'Куда'}/>
+          <SearchItem placeholder={'Куда'} type={'to'}/>
         </div>
       </div>
       <div>

@@ -122,6 +122,7 @@ form[data-id*="search-form-booking" i] .btn-submit {
   padding: 0;
   margin: 0;
   height: 57px;
+  font-weight: 300;
 }
 
 .search-form-place .css-319lph-ValueContainer {
@@ -131,7 +132,7 @@ form[data-id*="search-form-booking" i] .btn-submit {
   background-position: 95%;
 }
 
-.place-form {
+.search-form-place {
   display: block;
   width: 47%;
   height: 57px;
@@ -148,16 +149,17 @@ form[data-id*="search-form-booking" i] .btn-submit {
   position: relative;
 }
 
-#react-select-3-listbox {
+#react-select-3-listbox,
+#react-select-5-listbox,
+#react-select-7-listbox,
+#react-select-9-listbox {
   z-index: 50;
-  font-feature-settings: "smcp";
   font-variant: small-caps;
   background-color: #F5F4F6;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   font-size: 18px;
-  line-height: 21px;
-  padding: 14px 28px;
+  line-height: 8px;
 }
 
 .search-form__date-group .fiirft{
@@ -183,38 +185,6 @@ form[data-id*="search-form-booking" i] .btn-submit {
 .sc-hGPBjI.cwQmpu {
   display: none;
 }
-
-.search-form__tooltip {
-  display: none;
-  position: absolute;
-  top: 65px;
-  width: 16.5vw;
-  z-index: 3;
-
-  background-color: #F5F4F6;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 3px;
-  list-style: none;
-  padding: 14px 28px;
-
-  color: #292929;
-  font-size: 18px;
-  line-height: 21px;
-  font-variant: small-caps;
-}
-
-/* .search-form__place-group input~.open + .search-form__tooltip {
-  display: block;
-} */
-.search-form__place-group input:focus + .search-form__tooltip { 
-  display: block;
-}
-
-.search-form__place-group .search-form__tooltip li:hover {
-  font-weight: 300;
-  cursor: pointer;
-}
-
 
 /* Search form Booking*/
 form[data-id*="search-form-booking" i] {
@@ -831,8 +801,9 @@ ol > li:not(:last-child) > div:before {
 }
 
 .trains-group__item {
-  height: 354px;
+  /* height: 354px; */
   width: 100%;
+  margin-bottom: 50px;
   background-color: #FFFFFF;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -856,6 +827,10 @@ ol > li:not(:last-child) > div:before {
 
 .item__short-info__direction {
   font-size: 16px;
+}
+
+.direction-from {
+  color: #928F94;
 }
 
 .item__short-info__number,

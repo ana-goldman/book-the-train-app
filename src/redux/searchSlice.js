@@ -1,13 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = { 
-  cities: '',
   cityFrom: '',
   cityTo: '',
+  routes: '',
+  total: '',
+  dateThere: '',
+  dateBack: '',
   status: 'idle' 
 };
 
-export const fetchCities = createAsyncThunk('searchSlice/fetchCities', async (url, { rejectWithValue }) => {
+export const fetchRoutes = createAsyncThunk('searchSlice/fetchRoutes', async (url, { rejectWithValue }) => {
 
   try {
     const result = await fetch(url)
@@ -22,37 +25,30 @@ export const fetchCities = createAsyncThunk('searchSlice/fetchCities', async (ur
 const searchSlice = createSlice({
   name: 'searchSlice',
   initialState,
-  // reducers: {
-  //   setCart(state, action) {
-  //     state.cart.push(action.payload);
-  //     state.status = 'idle' 
-  //   },
-  //   addMore(state, action){
-  //     const addMoreOf = state.cart.find(o => o.title === action.payload.title);
-  //     addMoreOf.count = addMoreOf.count + action.payload.count;
-  //   },
-  //   deleteItem(state, action) {
-  //     state.cart = state.cart.filter(o => o.id !== action.payload);
-  //   },
-  //   resetStatus(state, action) {
-  //     state.status = 'idle';
-  //   }
-  // },
+  reducers: {
+    setFrom(state, action) {
+      state.cityFrom = action.payload
+    },
+    setTo(state, action) {
+      state.cityTo = action.payload
+    },
+    setDateThere(state, action) {
+      state.dateThere = action.payload
+    },
+    setDateBack(state, action) {
+      state.dateBack = action.payload
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(fetchCities.pending, (state) => {
+    builder.addCase(fetchRoutes.pending, (state) => {
       state.status = 'loading'
     })
-    builder.addCase(fetchCities.fulfilled, (state, action) => {
-      state.cities = action.payload;
+    builder.addCase(fetchRoutes.fulfilled, (state, action) => {
+      state.routes = action.payload.items;
+      state.total = action.payload.total_count;
       state.status = 'success';
-      // if(action.payload === 204) {
-      //   state.cities = [];
-      //   state.status = 'success';
-      // } else {
-      //   state.status = 'error';
-      // }
     })
-    builder.addCase(fetchCities.rejected, (state, action) => {
+    builder.addCase(fetchRoutes.rejected, (state, action) => {
       state.status = 'error';
     })
   }
