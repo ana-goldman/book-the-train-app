@@ -621,6 +621,10 @@ ol > li:not(:last-child) > div:before {
   border: none;
 }
 
+/* .rc-slider-dot {
+  display: none;
+} */
+
 /*  */
 .drop-down-toggle {
   width: 20px;
@@ -632,6 +636,14 @@ ol > li:not(:last-child) > div:before {
   border-radius: 5px;
 
   cursor: pointer;
+}
+
+.filters__drop-down {
+  display: none;
+}
+
+.show-filter {
+  display: block;
 }
 
 .drop-down-toggle:before, .drop-down-toggle:after {

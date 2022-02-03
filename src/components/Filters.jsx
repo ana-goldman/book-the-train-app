@@ -6,14 +6,16 @@ import wifi from '../images/wifi.svg';
 import express from '../images/express.svg';
 import arrowThere from '../images/arrow-there.svg';
 import arrowBack from '../images/arrow-back.svg';
-
-import { Switch } from '@mui/material';
-import { Range } from 'rc-slider';
-import 'rc-slider/assets/index.css';
-
 import BasicDatePicker from './BasicDatePicker';
+import { Switch } from '@mui/material';
+import {Range} from 'rc-slider';
+// import 'rc-slider/assets/index.css';
+import { useState } from 'react';
+import PriceRange from './PriceRange';
 
 export default function Filters() {  
+  const [openThere, setOpenThere] = useState(false);
+  const [openBack, setOpenBack] = useState(false);
 
   return (
     <div className='filters__wrap'>
@@ -70,7 +72,7 @@ export default function Filters() {
  
         <div className="filters__item item__price d-flex flex-column">
           <span className="filters__item-name">Стоимость</span>
-          <Range/>
+          <PriceRange/>
         </div>
 
         <div className="filters__item d-flex flex-column">
@@ -80,15 +82,17 @@ export default function Filters() {
                 <img src={arrowThere} alt=""/>
                 <span className="filters__item-name">Туда</span>
               </div>
-              <div className="drop-down-toggle"></div>
+              <div className="drop-down-toggle" onClick={() => setOpenThere(openThere === false ? true : false)}></div>
             </div>
-            <div>
-              <span>Время отбытия</span>
-              <Range />
-            </div>
-            <div className='text-end'>
-              <span className="">Время прибытия</span>
-              <Range />
+            <div className={`filters__drop-down ${openThere === true ? 'show-filter' : ''}`}>
+              <div>
+                <span>Время отбытия</span>
+                <Range />
+              </div>
+              <div className='text-end'>
+                <span className="">Время прибытия</span>
+                <Range />
+              </div>
             </div>
           </div>
         </div>
@@ -100,15 +104,17 @@ export default function Filters() {
                 <img src={arrowBack} alt=""/>
                 <span className="filters__item-name">Обратно</span>
               </div>
-              <div className="drop-down-toggle"></div>
+              <div className="drop-down-toggle" onClick={() => setOpenBack(openBack === false ? true : false)}></div>
             </div>
-            <div>
-              <span>Время отбытия</span>
-              <Range />
-            </div>
-            <div className='text-end'>
-              <span className="">Время прибытия</span>
-              <Range />
+            <div className={`filters__drop-down ${openBack === true ? 'show-filter' : ''}`}>
+              <div>
+                <span>Время отбытия</span>
+                <Range />
+              </div>
+              <div className='text-end'>
+                <span className="">Время прибытия</span>
+                <Range />
+              </div>  
             </div>
           </div>
         </div>
