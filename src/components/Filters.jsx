@@ -8,10 +8,9 @@ import arrowThere from '../images/arrow-there.svg';
 import arrowBack from '../images/arrow-back.svg';
 import BasicDatePicker from './BasicDatePicker';
 import { Switch } from '@mui/material';
-import {Range} from 'rc-slider';
-// import 'rc-slider/assets/index.css';
 import { useState } from 'react';
 import PriceRange from './PriceRange';
+import TimeRange from './TimeRange';
 
 export default function Filters() {  
   const [openThere, setOpenThere] = useState(false);
@@ -87,11 +86,11 @@ export default function Filters() {
             <div className={`filters__drop-down ${openThere === true ? 'show-filter' : ''}`}>
               <div>
                 <span>Время отбытия</span>
-                <Range />
+                <TimeRange />
               </div>
-              <div className='text-end'>
+              <div className='text-end mt-5'>
                 <span className="">Время прибытия</span>
-                <Range />
+                <TimeRange />
               </div>
             </div>
           </div>
@@ -109,11 +108,11 @@ export default function Filters() {
             <div className={`filters__drop-down ${openBack === true ? 'show-filter' : ''}`}>
               <div>
                 <span>Время отбытия</span>
-                <Range />
+                <TimeRange />
               </div>
-              <div className='text-end'>
+              <div className='text-end mt-5'>
                 <span className="">Время прибытия</span>
-                <Range />
+                <TimeRange />
               </div>  
             </div>
           </div>
