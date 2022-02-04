@@ -2,10 +2,11 @@ import { useState } from "react";
 import AsyncSelect from "react-select/async";
 import makeAnimated from "react-select/animated";
 import { searchActions } from '../redux/searchSlice';
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const SearchItem = ({ placeholder, type }) => {
+const SearchItem = ({ type }) => {
   const [query, setQuery] = useState("");
+  const { cityFrom, cityTo } = useSelector((store) => store.searchSlice);
   const dispatch = useDispatch();
 
   const animatedComponents = makeAnimated();
@@ -21,7 +22,8 @@ const SearchItem = ({ placeholder, type }) => {
     <>
       <AsyncSelect
         className="search-form-place"
-        placeholder={placeholder}
+        placeholder={type === 'from' ? 'Откуда' : 'Куда'}
+        value={type === 'from' ? cityFrom : cityTo}
         cacheOptions
         components={animatedComponents}
         getOptionLabel={(data) => data.name}

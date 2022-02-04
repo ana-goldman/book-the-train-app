@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = { 
   cityFrom: '',
@@ -37,6 +37,12 @@ const searchSlice = createSlice({
     },
     setDateBack(state, action) {
       state.dateBack = action.payload
+    },
+    changeDirection(state) {
+      const from = current(state.cityFrom);
+      const to = current(state.cityTo);
+      state.cityFrom = to;
+      state.cityTo = from;
     },
   },
   extraReducers: (builder) => {

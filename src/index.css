@@ -149,6 +149,10 @@ form[data-id*="search-form-booking" i] .btn-submit {
   position: relative;
 }
 
+.search-form__place-group img {
+  cursor: pointer;
+}
+
 #react-select-3-listbox,
 #react-select-5-listbox,
 #react-select-7-listbox,
@@ -362,8 +366,7 @@ form[data-id*="subscription-form" i] button {
   color:#FFFFFF;
 }
 
-ol > li {     
-  cursor: pointer;   
+ol > li {       
   display: table-cell;
   height: 30px;        
   position: relative;
@@ -384,7 +387,6 @@ ol > li > div {
 }
 ol>li.active {
   background-color: #FFA800;
-  cursor: pointer;
   color: white;
 }
 ol {

@@ -3,6 +3,8 @@ import BasicDatePicker from './BasicDatePicker';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchRoutes } from '../redux/searchSlice';
 import SearchItem from './SearchItem';
+import { searchActions } from '../redux/searchSlice';
+import dateConverter from './dateConverter';
 
 export default function SearchFormBooking() {
   const dispatch = useDispatch();
@@ -10,9 +12,27 @@ export default function SearchFormBooking() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
+    let there;
+    let back;
+    let url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
+
+    if (dateThere) {
+      there = dateConverter(dateThere);
+    }
+
+    if (dateBack) {
+      back = dateConverter(dateBack);
+    }
+
+    if (there && !back) {
+      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${there}`;
+    } else if(back && !there) {
+      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_end=${back}`;
+    } else if (there && back) {
+      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${there}&date_end=${back}`;
+    }
+
     dispatch(fetchRoutes(url));
-    console.log(cityFrom, cityTo, dateThere, dateBack)
   }
 
   return (
@@ -21,9 +41,9 @@ export default function SearchFormBooking() {
         <div className="search-form-booking__item">
           <label className="search__item-name">Направление</label>
           <div className="search-form__place-group d-flex justify-content-between">
-            <SearchItem placeholder={cityFrom.name || 'Откуда'} type={'from'}/>
-            <img src={cached} alt="round"/>
-            <SearchItem placeholder={cityTo.name || 'Куда'} type={'to'}/>
+            <SearchItem type={'from'}/>
+            <img src={cached} alt="round" onClick={() => dispatch(searchActions.changeDirection())}/>
+            <SearchItem type={'to'}/>
           </div>
         </div>
         <div className="search-form-booking__item">
