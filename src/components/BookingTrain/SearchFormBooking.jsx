@@ -1,10 +1,9 @@
-import cached from '../images/ic_cached.svg';
-import BasicDatePicker from './BasicDatePicker';
+import cached from '../../images/ic_cached.svg';
+import BasicDatePicker from '../common/BasicDatePicker';
 import { useSelector, useDispatch } from "react-redux";
-import { fetchRoutes } from '../redux/searchSlice';
-import SearchItem from './SearchItem';
-import { searchActions } from '../redux/searchSlice';
-import dateConverter from './dateConverter';
+import { fetchRoutes } from '../../redux/searchSlice';
+import SearchItem from '../common/SearchItem';
+import { searchActions } from '../../redux/searchSlice';
 
 export default function SearchFormBooking() {
   const dispatch = useDispatch();
@@ -12,24 +11,15 @@ export default function SearchFormBooking() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let there;
-    let back;
     let url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
 
-    if (dateThere) {
-      there = dateConverter(dateThere);
-    }
 
-    if (dateBack) {
-      back = dateConverter(dateBack);
-    }
-
-    if (there && !back) {
-      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${there}`;
-    } else if(back && !there) {
-      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_end=${back}`;
-    } else if (there && back) {
-      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${there}&date_end=${back}`;
+    if (dateThere && !dateBack) {
+      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${dateThere}`;
+    } else if(dateBack && !dateThere) {
+      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_end=${dateBack}`;
+    } else if (dateThere && dateBack) {
+      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${dateThere}&date_end=${dateBack}`;
     }
 
     dispatch(fetchRoutes(url));
@@ -49,8 +39,8 @@ export default function SearchFormBooking() {
         <div className="search-form-booking__item">
           <label className="search__item-name">Дата</label>
           <div className="search-form__date-group d-flex justify-content-between">
-            <BasicDatePicker label={"ДД/ММ/ГГ"} type={'dateThere'}/>
-            <BasicDatePicker label={"ДД/ММ/ГГ"} type={'dateBack'}/>
+            <BasicDatePicker type={'dateThere'}/>
+            <BasicDatePicker type={'dateBack'}/>
           </div>
         </div>
       </div>

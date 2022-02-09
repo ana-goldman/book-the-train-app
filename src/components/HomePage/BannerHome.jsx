@@ -1,4 +1,4 @@
-import banner from '../images/banner.svg';
+import banner from '../../images/banner.svg';
 
 export default function BannerHome() {
   return (

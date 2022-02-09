@@ -5,8 +5,8 @@ const initialState = {
   cityTo: '',
   routes: '',
   total: '',
-  dateThere: '',
-  dateBack: '',
+  dateThere: null,
+  dateBack: null,
   status: 'idle' 
 };
 

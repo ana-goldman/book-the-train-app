@@ -1,6 +1,6 @@
 import BannerHome from './BannerHome';
 import SearchFormHome from './SearchFormHome';
-import TopNav from './TopNav';
+import TopNav from '../common/TopNav';
 
 export default function HeaderHome() {
   return (

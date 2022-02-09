@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AsyncSelect from "react-select/async";
 import makeAnimated from "react-select/animated";
-import { searchActions } from '../redux/searchSlice';
+import { searchActions } from '../../redux/searchSlice';
 import { useSelector, useDispatch } from "react-redux";
 
 const SearchItem = ({ type }) => {

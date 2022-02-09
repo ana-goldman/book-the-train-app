@@ -1,11 +1,12 @@
 import { Fragment } from "react";
 import { HashLink } from 'react-router-hash-link';
+import { NavLink } from 'react-router-dom'
 
 export default function TopNav() {
   return (
     <Fragment>
       <nav className="navbar-brand">
-          <span>Лого</span>
+        <NavLink to='/'><span>Лого</span></NavLink>
         </nav>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
           <div className="collapase navbar-collapse" id="navbarMain">

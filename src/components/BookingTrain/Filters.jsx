@@ -1,12 +1,12 @@
-import kupe from '../images/kupe.svg';
-import platskart from '../images/platskart.svg';
-import sidyachii from '../images/sidyachii.svg';
-import lux from '../images/lux.svg';
-import wifi from '../images/wifi.svg';
-import express from '../images/express.svg';
-import arrowThere from '../images/arrow-there.svg';
-import arrowBack from '../images/arrow-back.svg';
-import BasicDatePicker from './BasicDatePicker';
+import kupe from '../../images/kupe.svg';
+import platskart from '../../images/platskart.svg';
+import sidyachii from '../../images/sidyachii.svg';
+import lux from '../../images/lux.svg';
+import wifi from '../../images/wifi.svg';
+import express from '../../images/express.svg';
+import arrowThere from '../../images/arrow-there.svg';
+import arrowBack from '../../images/arrow-back.svg';
+import BasicDatePicker from '../common/BasicDatePicker';
 import { Switch } from '@mui/material';
 import { useState } from 'react';
 import PriceRange from './PriceRange';
@@ -20,9 +20,9 @@ export default function Filters() {
     <div className='filters__wrap'>
         <div className="filters__item search-form-filter d-flex flex-column">
           <span className="filters__item-name">Дата поездки</span>
-          <BasicDatePicker label={"ДД/ММ/ГГ"}/>
+          <BasicDatePicker type={'dateThere'}/>
           <span className="filters__item-name">Дата возвращения</span>
-          <BasicDatePicker label={"ДД/ММ/ГГ"}/>
+          <BasicDatePicker type={'dateBack'}/>
         </div>
         <div className="filters__item d-flex flex-column">
           <div className="item__train-type d-flex justify-content-between align-items-center">

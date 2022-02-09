@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import searchSlice from './searchSlice';
 import subscriptionSlice from './subscriptionSlice';
 import latestSlice from './latestSlice';
+import routeSlice from './routeSlice';
 import {
   persistStore,
   persistReducer,
@@ -17,14 +18,15 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['searchSlice'], //Things you want to persist
+  whitelist: ['searchSlice', 'routeSlice'], //Things you want to persist
   blacklist: ['latestSlice', 'subscriptionSlice'], //Things you dont
 };
 
 const rootReducer = combineReducers({
   searchSlice,
-    subscriptionSlice,
-    latestSlice,
+  subscriptionSlice,
+  latestSlice,
+  routeSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

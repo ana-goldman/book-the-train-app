@@ -1,10 +1,10 @@
-import phone from '../images/phone.svg';
-import mail from '../images/mail.svg';
-import skype from '../images/skype.svg';
-import address from '../images/address.svg';
+import phone from '../../images/phone.svg';
+import mail from '../../images/mail.svg';
+import skype from '../../images/skype.svg';
+import address from '../../images/address.svg';
 import { useState, Fragment } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { subscribe } from "../redux/subscriptionSlice";
+import { subscribe } from "../../redux/subscriptionSlice";
 import ModalInfo from './ModalInfo';
 import ModalError from './ModalError';
 

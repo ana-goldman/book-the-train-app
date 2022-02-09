@@ -10,7 +10,7 @@ export default function BodyContainer() {
 
   return (
     <Fragment>
-      <section className="trains-container">
+      <section className="body-container">
         <div className="trains-header d-flex justify-content-between">
           <div className="trains-header__total">найдено {total}</div>
           <div className="trains-header__sorting d-flex">сортировать по:

@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
-import HeaderHome from '../components/HeaderHome';
-import Footer from '../components/Footer';
-import About from '../components/About';
-import AboutProcess from '../components/AboutProcess';
-import Feedback from '../components/Feedback';
+import HeaderHome from '../components/HomePage/HeaderHome';
+import Footer from '../components/common/Footer';
+import About from '../components/HomePage/About';
+import AboutProcess from '../components/HomePage/AboutProcess';
+import Feedback from '../components/HomePage/Feedback';
 
 export default function Home() {
   return (

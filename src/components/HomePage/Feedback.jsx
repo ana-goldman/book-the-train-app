@@ -1,7 +1,7 @@
-import feedback1 from '../images/feedback1.svg';
-import feedback2 from '../images/feedback2.svg';
-import quote1 from '../images/“.svg';
-import quote2 from '../images/”.svg';
+import feedback1 from '../../images/feedback1.svg';
+import feedback2 from '../../images/feedback2.svg';
+import quote1 from '../../images/“.svg';
+import quote2 from '../../images/”.svg';
 
 export default function Feedback() {
   return (

@@ -1,8 +1,8 @@
-import trainIncludes from '../images/train-includes.svg';
-import currency from '../images/currency.svg';
+import trainIncludes from '../../images/train-includes.svg';
+import currency from '../../images/currency.svg';
 import { useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLatest } from "../redux/latestSlice";
+import { fetchLatest } from "../../redux/latestSlice";
 
 export default function Latest() {
   const dispatch = useDispatch();

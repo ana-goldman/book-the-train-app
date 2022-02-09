@@ -1,5 +1,5 @@
 import BannerBooking from './BannerBooking';
-import TopNav from './TopNav';
+import TopNav from '../common/TopNav';
 import SearchFormBooking from './SearchFormBooking';
 
 export default function HeaderBooking() {

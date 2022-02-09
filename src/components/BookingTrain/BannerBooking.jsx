@@ -1,4 +1,4 @@
-import banner from '../images/banner-booking.svg';
+import banner from '../../images/banner-booking.svg';
 
 export default function BannerBooking() {
   return (

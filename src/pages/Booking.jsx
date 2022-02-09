@@ -1,11 +1,12 @@
 import { Fragment } from 'react';
-import HeaderBooking from '../components/HeaderBooking';
-import Footer from '../components/Footer';
-import Filters from '../components/Filters';
-import Latest from '../components/Latest';
-import BodyContainer from '../components/BodyContainer';
+import HeaderBooking from '../components/BookingTrain/HeaderBooking';
+import Footer from '../components/common/Footer';
+import Filters from '../components/BookingTrain/Filters';
+import Latest from '../components/BookingTrain/Latest';
+import BodyContainer from '../components/BookingTrain/BodyContainer';
+import BodyContainerTrains from '../components/BookingTrain/BodyContainerTrains'
 
-export default function Booking() {
+export default function Booking(props) {
   return (
     <Fragment>
       <HeaderBooking/>
@@ -14,7 +15,8 @@ export default function Booking() {
             <Filters/>
             <Latest/>
           </aside>
-          <BodyContainer></BodyContainer>          
+          {props.type === 'main' && <BodyContainer></BodyContainer>}
+          {props.type === 'route' && <BodyContainerTrains></BodyContainerTrains>}       
         </main>
       <Footer/>
     </Fragment>
