@@ -1,21 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = { 
-  route: '',
+  route: null,
+  train: null,
   status: 'idle' 
 };
 
-// export const fetchRoutes = createAsyncThunk('searchSlice/fetchRoutes', async (url, { rejectWithValue }) => {
+export const fetchTrain = createAsyncThunk('searchSlice/fetchTrain', async (url, { rejectWithValue }) => {
 
-//   try {
-//     const result = await fetch(url)
-//       .then( response => response.json())
-//     return result
-//   } catch (error) {
-//     return rejectWithValue('Opps there seems to be an error')
-//   }
+  try {
+    const result = await fetch(url)
+      .then( response => response.json())
+    return result
+  } catch (error) {
+    return rejectWithValue('Opps there seems to be an error')
+  }
 
-// });
+});
 
 const routeSlice = createSlice({
   name: 'routeSlice',
@@ -24,20 +25,22 @@ const routeSlice = createSlice({
     setRoute(state, action) {
       state.route = action.payload
     },
+    // setTrain(state, action) {
+    //   state.train = action.payload
+    // },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(fetchRoutes.pending, (state) => {
-  //     state.status = 'loading'
-  //   })
-  //   builder.addCase(fetchRoutes.fulfilled, (state, action) => {
-  //     state.routes = action.payload.items;
-  //     state.total = action.payload.total_count;
-  //     state.status = 'success';
-  //   })
-  //   builder.addCase(fetchRoutes.rejected, (state, action) => {
-  //     state.status = 'error';
-  //   })
-  // }
+  extraReducers: (builder) => {
+    builder.addCase(fetchTrain.pending, (state) => {
+      state.status = 'loading'
+    })
+    builder.addCase(fetchTrain.fulfilled, (state, action) => {
+      state.train = action.payload;
+      state.status = 'success';
+    })
+    builder.addCase(fetchTrain.rejected, (state, action) => {
+      state.status = 'error';
+    })
+  }
 });
 
 export const routeActions = routeSlice.actions;

@@ -5,27 +5,24 @@ import fourthClass from '../../images/carriage-sidyachii.svg';
 import thirdClass from '../../images/carriage-platckart.svg';
 import secondClass from '../../images/carriage-kupe.svg';
 import firstClass from '../../images/carriage-lux.svg';
-import currency from '../../images/currency.svg';
-import q1 from '../../images/q1.svg';
-import q2 from '../../images/q2.svg';
-import q3 from '../../images/q3.svg';
-import q4 from '../../images/q4.svg';
-import q11 from '../../images/q1-1.svg';
-import q21 from '../../images/q2-1.svg';
-import q31 from '../../images/q3-1.svg';
-import q41 from '../../images/q4-1.svg';
-import { useState, Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { dateConverter, toWordsTime } from '../common/timeConverters';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTrain } from '../../redux/routeSlice';
+import Carriage from './Carriage';
 
 export default function BodyContainerTrains() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState('');
-  const [active, setActive] = useState([]);
-  const { route } = useSelector((store) => store.routeSlice);
+  const { route, train } = useSelector((store) => store.routeSlice);
+
+  useEffect(() => { 
+    dispatch(fetchTrain(`${process.env.REACT_APP_BASE_URL}routes/${route.departure._id}/seats`));
+  }, [dispatch, route.departure._id]);
 
   return (
     <Fragment>
-      <section className="body-container">{console.log(route)}
+      <section className="body-container">{console.log(train)}
         <h3 className='text-uppercase'>Выбор мест</h3>
         <div className='one-way-group'>
           <div className='way__go-back one-way__go-back'>
@@ -89,104 +86,30 @@ export default function BodyContainerTrains() {
           <div className='way__carriage-type'>
             <h4>Тип вагона</h4>
             <div className='d-flex justify-content-evenly'>
-              <div className={`carriage-type d-flex flex-column align-items-center ${open === 'Сидячий' && 'active'}`}
-                   onClick={() => setOpen('Сидячий')}>
+              <div className={`carriage-type d-flex flex-column align-items-center ${open === 'fourth' && 'active'}`}
+                   onClick={() => setOpen('fourth')}>
                 <img src={fourthClass} alt="" />
                 <span>Сидячий</span>
               </div>
-              <div className={`carriage-type d-flex flex-column align-items-center ${open === 'Плацкарт' && 'active'}`}
-                   onClick={() => setOpen('Плацкарт')}>
+              <div className={`carriage-type d-flex flex-column align-items-center ${open === 'third' && 'active'}`}
+                   onClick={() => setOpen('third')}>
                 <img src={thirdClass} alt="" />
                 <span>Плацкарт</span>
               </div>
-              <div className={`carriage-type d-flex flex-column align-items-center ${open === 'Купе' && 'active'}`}
-                   onClick={() => setOpen('Купе')}>
+              <div className={`carriage-type d-flex flex-column align-items-center ${open === 'second' && 'active'}`}
+                   onClick={() => setOpen('second')}>
                 <img src={secondClass} alt="" />
                 <span>Купе</span>
               </div>
-              <div className={`carriage-type d-flex flex-column align-items-center ${open === 'Люкс' && 'active'}`}
-                   onClick={() => setOpen('Люкс')}>
+              <div className={`carriage-type d-flex flex-column align-items-center ${open === 'first' && 'active'}`}
+                   onClick={() => setOpen('first')}>
                 <img src={firstClass} alt="" />
                 <span>Люкс</span>
               </div>
             </div>
           </div>
           <div className='carriage-group'>
-            <div className='carriage-group__header d-flex justify-content-between'>
-              <div className='d-flex select-carriage__group'>
-                Вагоны
-                <span className='select-carriage'>10</span>
-                <span className='select-carriage'>12</span>
-                <span className='select-carriage'>15</span>
-              </div>
-              <span>Нумерация вагонов начинается с головы поезда</span>
-            </div>
-            <div className='carriage-group__body d-flex justify-content-between'>
-              <div className='selected-carriage__item-colored text-center'>
-                <span className='number__zoom'>12</span><br/>
-                <span>вагон</span>
-              </div>
-              <div className='selected-carriage__seats'>
-                <div className='selected-carriage__item d-flex flex-column'>
-                  <div className='carriage-seats'>
-                    <span >Места </span>
-                    <span className='seats-total'>21</span>
-                  </div>
-                  <div className='carriage-top'>
-                    <span >Верхние </span>
-                    <span className='top-total'>10</span>
-                  </div>
-                  <div className='carriage-bottom'>
-                    <span >Нижние </span>
-                    <span className='top-total'>11</span>
-                  </div>
-                </div>
-              </div>
-              <div className='selected-carriage__price'>
-                <div className='selected-carriage__item d-flex flex-column'>
-                  <div className='carriage-price'>
-                    <span >Стоимость </span>
-                  </div>
-                  <div className='carriage-top'>
-                    <span >2 020 </span>
-                    <img src={currency} alt="" />
-                  </div>
-                  <div className='carriage-bottom'>
-                    <span >3 030 </span>
-                    <img src={currency} alt="" />
-                  </div>
-                </div>
-              </div>
-              <div className='selected-carriage__qualities'>
-                <div className='selected-carriage__item d-flex flex-column'>
-                  <div className='carriage-qualities'>
-                    <span >Обслуживание </span>
-                    <span className='qualities-name'>ФПК </span>
-                  </div>
-                  <div className='qualities-range d-flex justify-content-between'>
-                    <img className={`qualities-item ${active.includes(1) && 'active'}`} 
-                         src={active.includes(1) ? q11 :q1} alt=""
-                         onClick={() => active.includes(1) ? setActive(active.filter(o => o !== 1)) : setActive(prev => [...prev, 1])}/>
-                    <img className={`qualities-item ${active.includes(2) && 'active'}`} 
-                         src={active.includes(2) ? q21 :q2} alt=""
-                         onClick={() => active.includes(2) ? setActive(active.filter(o => o !== 2)) : setActive(prev => [...prev, 2])}/>
-                    <img className={`qualities-item ${active.includes(3) && 'active'}`} 
-                         src={active.includes(3) ? q31 :q3} alt=""
-                         onClick={() => active.includes(3) ? setActive(active.filter(o => o !== 3)) : setActive(prev => [...prev, 3])}/>
-                    <img className={`qualities-item ${active.includes(4) && 'active'}`} 
-                         src={active.includes(4) ? q41 :q4} alt=""
-                         onClick={() => active.includes(4) ? setActive(active.filter(o => o !== 4)) : setActive(prev => [...prev, 4])}/>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='carriage-group__train'>
-              <div className='carriage-tip'>13 человек выбирают места в этом поезде</div>
-              <div className='carriage-train'>
-                <div className='carriage-seats'></div>
-              </div>
-              <div className='carriage-price'></div>
-            </div>
+            {open && <Carriage class={open}/>}
           </div>
         </div>
         <div className='way-back-group'></div>
