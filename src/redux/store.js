@@ -3,6 +3,7 @@ import searchSlice from './searchSlice';
 import subscriptionSlice from './subscriptionSlice';
 import latestSlice from './latestSlice';
 import routeSlice from './routeSlice';
+import orderSlice from "./orderSlice";
 import {
   persistStore,
   persistReducer,
@@ -19,7 +20,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['searchSlice', 'routeSlice'], //Things you want to persist
-  blacklist: ['latestSlice', 'subscriptionSlice'], //Things you dont
+  blacklist: ['latestSlice', 'subscriptionSlice', 'orderSlice'], //Things you dont
 };
 
 const rootReducer = combineReducers({
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   subscriptionSlice,
   latestSlice,
   routeSlice,
+  orderSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

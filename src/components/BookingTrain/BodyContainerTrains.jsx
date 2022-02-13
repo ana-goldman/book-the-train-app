@@ -8,13 +8,15 @@ import firstClass from '../../images/carriage-lux.svg';
 import { useState, useEffect, Fragment } from 'react';
 import { dateConverter, toWordsTime } from '../common/timeConverters';
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { fetchTrain } from '../../redux/routeSlice';
 import Carriage from './Carriage';
 
 export default function BodyContainerTrains() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [open, setOpen] = useState('');
-  const { route, train } = useSelector((store) => store.routeSlice);
+  const { route } = useSelector((store) => store.routeSlice);
 
   useEffect(() => { 
     dispatch(fetchTrain(`${process.env.REACT_APP_BASE_URL}routes/${route.departure._id}/seats`));
@@ -22,12 +24,12 @@ export default function BodyContainerTrains() {
 
   return (
     <Fragment>
-      <section className="body-container">{console.log(train)}
+      <section className="body-container">
         <h3 className='text-uppercase'>Выбор мест</h3>
         <div className='one-way-group'>
           <div className='way__go-back one-way__go-back'>
-            <img src={wayArrow} alt="" />
-            <button type="button" className="btn btn-light btn-back">Выбрать другой поезд</button>
+            <img src={wayArrow} alt=""/>
+            <button type="button" className="btn btn-light btn-back" onClick={() => navigate('/booking')}>Выбрать другой поезд</button>
           </div>
           <div className='way__route d-flex justify-content-between align-items-center'>
             <div className='d-flex align-items-center'>
@@ -55,7 +57,8 @@ export default function BodyContainerTrains() {
             </div>
             <div className='d-flex'>
               <img src={wayClock} alt="" />
-              <div className='route-time'>{toWordsTime(route.departure.duration)}</div>
+              {/* no key */}
+              <div className='route-time'>{toWordsTime(route.departure.duration)}</div> 
             </div>
           </div>
           <div className='way__quantity'>
@@ -109,7 +112,10 @@ export default function BodyContainerTrains() {
             </div>
           </div>
           <div className='carriage-group'>
-            {open && <Carriage class={open}/>}
+            {route.departure.have_first_class && open === 'first' && <Carriage class={open}/>}
+            {route.departure.have_second_class && open === 'second' && <Carriage class={open}/>}
+            {route.departure.have_third_class && open === 'third' && <Carriage class={open}/>}
+            {route.departure.have_fourth_class && open === 'fourth' && <Carriage class={open}/>}
           </div>
         </div>
         <div className='way-back-group'></div>

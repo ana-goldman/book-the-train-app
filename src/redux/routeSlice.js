@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = { 
   route: null,
   train: null,
+  coach: null,
   status: 'idle' 
 };
 
@@ -25,9 +26,9 @@ const routeSlice = createSlice({
     setRoute(state, action) {
       state.route = action.payload
     },
-    // setTrain(state, action) {
-    //   state.train = action.payload
-    // },
+    setCoach(state, action) {
+      state.coach = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTrain.pending, (state) => {

@@ -1101,6 +1101,10 @@ ol > li:not(:last-child) > div:before {
   font-size: 24px;
 }
 
+.active-carriage {
+  color: #FFF;
+}
+
 .selected-carriage__item-colored {
   width: 190px;
   max-height: 161px;
@@ -1115,8 +1119,12 @@ ol > li:not(:last-child) > div:before {
 
 .selected-carriage__item {
   max-height: 161px;
-  padding: 30px;
+  padding: 26px;
   line-height: 34px;
+}
+
+.selected-carriage__item img {
+  margin: 0 5px;
 }
 
 .carriage-all,
@@ -1159,6 +1167,11 @@ ol > li:not(:last-child) > div:before {
 }
 
 .qualities-item.active {
+  background-color: #FCDC9D;
+  border: 1px solid #FCDC9D;
+}
+
+.qualities-item.optional {
   border: 1px solid #FDB935;
   background-color: #FDB935;
 }
@@ -1241,7 +1254,7 @@ ol > li:not(:last-child) > div:before {
 }
 
 .seat-item-fourth {
-  width: 30px;
+  width: 29px;
   height: 20px;
   background-color: #F7F5F9;
   margin: 3px;
@@ -1255,8 +1268,9 @@ ol > li:not(:last-child) > div:before {
 /* third class  */
 
 .seat-item-third {
-  width: 40px;
+  width: 2vw;
   height: 30px;
+  margin: 1px;
   background-color: #F7F5F9;
   font-size: 16px;
   font-weight: 300;
@@ -1285,10 +1299,23 @@ ol > li:not(:last-child) > div:before {
   width: 16%;
 }
 
+/* second class */
+.seat-item-second {
+  width: 2.3vw;
+  height: 30px;
+  margin: 1px;
+  background-color: #F7F5F9;
+  font-size: 16px;
+  font-weight: 300;
+  text-align: center;
+  align-self: center;
+  cursor: pointer;
+}
+
 
 /* first class */
 .seats-first-space {
-  width: 16%;
+  width: 16vw;
 }
 
 .seat-item-first {
@@ -1302,9 +1329,6 @@ ol > li:not(:last-child) > div:before {
   cursor: pointer;
 }
 
-
-
-
 .seat-focus{
   outline: 2px solid #FFA800;
 }
@@ -1315,6 +1339,18 @@ ol > li:not(:last-child) > div:before {
   cursor: unset;
 }
 
+.carriage__total-price {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 500;
+
+  color: #FFA800;
+  padding: 20px 40px;
+}
+
+.carriage__total-price img {
+  margin: 0 5px;
+}
 
 
 .btn-next {

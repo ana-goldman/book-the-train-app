@@ -1,12 +1,14 @@
 import cached from '../../images/ic_cached.svg';
 import BasicDatePicker from '../common/BasicDatePicker';
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { fetchRoutes } from '../../redux/searchSlice';
 import SearchItem from '../common/SearchItem';
 import { searchActions } from '../../redux/searchSlice';
 
 export default function SearchFormBooking() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cityFrom, cityTo, dateThere, dateBack } = useSelector((store) => store.searchSlice);
 
   const handleSubmit = (e) => {
@@ -21,7 +23,8 @@ export default function SearchFormBooking() {
     } else if (dateThere && dateBack) {
       url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${dateThere}&date_end=${dateBack}`;
     }
-
+    
+    navigate('/booking')
     dispatch(fetchRoutes(url));
   }
 
