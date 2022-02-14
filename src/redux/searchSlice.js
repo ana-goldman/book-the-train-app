@@ -5,6 +5,10 @@ const initialState = {
   cityTo: '',
   routes: '',
   total: '',
+  have_fourth_class: false,
+  have_third_class: false,
+  have_second_class: false,
+  have_first_class: false,
   dateThere: null,
   dateBack: null,
   status: 'idle' 

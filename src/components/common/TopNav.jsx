@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 export default function TopNav() {
   return (
     <Fragment>
-      <nav className="navbar-brand">
+      <nav className="navbar-brand" id='top'>
         <NavLink to='/'><span>Лого</span></NavLink>
         </nav>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">

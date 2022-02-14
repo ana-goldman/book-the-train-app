@@ -8,13 +8,40 @@ import arrowThere from '../../images/arrow-there.svg';
 import arrowBack from '../../images/arrow-back.svg';
 import BasicDatePicker from '../common/BasicDatePicker';
 import { Switch } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchRoutes } from '../../redux/searchSlice';
 import PriceRange from './PriceRange';
 import TimeRange from './TimeRange';
 
 export default function Filters() {  
+  const dispatch = useDispatch();
   const [openThere, setOpenThere] = useState(false);
   const [openBack, setOpenBack] = useState(false);
+
+  const [haveSecondClass, setHaveSecondClass] = useState(false);
+  const [haveThirdClass, setHaveThirdClass] = useState(false);
+  const [haveFourthClass, setHaveFourthClass] = useState(false);
+  const [haveFirstClass, setHaveFirstClass] = useState(false);
+  const [haveWifi, setHaveWifi] = useState(false);
+  const [haveExpress, setHaveExpress] = useState(false);
+
+  const { cityFrom, cityTo, dateThere, dateBack } = useSelector((store) => store.searchSlice);
+
+  useEffect(() => {
+    let url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
+
+    if(dateThere) url = `${url}&date_start=${dateThere}`;
+    if(dateBack) url = `${url}&date_end=${dateBack}`;
+    if(haveSecondClass) url = `${url}&have_second_class=${haveSecondClass}`;
+    if(haveThirdClass) url = `${url}&have_third_class=${haveThirdClass}`;
+    if(haveFourthClass) url = `${url}&have_fourth_class=${haveFourthClass}`;
+    if(haveFirstClass) url = `${url}&have_first_class=${haveFirstClass}`;
+    if(haveWifi) url = `${url}&have_wifi=${haveWifi}`;
+    if(haveExpress) url = `${url}&have_express=${haveExpress}`;
+
+    dispatch(fetchRoutes(url));
+  }, [cityFrom, cityTo, dateBack, dateThere, dispatch, haveExpress, haveFirstClass, haveFourthClass, haveSecondClass, haveThirdClass, haveWifi]);
 
   return (
     <div className='filters__wrap'>
@@ -30,42 +57,54 @@ export default function Filters() {
               <img src={kupe} alt="Купе"/>
               <span>Купе </span>
             </div>
-            <Switch sx={{ width: 72 }} defaultChecked />
+            <Switch sx={{ width: 72 }} 
+                    checked={haveSecondClass}
+                    onChange={(e) => setHaveSecondClass(e.target.checked)} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
               <img src={platskart} alt="Плацкарт"/>
               <span>Плацкарт </span>
             </div>
-            <Switch sx={{ width: 72 }} />
+            <Switch sx={{ width: 72 }}
+                    checked={haveThirdClass}
+                    onChange={(e) => setHaveThirdClass(e.target.checked)} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
               <img src={sidyachii} alt="Сидячий"/>
               <span>Сидячий</span>
             </div>
-            <Switch sx={{ width: 72 }} />
+            <Switch sx={{ width: 72 }}
+                    checked={haveFourthClass}
+                    onChange={(e) => setHaveFourthClass(e.target.checked)} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
               <img src={lux} alt="Люкс"/>
               <span>Люкс</span>
             </div>
-            <Switch sx={{ width: 72 }} />
+            <Switch sx={{ width: 72 }}
+                    checked={haveFirstClass}
+                    onChange={(e) => setHaveFirstClass(e.target.checked)} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
               <img src={wifi} alt="Wi-Fi"/>
               <span>Wi-Fi </span>
             </div>
-            <Switch sx={{ width: 72 }} defaultChecked />
+            <Switch sx={{ width: 72 }}
+                    checked={haveWifi}
+                    onChange={(e) => setHaveWifi(e.target.checked)} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
               <img src={express} alt="Экспресс"/>
               <span>Экспресс</span>
             </div>
-            <Switch sx={{ width: 72 }} />
+            <Switch sx={{ width: 72 }}
+                    checked={haveExpress}
+                    onChange={(e) => setHaveExpress(e.target.checked)} />
           </div>
         </div>
  

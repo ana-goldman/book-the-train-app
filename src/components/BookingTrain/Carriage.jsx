@@ -46,7 +46,7 @@ export default function Carriage(props) {
   coach.seats.map(o => o.index % 2 === 0 ? top.push(o) : bottom.push(o));
 
   return (
-    <Fragment>{console.log(coach)}
+    <Fragment>
       <div className='carriage-group__header d-flex justify-content-between'>
         <div className='d-flex select-carriage__group'>
           Вагоны
@@ -145,7 +145,7 @@ export default function Carriage(props) {
       {props.class === 'first' && <CarriageFirst/>}
       <div className='carriage__total-price text-end'>
         {total}
-        <img src={currency} alt="" />
+        {total &&<img src={currency} alt="" />}
       </div>
     </Fragment>
   )

@@ -26,7 +26,6 @@ export default function CarriageThird() {
   const arrToMap = [];
   topArr.forEach(a => {
     arrToMap.push(a.concat(bottomArr[topArr.indexOf(a)]))
-    // bottomArr.forEach(b => bottomArr.indexOf(b) === topArr.indexOf(a) ? arrToMap.push(b.concat(a)) : '')
   })
   console.log(arrToMap)
 
@@ -39,7 +38,7 @@ export default function CarriageThird() {
         <div className='carriage-crew'></div>
         <div className='carriage-seats d-flex justify-content-evenly'>
           {arrToMap.map(o => {
-            return ( <div className="seats-third-space">
+            return ( <div key={nanoid()} className="seats-third-space">
                 <div className="seats-space__top d-flex flex-column-reverse flex-wrap">
                   {o[0] && <div 
                     className={`seat-item-third 
