@@ -21,7 +21,6 @@ export default function Route() {
               <div className="item__short-info__number">{o.departure.train.name}</div>
               <div className="item__short-info__direction">
                 <span className='direction-from text-capitalize'>{o.departure.from.city.name} &#x2192;<br/></span>
-                {/* <span className='direction-start text-capitalize'>Москва &#x2192;<br/></span> */}
                 <span className='direction-to text-capitalize'>{o.departure.to.city.name}</span>
               </div>
             </div>
@@ -42,24 +41,24 @@ export default function Route() {
                   <div className="item__body__to__station">{o.departure.to.railway_station_name}</div>
                 </div>
               </div>
-              <div className="item__body__way-back d-flex justify-content-between">
-                {/* <div className="item__body__from">
-                  <div className="item__body__from__time">00:10</div>
-                  <div className="item__body__from__city">Москва</div>
-                  <div className="item__body__from__station">Курский вокзал</div>
+              {o.arrival && <div className="item__body__way-back d-flex justify-content-between">
+                <div className="item__body__from">
+                  <div className="item__body__from__time">{dateConverter(o.arrival.from.datetime)}</div>
+                  <div className="item__body__from__city text-capitalize">{o.arrival.from.city.name}</div>
+                  <div className="item__body__from__station">{o.arrival.from.railway_station_name}</div>
                 </div>
                 <div className="item__body__direction">
-                  <div className="item__body__direction__time">9 : 42</div>
+                  <div className="item__body__direction__time">{secConverter(o.arrival.duration)}</div>
                   <div className="item__body__direction__arrow-back"></div>
                 </div>
                 <div className="item__body__to">
-                  <div className="item__body__to__time">09:52</div>
-                  <div className="item__body__to__city">Санкт-Петербург</div>
-                  <div className="item__body__to__station">Ладожский вокзал</div>
-                </div> */}
-              </div>
+                  <div className="item__body__to__time">{dateConverter(o.arrival.to.datetime)}</div>
+                  <div className="item__body__to__city text-capitalize">{o.arrival.to.city.name}</div>
+                  <div className="item__body__to__station">{o.arrival.to.railway_station_name}</div>
+                </div>
+              </div>}
             </div>
-            <div className="item__options-info">
+            <div className="item__options-info d-flex flex-column justify-content-between">
               <div className="item__options-info__carriages">
                 {o.departure.have_fourth_class && <div className="item__options-info__carriage d-flex align-items-end">
                   <span className="carriage__type">Сидячий</span>

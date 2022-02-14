@@ -2,7 +2,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useState } from 'react';
 
-export default function PriceRange() {
+export default function PriceRange(props) {
   const createSliderWithTooltip = Slider.createSliderWithTooltip;
   const Range = createSliderWithTooltip(Slider.Range);
   const [sliderValues, setSliderValues] = useState([0, 7000]);
@@ -34,7 +34,10 @@ export default function PriceRange() {
            allowCross={false}
            dotStyle = {{display:'none'}}
            marks={marks} 
-           onAfterChange={(value) => setSliderValues(value)}
+           onAfterChange={(value) => {
+             setSliderValues(value);
+             props.getRange(value)
+            }}
            defaultValue={sliderValues}
            tipProps={{visible:true}}
     />

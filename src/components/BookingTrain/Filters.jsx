@@ -18,30 +18,58 @@ export default function Filters() {
   const dispatch = useDispatch();
   const [openThere, setOpenThere] = useState(false);
   const [openBack, setOpenBack] = useState(false);
-
+  // switches 
   const [haveSecondClass, setHaveSecondClass] = useState(false);
   const [haveThirdClass, setHaveThirdClass] = useState(false);
   const [haveFourthClass, setHaveFourthClass] = useState(false);
   const [haveFirstClass, setHaveFirstClass] = useState(false);
   const [haveWifi, setHaveWifi] = useState(false);
   const [haveExpress, setHaveExpress] = useState(false);
+  // price 
+  const [priceFrom, setPriceFrom] = useState();
+  const [priceTo, setPriceTo] = useState();
+  // time there 
+  const [startDepartureHourFrom, setStartDepartureHourFrom] = useState();
+  const [startDepartureHourTo, setStartDepartureHourTo] = useState();
+  const [startArrivalHourFrom, setStartArrivalHourFrom] = useState();
+  const [startArrivalHourTo, setStartArrivalHourTo] = useState();
+  // time back 
+  const [endDepartureHourFrom, setEndDepartureHourFrom] = useState();
+  const [endDepartureHourTo, setEndDepartureHourTo] = useState();
+  const [endArrivalHourFrom, setEndArrivalHourFrom] = useState();
+  const [endArrivalHourTo, setEndArrivalHourTo] = useState();
 
   const { cityFrom, cityTo, dateThere, dateBack } = useSelector((store) => store.searchSlice);
 
   useEffect(() => {
     let url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
 
+    // date
     if(dateThere) url = `${url}&date_start=${dateThere}`;
     if(dateBack) url = `${url}&date_end=${dateBack}`;
+    // switches
     if(haveSecondClass) url = `${url}&have_second_class=${haveSecondClass}`;
     if(haveThirdClass) url = `${url}&have_third_class=${haveThirdClass}`;
     if(haveFourthClass) url = `${url}&have_fourth_class=${haveFourthClass}`;
     if(haveFirstClass) url = `${url}&have_first_class=${haveFirstClass}`;
     if(haveWifi) url = `${url}&have_wifi=${haveWifi}`;
     if(haveExpress) url = `${url}&have_express=${haveExpress}`;
+    // price 
+    if(priceFrom) url = `${url}&price_from=${priceFrom}`;
+    if(priceTo) url = `${url}&price_to=${priceTo}`;
+    // time there 
+    if(startDepartureHourFrom) url = `${url}&start_departure_hour_from=${startDepartureHourFrom}`;
+    if(startDepartureHourTo) url = `${url}&start_departure_hour_to=${startDepartureHourTo}`;
+    if(startArrivalHourFrom) url = `${url}&start_arrival_hour_from=${startArrivalHourFrom}`;
+    if(startArrivalHourTo) url = `${url}&start_arrival_hour_to=${startArrivalHourTo}`;
+    // time back 
+    if(endDepartureHourFrom) url = `${url}&end_departure_hour_from=${endDepartureHourFrom}`;
+    if(endDepartureHourTo) url = `${url}&end_departure_hour_to=${endDepartureHourTo}`;
+    if(endArrivalHourFrom && dateBack) url = `${url}&end_arrival_hour_from=${endArrivalHourFrom}`;
+    if(endArrivalHourTo && dateBack) url = `${url}&end_arrival_hour_to=${endArrivalHourTo}`;
 
     dispatch(fetchRoutes(url));
-  }, [cityFrom, cityTo, dateBack, dateThere, dispatch, haveExpress, haveFirstClass, haveFourthClass, haveSecondClass, haveThirdClass, haveWifi]);
+  }, [dispatch, endArrivalHourFrom, endArrivalHourTo, endDepartureHourFrom, endDepartureHourTo, haveExpress, haveFirstClass, haveFourthClass, haveSecondClass, haveThirdClass, haveWifi, priceFrom, priceTo, startArrivalHourFrom, startArrivalHourTo, startDepartureHourFrom, startDepartureHourTo]);
 
   return (
     <div className='filters__wrap'>
@@ -110,7 +138,10 @@ export default function Filters() {
  
         <div className="filters__item item__price d-flex flex-column">
           <span className="filters__item-name">Стоимость</span>
-          <PriceRange/>
+          <PriceRange getRange={(data) => {
+            setPriceFrom(data[0]);
+            setPriceTo(data[1]);
+          }}/>
         </div>
 
         <div className="filters__item d-flex flex-column">
@@ -125,11 +156,17 @@ export default function Filters() {
             <div className={`filters__drop-down ${openThere === true ? 'show-filter' : ''}`}>
               <div>
                 <span>Время отбытия</span>
-                <TimeRange />
+                <TimeRange getRange={(data) => {
+                  setStartDepartureHourFrom(data[0]);
+                  setStartDepartureHourTo(data[1]);
+                }}/>
               </div>
               <div className='text-end mt-5'>
                 <span className="">Время прибытия</span>
-                <TimeRange />
+                <TimeRange getRange={(data) => {
+                  setStartArrivalHourFrom(data[0]);
+                  setStartArrivalHourTo(data[1]);
+                }}/>
               </div>
             </div>
           </div>
@@ -147,11 +184,17 @@ export default function Filters() {
             <div className={`filters__drop-down ${openBack === true ? 'show-filter' : ''}`}>
               <div>
                 <span>Время отбытия</span>
-                <TimeRange />
+                <TimeRange getRange={(data) => {
+                  setEndDepartureHourFrom(data[0]);
+                  setEndDepartureHourTo(data[1]);
+                }}/>
               </div>
               <div className='text-end mt-5'>
                 <span className="">Время прибытия</span>
-                <TimeRange />
+                <TimeRange getRange={(data) => {
+                  setEndArrivalHourFrom(data[0]);
+                  setEndArrivalHourTo(data[1]);
+                }}/>
               </div>  
             </div>
           </div>

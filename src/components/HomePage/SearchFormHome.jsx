@@ -15,13 +15,8 @@ export default function SearchFormHome() {
     e.preventDefault();
     let url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
 
-    if (dateThere && !dateBack) {
-      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${dateThere}`;
-    } else if(dateBack && !dateThere) {
-      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_end=${dateBack}`;
-    } else if (dateThere && dateBack) {
-      url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}&date_start=${dateThere}&date_end=${dateBack}`;
-    }
+    if (dateThere) url = `${url}&date_start=${dateThere}`;
+    if(dateBack) url = `${url}&date_end=${dateBack}`;
 
     dispatch(fetchRoutes(url));
     navigate('/booking');

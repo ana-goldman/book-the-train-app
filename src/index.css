@@ -882,6 +882,7 @@ ol > li:not(:last-child) > div:before {
   background-image: url(./images/arrow-colored.svg);
   width: 30px;
   height: 20px;
+  margin: 0 auto;
 }
 
 .item__body__direction__arrow {
