@@ -20,42 +20,63 @@ import CarriageFirst from './CarriageFirst';
 
 export default function Carriage(props) {
   const dispatch = useDispatch();
-  const { train, coach } = useSelector((store) => store.routeSlice);
-  const { total } = useSelector((store) => store.orderSlice);
+  const { train, trainBack, coach, coachBack } = useSelector((store) => store.routeSlice);
+  const { total, totalBack } = useSelector((store) => store.orderSlice);
   const [active, setActive] = useState([]);
   const [optional, setOptional] = useState([]);
   const [coachNum, setCoachNum] = useState('');
 
   const coachArr = [];
   train.forEach(o => o.coach.class_type === props.class ? coachArr.push(o) : null);
+  const coachArrBack = [];
+  trainBack.forEach(o => o.coach.class_type === props.class ? coachArrBack.push(o) : null);
 
   useEffect(() => {
     dispatch(routeActions.setCoach(coachArr[0]));
-    setCoachNum(coachArr[0].coach.name.replace( /[^\d.]*/g, ''));
+    dispatch(routeActions.setCoachBack(coachArrBack[0]));
+    props.type === 'oneWay' && setCoachNum(coachArr[0].coach.name.replace( /[^\d.]*/g, ''));
+    props.type === 'wayBack' && setCoachNum(coachArrBack[0].coach.name.replace( /[^\d.]*/g, ''));
   }, []);
   
   useEffect(() => {
-    coach.coach.have_air_conditioning === true && setActive(prev => [...prev, 'aircon']);
-    coach.coach.have_wifi === true && setActive(prev => [...prev, 'wifi']);
-    coach.coach.is_linens_included === true && setActive(prev => [...prev, 'linens']);
-  }, [coach]);
+    setActive([]);
+    if(props.type === 'oneWay') {
+      coach.coach.have_air_conditioning === true && setActive(prev => [...prev, 'aircon']);
+      coach.coach.have_wifi === true && setActive(prev => [...prev, 'wifi']);
+      coach.coach.is_linens_included === true && setActive(prev => [...prev, 'linens']);
+    } 
+    if(props.type === 'wayBack') {
+      coachBack.coach.have_air_conditioning === true && setActive(prev => [...prev, 'aircon']);
+      coachBack.coach.have_wifi === true && setActive(prev => [...prev, 'wifi']);
+      coachBack.coach.is_linens_included === true && setActive(prev => [...prev, 'linens']);
+    }
+  }, [coach, coachBack]);
 
   const top = [];
   const bottom = [];
 
-  coach.seats.map(o => o.index % 2 === 0 ? top.push(o) : bottom.push(o));
+  props.type === 'oneWay' && coach.seats.map(o => o.index % 2 === 0 ? top.push(o) : bottom.push(o));
+  props.type === 'wayBack' && coachBack.seats.map(o => o.index % 2 === 0 ? top.push(o) : bottom.push(o));
 
   return (
     <Fragment>
       <div className='carriage-group__header d-flex justify-content-between'>
         <div className='d-flex select-carriage__group'>
           Вагоны
-          {coachArr.map(o => {
+          {props.type === 'oneWay' && coachArr.map(o => {
             const num = o.coach.name.replace( /[^\d.]*/g, '');
             return (<span key={nanoid()} className={`select-carriage ${num === coachNum && 'active-carriage'}`} 
                           onClick={() => {
                             setCoachNum(num);
                             dispatch(routeActions.setCoach(o));
+                          }}>{num}</span>)
+          })}
+          {props.type === 'wayBack' && coachArrBack.map(o => {
+            const num = o.coach.name.replace( /[^\d.]*/g, '');
+            return (<span key={nanoid()} className={`select-carriage ${num === coachNum && 'active-carriage'}`} 
+                          onClick={() => {
+                            setCoachNum(num);
+                            dispatch(routeActions.setCoachBack(o));
                           }}>{num}</span>)
           })}
         </div>
@@ -70,7 +91,10 @@ export default function Carriage(props) {
           <div className='selected-carriage__item d-flex flex-column'>
             <div className='carriage-all'>
               <span >Места </span>
-              <span className='all-total'>{coach.coach.available_seats}</span>
+              <span className='all-total'>
+                {props.type === 'oneWay' && coach.coach.available_seats}
+                {props.type === 'wayBack' && coachBack.coach.available_seats}
+              </span>
             </div>
            {(props.class === 'third' || props.class === 'second') && <div className='carriage-top'>
               <span >Верхние </span>
@@ -88,13 +112,17 @@ export default function Carriage(props) {
               <span >Стоимость </span>
             </div>
             <div className='carriage-top'>
-              <span>{props.class !== 'first' && coach.coach.top_price}
-                    {props.class === 'first' && coach.coach.price}
+              <span>{props.class !== 'first' && props.type === 'oneWay' && coach.coach.top_price}
+                    {props.class === 'first' && props.type === 'oneWay' && coach.coach.price}
+                    {props.class !== 'first' && props.type === 'wayBack' && coachBack.coach.top_price}
+                    {props.class === 'first' && props.type === 'wayBack' && coachBack.coach.price}
               </span>
               <img src={currency} alt="" />
             </div>
             {props.class !== 'first' && <div className='carriage-bottom'>
-              <span>{coach.coach.bottom_price}
+              <span>
+                {props.type === 'oneWay' && coach.coach.bottom_price}
+                {props.type === 'wayBack' && coachBack.coach.bottom_price}
               </span>
               <img src={currency} alt="" />
             </div>}
@@ -139,13 +167,15 @@ export default function Carriage(props) {
           </div>
         </div>
       </div>
-      {props.class === 'fourth' && <CarriageFourth/>}
-      {props.class === 'third' && <CarriageThird/>}
-      {props.class === 'second' && <CarriageSecond/>}
-      {props.class === 'first' && <CarriageFirst/>}
+      {props.class === 'fourth' && <CarriageFourth type={props.type}/>}
+      {props.class === 'third' && <CarriageThird type={props.type}/>}
+      {props.class === 'second' && <CarriageSecond type={props.type}/>}
+      {props.class === 'first' && <CarriageFirst type={props.type}/>}
       <div className='carriage__total-price text-end'>
-        {total}
-        {total &&<img src={currency} alt="" />}
+        {props.type === 'oneWay' && total}
+        {props.type === 'wayBack' && totalBack}
+        {props.type === 'oneWay' && total &&<img src={currency} alt="" />}
+        {props.type === 'wayBack' && totalBack &&<img src={currency} alt="" />}
       </div>
     </Fragment>
   )

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = { 
   total: null,
+  totalBack: null,
   status: 'idle' 
 };
 
@@ -11,6 +12,9 @@ const orderSlice = createSlice({
   reducers: {
     setTotal(state, action) {
       state.total = action.payload
+    },
+    setTotalBack(state, action) {
+      state.totalBack = action.payload
     },
   },
 });

@@ -66,7 +66,9 @@ export default function BodyContainer() {
     endArrivalHourTo, 
     limit,
     sortBy,
-    offset]);
+    offset,
+    total
+  ]);
 
   return (
     <Fragment>

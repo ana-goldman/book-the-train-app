@@ -2,12 +2,16 @@ import { useSelector } from "react-redux";
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-export default function CarriageThird() {
-  const { coach } = useSelector((store) => store.routeSlice);
+export default function CarriageThird(props) {
+  const { coach, coachBack } = useSelector((store) => store.routeSlice);
   const [active, setActive] = useState([]);
 
-  const seatSpaces = Math.floor((coach.seats.length / 6) % 2 === 0 ? coach.seats.length / 6 : coach.seats.length / 6 + 1);
-  const topArr = (coach.seats.slice(0, seatSpaces * 4)).reduce(
+  let chosenCoach;
+  if(props.type === 'oneWay') chosenCoach = coach;
+  if(props.type === 'wayBack') chosenCoach = coachBack;
+
+  const seatSpaces = Math.floor((chosenCoach.seats.length / 6) % 2 === 0 ? chosenCoach.seats.length / 6 : chosenCoach.seats.length / 6 + 1);
+  const topArr = (chosenCoach.seats.slice(0, seatSpaces * 4)).reduce(
     function(accumulator, currentValue, currentIndex, array) {
       if (currentIndex % 4 === 0)
         accumulator.push(array.slice(currentIndex, currentIndex + 4));
@@ -15,7 +19,7 @@ export default function CarriageThird() {
     }, []
   );
 
-  const bottomArr = (coach.seats.slice(seatSpaces * 4)).reduce(
+  const bottomArr = (chosenCoach.seats.slice(seatSpaces * 4)).reduce(
     function(accumulator, currentValue, currentIndex, array) {
       if (currentIndex % 2 === 0)
         accumulator.push(array.slice(currentIndex, currentIndex + 2));
@@ -27,7 +31,6 @@ export default function CarriageThird() {
   topArr.forEach(a => {
     arrToMap.push(a.concat(bottomArr[topArr.indexOf(a)]))
   })
-  console.log(arrToMap)
 
   return (
     <div className='carriage-group__train'>

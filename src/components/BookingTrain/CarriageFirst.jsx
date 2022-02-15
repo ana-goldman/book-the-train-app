@@ -2,9 +2,13 @@ import { useSelector } from "react-redux";
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-export default function CarriageFirst() {
-  const { coach } = useSelector((store) => store.routeSlice);
+export default function CarriageFirst(props) {
+  const { coach, coachBack } = useSelector((store) => store.routeSlice);
   const [active, setActive] = useState([]);
+
+  let chosenCoach;
+  if(props.type === 'oneWay') chosenCoach = coach;
+  if(props.type === 'wayBack') chosenCoach = coachBack;
 
   return (
     <div className='carriage-group__train'>
@@ -14,7 +18,7 @@ export default function CarriageFirst() {
         <div className='carriage-toilet'></div>
         <div className='carriage-crew'></div>
         <div className='carriage-seats d-flex justify-content-evenly'>
-          {coach.seats.reduce(
+          {chosenCoach.seats.reduce(
             function(accumulator, currentValue, currentIndex, array) {
               if (currentIndex % 2 === 0)
                 accumulator.push(array.slice(currentIndex, currentIndex + 2));

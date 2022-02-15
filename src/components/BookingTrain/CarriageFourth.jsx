@@ -2,13 +2,17 @@ import { useSelector } from "react-redux";
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-export default function CarriageFourth() {
-  const { coach } = useSelector((store) => store.routeSlice);
+export default function CarriageFourth(props) {
+  const { coach, coachBack } = useSelector((store) => store.routeSlice);
   const [active, setActive] = useState([]);
 
-  const middle = Math.round(coach.seats.length / 2);
-  const topArr = coach.seats.slice(0, middle);
-  const bottomArr = coach.seats.slice(middle);
+  let chosenCoach;
+  if(props.type === 'oneWay') chosenCoach = coach;
+  if(props.type === 'wayBack') chosenCoach = coachBack;
+
+  const middle = Math.round(chosenCoach.seats.length / 2);
+  const topArr = chosenCoach.seats.slice(0, middle);
+  const bottomArr = chosenCoach.seats.slice(middle);
 
   return (
     <div className='carriage-group__train'>
