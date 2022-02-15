@@ -27,15 +27,6 @@ export default function TimeRange(props) {
       label: '24:00',
     },
   };  
-
-  function tipFormatter(v) {
-    return `${v}:00`;
-    // for(let hour = 0; 0 < hour < 24; hour++) {
-    //   if (Math.floor(v/3600) === hour) {
-    //     return `${hour}:00`;
-    //   }
-    // }
-  }
   
   return (
     <Range min={0}
@@ -49,7 +40,7 @@ export default function TimeRange(props) {
              props.getRange(value);
            }}
            defaultValue={sliderValues}
-           tipFormatter={tipFormatter}
+           tipFormatter={(v) => `${v}:00`}
     />
   )
 }

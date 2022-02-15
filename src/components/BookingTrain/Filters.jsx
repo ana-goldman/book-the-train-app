@@ -10,7 +10,7 @@ import BasicDatePicker from '../common/BasicDatePicker';
 import { Switch } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { fetchRoutes } from '../../redux/searchSlice';
+import { fetchRoutes, searchActions } from '../../redux/searchSlice';
 import PriceRange from './PriceRange';
 import TimeRange from './TimeRange';
 
@@ -18,58 +18,51 @@ export default function Filters() {
   const dispatch = useDispatch();
   const [openThere, setOpenThere] = useState(false);
   const [openBack, setOpenBack] = useState(false);
-  // switches 
-  const [haveSecondClass, setHaveSecondClass] = useState(false);
-  const [haveThirdClass, setHaveThirdClass] = useState(false);
-  const [haveFourthClass, setHaveFourthClass] = useState(false);
-  const [haveFirstClass, setHaveFirstClass] = useState(false);
-  const [haveWifi, setHaveWifi] = useState(false);
-  const [haveExpress, setHaveExpress] = useState(false);
-  // price 
-  const [priceFrom, setPriceFrom] = useState();
-  const [priceTo, setPriceTo] = useState();
-  // time there 
-  const [startDepartureHourFrom, setStartDepartureHourFrom] = useState();
-  const [startDepartureHourTo, setStartDepartureHourTo] = useState();
-  const [startArrivalHourFrom, setStartArrivalHourFrom] = useState();
-  const [startArrivalHourTo, setStartArrivalHourTo] = useState();
-  // time back 
-  const [endDepartureHourFrom, setEndDepartureHourFrom] = useState();
-  const [endDepartureHourTo, setEndDepartureHourTo] = useState();
-  const [endArrivalHourFrom, setEndArrivalHourFrom] = useState();
-  const [endArrivalHourTo, setEndArrivalHourTo] = useState();
 
-  const { cityFrom, cityTo, dateThere, dateBack } = useSelector((store) => store.searchSlice);
+  const { 
+    cityFrom, 
+    cityTo, 
+    dateThere, 
+    dateBack,
+    haveFourthClass,
+    haveThirdClass,
+    haveSecondClass,
+    haveFirstClass,
+    haveWifi,
+    haveExpress,
+    priceFrom,
+    priceTo,
+    startDepartureHourFrom,
+    startDepartureHourTo,
+    startArrivalHourFrom,
+    startArrivalHourTo,
+    endDepartureHourFrom,
+    endDepartureHourTo,
+    endArrivalHourFrom,
+    endArrivalHourTo, 
+  } = useSelector((store) => store.searchSlice);
 
   useEffect(() => {
     let url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
 
-    // date
-    if(dateThere) url = `${url}&date_start=${dateThere}`;
-    if(dateBack) url = `${url}&date_end=${dateBack}`;
-    // switches
-    if(haveSecondClass) url = `${url}&have_second_class=${haveSecondClass}`;
-    if(haveThirdClass) url = `${url}&have_third_class=${haveThirdClass}`;
-    if(haveFourthClass) url = `${url}&have_fourth_class=${haveFourthClass}`;
-    if(haveFirstClass) url = `${url}&have_first_class=${haveFirstClass}`;
-    if(haveWifi) url = `${url}&have_wifi=${haveWifi}`;
-    if(haveExpress) url = `${url}&have_express=${haveExpress}`;
-    // price 
-    if(priceFrom) url = `${url}&price_from=${priceFrom}`;
-    if(priceTo) url = `${url}&price_to=${priceTo}`;
-    // time there 
-    if(startDepartureHourFrom) url = `${url}&start_departure_hour_from=${startDepartureHourFrom}`;
-    if(startDepartureHourTo) url = `${url}&start_departure_hour_to=${startDepartureHourTo}`;
-    if(startArrivalHourFrom) url = `${url}&start_arrival_hour_from=${startArrivalHourFrom}`;
-    if(startArrivalHourTo) url = `${url}&start_arrival_hour_to=${startArrivalHourTo}`;
-    // time back 
-    if(endDepartureHourFrom) url = `${url}&end_departure_hour_from=${endDepartureHourFrom}`;
-    if(endDepartureHourTo) url = `${url}&end_departure_hour_to=${endDepartureHourTo}`;
-    if(endArrivalHourFrom && dateBack) url = `${url}&end_arrival_hour_from=${endArrivalHourFrom}`;
-    if(endArrivalHourTo && dateBack) url = `${url}&end_arrival_hour_to=${endArrivalHourTo}`;
-
     dispatch(fetchRoutes(url));
-  }, [dispatch, endArrivalHourFrom, endArrivalHourTo, endDepartureHourFrom, endDepartureHourTo, haveExpress, haveFirstClass, haveFourthClass, haveSecondClass, haveThirdClass, haveWifi, priceFrom, priceTo, startArrivalHourFrom, startArrivalHourTo, startDepartureHourFrom, startDepartureHourTo]);
+  }, [dispatch,
+    haveFourthClass,
+    haveThirdClass,
+    haveSecondClass,
+    haveFirstClass,
+    haveWifi,
+    haveExpress,
+    priceFrom,
+    priceTo,
+    startDepartureHourFrom,
+    startDepartureHourTo,
+    startArrivalHourFrom,
+    startArrivalHourTo,
+    endDepartureHourFrom,
+    endDepartureHourTo,
+    endArrivalHourFrom,
+    endArrivalHourTo, ]);
 
   return (
     <div className='filters__wrap'>
@@ -87,7 +80,7 @@ export default function Filters() {
             </div>
             <Switch sx={{ width: 72 }} 
                     checked={haveSecondClass}
-                    onChange={(e) => setHaveSecondClass(e.target.checked)} />
+                    onChange={(e) => dispatch(searchActions.setHaveSecondClass(e.target.checked))} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
@@ -96,7 +89,7 @@ export default function Filters() {
             </div>
             <Switch sx={{ width: 72 }}
                     checked={haveThirdClass}
-                    onChange={(e) => setHaveThirdClass(e.target.checked)} />
+                    onChange={(e) => dispatch(searchActions.setHaveThirdClass(e.target.checked))} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
@@ -105,7 +98,7 @@ export default function Filters() {
             </div>
             <Switch sx={{ width: 72 }}
                     checked={haveFourthClass}
-                    onChange={(e) => setHaveFourthClass(e.target.checked)} />
+                    onChange={(e) => dispatch(searchActions.setHaveFourthClass(e.target.checked))} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
@@ -114,7 +107,7 @@ export default function Filters() {
             </div>
             <Switch sx={{ width: 72 }}
                     checked={haveFirstClass}
-                    onChange={(e) => setHaveFirstClass(e.target.checked)} />
+                    onChange={(e) => dispatch(searchActions.setHaveFirstClass(e.target.checked))} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
@@ -123,7 +116,7 @@ export default function Filters() {
             </div>
             <Switch sx={{ width: 72 }}
                     checked={haveWifi}
-                    onChange={(e) => setHaveWifi(e.target.checked)} />
+                    onChange={(e) => dispatch(searchActions.setHaveWifi(e.target.checked))} />
           </div>
           <div className="item__train-type d-flex justify-content-between align-items-center">
             <div className="d-flex">
@@ -132,15 +125,15 @@ export default function Filters() {
             </div>
             <Switch sx={{ width: 72 }}
                     checked={haveExpress}
-                    onChange={(e) => setHaveExpress(e.target.checked)} />
+                    onChange={(e) => dispatch(searchActions.setHaveExpress(e.target.checked))} />
           </div>
         </div>
  
         <div className="filters__item item__price d-flex flex-column">
           <span className="filters__item-name">Стоимость</span>
           <PriceRange getRange={(data) => {
-            setPriceFrom(data[0]);
-            setPriceTo(data[1]);
+            dispatch(searchActions.setPriceFrom(data[0]));
+            dispatch(searchActions.setPriceTo(data[1]));
           }}/>
         </div>
 
@@ -157,15 +150,15 @@ export default function Filters() {
               <div>
                 <span>Время отбытия</span>
                 <TimeRange getRange={(data) => {
-                  setStartDepartureHourFrom(data[0]);
-                  setStartDepartureHourTo(data[1]);
+                  dispatch(searchActions.setStartDepartureHourFrom(data[0]));
+                  dispatch(searchActions.setStartDepartureHourTo(data[1]));
                 }}/>
               </div>
               <div className='text-end mt-5'>
                 <span className="">Время прибытия</span>
                 <TimeRange getRange={(data) => {
-                  setStartArrivalHourFrom(data[0]);
-                  setStartArrivalHourTo(data[1]);
+                  dispatch(searchActions.setStartArrivalHourFrom(data[0]));
+                  dispatch(searchActions.setStartArrivalHourTo(data[1]));
                 }}/>
               </div>
             </div>
@@ -185,15 +178,15 @@ export default function Filters() {
               <div>
                 <span>Время отбытия</span>
                 <TimeRange getRange={(data) => {
-                  setEndDepartureHourFrom(data[0]);
-                  setEndDepartureHourTo(data[1]);
+                  dispatch(searchActions.setEndDepartureHourFrom(data[0]));
+                  dispatch(searchActions.setEndDepartureHourTo(data[1]));
                 }}/>
               </div>
               <div className='text-end mt-5'>
                 <span className="">Время прибытия</span>
                 <TimeRange getRange={(data) => {
-                  setEndArrivalHourFrom(data[0]);
-                  setEndArrivalHourTo(data[1]);
+                  dispatch(searchActions.setEndArrivalHourFrom(data[0]));
+                  dispatch(searchActions.setEndArrivalHourTo(data[1]));
                 }}/>
               </div>  
             </div>

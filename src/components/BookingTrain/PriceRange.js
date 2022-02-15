@@ -36,7 +36,7 @@ export default function PriceRange(props) {
            marks={marks} 
            onAfterChange={(value) => {
              setSliderValues(value);
-             props.getRange(value)
+             props.getRange(sliderValues)
             }}
            defaultValue={sliderValues}
            tipProps={{visible:true}}
