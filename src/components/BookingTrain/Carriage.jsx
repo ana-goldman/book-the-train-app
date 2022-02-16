@@ -20,7 +20,7 @@ import CarriageFirst from './CarriageFirst';
 
 export default function Carriage(props) {
   const dispatch = useDispatch();
-  const { coach, coachBack } = useSelector((store) => store.routeSlice);
+  const { train, trainBack, coach, coachBack } = useSelector((store) => store.routeSlice);
   const { total, totalBack } = useSelector((store) => store.orderSlice);
   const [active, setActive] = useState([]);
   const [optional, setOptional] = useState([]);
@@ -29,9 +29,12 @@ export default function Carriage(props) {
   let chosenCoach;
   if(props.type === 'oneWay') chosenCoach = coach;
   if(props.type === 'wayBack') chosenCoach = coachBack;
+  const coaches = [];
+  props.type === 'oneWay' && train.map(o => o.coach.class_type === props.class ? coaches.push(o) : null);
+  props.type === 'wayBack' && trainBack.forEach(o => o.coach.class_type === props.class ? coaches.push(o) : null);
 
   useEffect(() => {
-    setCoachNum(coach.coach.name.replace( /[^\d.]*/g, ''));
+    setCoachNum(chosenCoach.coach.name.replace( /[^\d.]*/g, ''));
   }, []);
   
   useEffect(() => {
@@ -52,7 +55,7 @@ export default function Carriage(props) {
       <div className='carriage-group__header d-flex justify-content-between'>
         <div className='d-flex select-carriage__group'>
           Вагоны
-          {props.coaches.map(o => {
+          {coaches.map(o => {
             const num = o.coach.name.replace( /[^\d.]*/g, '');
             return (
               <span key={nanoid()} className={`select-carriage ${num === coachNum && 'active-carriage'}`} 

@@ -22,8 +22,8 @@ export default function BodyContainerTrains() {
   const [activeTypeBack, setActiveTypeBack] = useState('adult');
   const { route, train, trainBack, quantityOneWay, quantityWayBack } = useSelector((store) => store.routeSlice);
 
-  let coaches = [];
-  let coachesBack = [];
+  const coaches = [];
+  const coachesBack = [];
 
   useEffect(() => { 
     dispatch(fetchTrain(`${process.env.REACT_APP_BASE_URL}routes/${route.departure._id}/seats`));
@@ -32,18 +32,16 @@ export default function BodyContainerTrains() {
 
   const handleClickThere = (data) => {
     setOpen(data);
-    coaches = []
-    train.forEach(o => o.coach.class_type === data ? coaches.push(o) : null);
+    train.map(o => o.coach.class_type === data ? coaches.push(o) : null);
     dispatch(routeActions.setCoach(coaches[0]));
   }
 
   const handleClickBack = (data) => {
     setOpenBack(data);
-    coachesBack = []
-    trainBack.forEach(o => o.coach.class_type === data ? coaches.push(o) : null);
-    dispatch(routeActions.setCoachBack(coaches[0]));
+    trainBack.forEach(o => o.coach.class_type === data ? coachesBack.push(o) : null);
+    dispatch(routeActions.setCoachBack(coachesBack[0]));
   }
-
+  
   return (
     <Fragment>
       <section className="body-container">
@@ -131,10 +129,10 @@ export default function BodyContainerTrains() {
             </div>
           </div>
           <div className='carriage-group'>
-            {open === 'first' && route.departure.have_first_class && <Carriage class={open} coaches={coaches} type={'oneWay'}/>}
-            {open === 'second' && route.departure.have_second_class && <Carriage class={open} coaches={coaches} type={'oneWay'}/>}
-            {open === 'third' && route.departure.have_third_class && <Carriage class={open} coaches={coaches} type={'oneWay'}/>}
-            {open === 'fourth' && route.departure.have_fourth_class && <Carriage class={open} coaches={coaches} type={'oneWay'}/>}
+            {open === 'first' && route.departure.have_first_class && <Carriage class={open} type={'oneWay'}/>}
+            {open === 'second' && route.departure.have_second_class && <Carriage class={open} type={'oneWay'}/>}
+            {open === 'third' && route.departure.have_third_class && <Carriage class={open} type={'oneWay'}/>}
+            {open === 'fourth' && route.departure.have_fourth_class && <Carriage class={open} type={'oneWay'}/>}
           </div>
         </div>
         <div className='way-back-group'>
@@ -219,10 +217,10 @@ export default function BodyContainerTrains() {
             </div>
           </div>
           <div className='carriage-group'>
-            {(openBack === 'first' && route.arrival.have_first_class) && <Carriage class={openBack} coaches={coachesBack} type={'wayBack'}/>}
-            {(openBack === 'second' && route.arrival.have_second_class) && <Carriage class={openBack} coaches={coachesBack} type={'wayBack'}/>}
-            {(openBack === 'third' && route.arrival.have_third_class) && <Carriage class={openBack} coaches={coachesBack} type={'wayBack'}/>}
-            {(openBack === 'fourth' && route.arrival.have_fourth_class) && <Carriage class={openBack} coaches={coachesBack} type={'wayBack'}/>}
+            {(openBack === 'first' && route.arrival.have_first_class) && <Carriage class={openBack} type={'wayBack'}/>}
+            {(openBack === 'second' && route.arrival.have_second_class) && <Carriage class={openBack} type={'wayBack'}/>}
+            {(openBack === 'third' && route.arrival.have_third_class) && <Carriage class={openBack} type={'wayBack'}/>}
+            {(openBack === 'fourth' && route.arrival.have_fourth_class) && <Carriage class={openBack} type={'wayBack'}/>}
           </div>
         </div>
         <button type="button" className="btn btn-light text-uppercase btn-next">далее</button>
