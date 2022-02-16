@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 export default function CarriageSecond(props) {
-  const { coach, coachBack } = useSelector((store) => store.routeSlice);
+  const { coach, coachBack, seatsOneWay, seatsWayBack } = useSelector((store) => store.routeSlice);
   const [active, setActive] = useState([]);
 
   let chosenCoach;
@@ -11,7 +11,7 @@ export default function CarriageSecond(props) {
   if(props.type === 'wayBack') chosenCoach = coachBack;
 
   return (
-    <div className='carriage-group__train'>
+    <div className='carriage-group__train'>{console.log(coach)}
       <div className='carriage-tip'>{Math.floor(Math.random() * 15)} человек выбирают места в этом поезде</div>
       <div className='carriage-train d-flex'>
         <div className='carriage-enter'></div>

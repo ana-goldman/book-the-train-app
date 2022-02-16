@@ -19,8 +19,8 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['searchSlice', 'routeSlice'], //Things you want to persist
-  blacklist: ['latestSlice', 'subscriptionSlice', 'orderSlice'], //Things you dont
+  whitelist: ['searchSlice', ], //Things you want to persist
+  blacklist: ['latestSlice', 'subscriptionSlice', 'orderSlice', 'routeSlice'], //Things you dont
 };
 
 const rootReducer = combineReducers({

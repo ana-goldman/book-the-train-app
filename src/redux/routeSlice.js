@@ -6,6 +6,26 @@ const initialState = {
   trainBack: null,
   coach: null,
   coachBack: null,
+  quantityOneWay: {
+    adult: 0,
+    child: 0,
+    baby: 0,
+  },
+  quantityWayBack: {
+    adult: 0,
+    child: 0,
+    baby: 0,
+  },
+  seatsOneWay: {
+    adult: [],
+    child: [],
+    baby: [],
+  },
+  seatsWayBack: {
+    adult: [],
+    child: [],
+    baby: [],
+  },
   status: 'idle' 
 };
 

@@ -20,31 +20,18 @@ import CarriageFirst from './CarriageFirst';
 
 export default function Carriage(props) {
   const dispatch = useDispatch();
-  const { train, trainBack, coach, coachBack } = useSelector((store) => store.routeSlice);
+  const { coach, coachBack } = useSelector((store) => store.routeSlice);
   const { total, totalBack } = useSelector((store) => store.orderSlice);
   const [active, setActive] = useState([]);
   const [optional, setOptional] = useState([]);
   const [coachNum, setCoachNum] = useState('');
 
-
   let chosenCoach;
-  let chosenTrain;
-  if(props.type === 'oneWay') {
-    chosenTrain = train;
-    chosenCoach = coach;
-  }
-  if(props.type === 'wayBack') {
-    chosenTrain = trainBack;
-    chosenCoach = coachBack;
-  }
-
-  const coachArr = [];
-  chosenTrain.forEach(o => o.coach.class_type === props.class ? coachArr.push(o) : null);
+  if(props.type === 'oneWay') chosenCoach = coach;
+  if(props.type === 'wayBack') chosenCoach = coachBack;
 
   useEffect(() => {
-    props.type === 'oneWay' && dispatch(routeActions.setCoach(coachArr[0]));
-    props.type === 'wayBack' && dispatch(routeActions.setCoachBack(coachArr[0]));
-    setCoachNum(coachArr[0].coach.name.replace( /[^\d.]*/g, ''));
+    setCoachNum(coach.coach.name.replace( /[^\d.]*/g, ''));
   }, []);
   
   useEffect(() => {
@@ -57,6 +44,7 @@ export default function Carriage(props) {
 
   const top = [];
   const bottom = [];
+
   chosenCoach.seats.map(o => o.index % 2 === 0 ? top.push(o) : bottom.push(o));
 
   return (
@@ -64,14 +52,15 @@ export default function Carriage(props) {
       <div className='carriage-group__header d-flex justify-content-between'>
         <div className='d-flex select-carriage__group'>
           Вагоны
-          {coachArr.map(o => {
+          {props.coaches.map(o => {
             const num = o.coach.name.replace( /[^\d.]*/g, '');
-            return (<span key={nanoid()} className={`select-carriage ${num === coachNum && 'active-carriage'}`} 
-                          onClick={() => {
-                            setCoachNum(num);
-                            props.type === 'oneWay' && dispatch(routeActions.setCoach(o));
-                            props.type === 'wayBack' && dispatch(routeActions.setCoachBack(o));
-                          }}>{num}</span>)
+            return (
+              <span key={nanoid()} className={`select-carriage ${num === coachNum && 'active-carriage'}`} 
+                    onClick={() => {
+                      setCoachNum(num);
+                      props.type === 'oneWay' && dispatch(routeActions.setCoach(o));
+                      props.type === 'wayBack' && dispatch(routeActions.setCoachBack(o));
+                    }}>{num}</span>)
           })}
         </div>
         <span>Нумерация вагонов начинается с головы поезда</span>
@@ -160,7 +149,7 @@ export default function Carriage(props) {
       {props.class === 'fourth' && <CarriageFourth type={props.type}/>}
       {props.class === 'third' && <CarriageThird type={props.type}/>}
       {props.class === 'second' && <CarriageSecond type={props.type}/>}
-      {props.class === 'first' && <CarriageFirst type={props.type}/>}
+      {props.class === 'first'&& <CarriageFirst type={props.type}/>}
       <div className='carriage__total-price text-end'>
         {props.type === 'oneWay' && total}
         {props.type === 'wayBack' && totalBack}
