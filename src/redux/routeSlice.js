@@ -6,26 +6,10 @@ const initialState = {
   trainBack: null,
   coach: null,
   coachBack: null,
-  quantityOneWay: {
-    adult: 0,
-    child: 0,
-    baby: 0,
-  },
-  quantityWayBack: {
-    adult: 0,
-    child: 0,
-    baby: 0,
-  },
-  seatsOneWay: {
-    adult: [],
-    child: [],
-    baby: [],
-  },
-  seatsWayBack: {
-    adult: [],
-    child: [],
-    baby: [],
-  },
+  activeType: 'adult',
+  activeTypeBack: 'adult',
+  seatsOneWay: [],
+  seatsWayBack: [],
   status: 'idle' 
 };
 
@@ -66,6 +50,30 @@ const routeSlice = createSlice({
     setCoachBack(state, action) {
       state.coachBack = action.payload
     },
+    setActiveType(state, action) {
+      state.activeType = action.payload
+    },
+    setActiveTypeBack(state, action) {
+      state.activeTypeBack = action.payload
+    },
+    addSeatWay(state, action) {
+      state.seatsOneWay.some(a => (a.seat_number === action.payload.seat_number) && (a.coach_id === action.payload.coach_id)) ?
+      state.seatsOneWay = state.seatsOneWay.filter(item => 
+        item.seat_number !== action.payload.seat_number || item.coach_id !== action.payload.coach_id 
+        // for (let key in action.payload) {
+        //   if (item[key] === undefined || item[key] !== action.payload[key])
+        //     return item[key] !== action.payload[key]
+        // }
+      ) : 
+      state.seatsOneWay.push(action.payload)
+    },
+    addSeatBack(state, action) {
+      state.seatsWayBack.some(a => (a.seat_number === action.payload.seat_number) && (a.coach_id === action.payload.coach_id)) ?
+      state.seatsWayBack = state.seatsWayBack.filter(item => 
+        item.seat_number !== action.payload.seat_number || item.coach_id !== action.payload.coach_id 
+      ) : 
+      state.seatsWayBack.push(action.payload)
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTrain.pending, (state) => {

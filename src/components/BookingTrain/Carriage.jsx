@@ -97,8 +97,8 @@ export default function Carriage(props) {
               <span >Стоимость </span>
             </div>
             <div className='carriage-top'>
-              <span>{props.class !== 'first' && props.type === 'oneWay' && chosenCoach.coach.top_price}
-                    {props.class === 'first' && props.type === 'oneWay' && chosenCoach.coach.price}
+              <span>{props.class !== 'first' && chosenCoach.coach.top_price}
+                    {props.class === 'first' && chosenCoach.coach.price}
               </span>
               <img src={currency} alt="" />
             </div>
