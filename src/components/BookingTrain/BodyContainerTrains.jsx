@@ -27,8 +27,8 @@ export default function BodyContainerTrains() {
 
   useEffect(() => { 
     dispatch(fetchTrain(`${process.env.REACT_APP_BASE_URL}routes/${route.departure._id}/seats`));
-    dispatch(fetchTrainBack(`${process.env.REACT_APP_BASE_URL}routes/${route.arrival._id}/seats`));
-  }, [dispatch, route.arrival._id, route.departure._id]);
+    route.arrival && dispatch(fetchTrainBack(`${process.env.REACT_APP_BASE_URL}routes/${route.arrival._id}/seats`));
+  }, [dispatch, route]);
 
   const handleClickThere = (data) => {
     setOpen(data);
@@ -135,7 +135,7 @@ export default function BodyContainerTrains() {
             {open === 'fourth' && route.departure.have_fourth_class && <Carriage class={open} type={'oneWay'}/>}
           </div>
         </div>
-        <div className='way-back-group'>
+        {route.arrival && <div className='way-back-group'>
           <div className='way__go-back way-back__go-back justify-content-end'>
             <img src={wayArrow} alt=""/>
             <button type="button" className="btn btn-light btn-back" onClick={() => navigate('/booking')}>Выбрать другой поезд</button>
@@ -222,7 +222,7 @@ export default function BodyContainerTrains() {
             {(openBack === 'third' && route.arrival.have_third_class) && <Carriage class={openBack} type={'wayBack'}/>}
             {(openBack === 'fourth' && route.arrival.have_fourth_class) && <Carriage class={openBack} type={'wayBack'}/>}
           </div>
-        </div>
+        </div>}
         <button type="button" className="btn btn-light text-uppercase btn-next">далее</button>
        
       </section>
