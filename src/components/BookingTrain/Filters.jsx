@@ -144,9 +144,9 @@ export default function Filters() {
                 <img src={arrowThere} alt=""/>
                 <span className="filters__item-name">Туда</span>
               </div>
-              <div className="drop-down-toggle" onClick={() => setOpenThere(openThere === false ? true : false)}></div>
+              <div className={`drop-down-toggle ${openThere && 'open'}`} onClick={() => setOpenThere(openThere === false ? true : false)}></div>
             </div>
-            <div className={`filters__drop-down ${openThere === true ? 'show-filter' : ''}`}>
+            <div className={`filters__drop-down ${openThere && 'show-filter'}`}>
               <div>
                 <span>Время отбытия</span>
                 <TimeRange getRange={(data) => {
@@ -172,9 +172,9 @@ export default function Filters() {
                 <img src={arrowBack} alt=""/>
                 <span className="filters__item-name">Обратно</span>
               </div>
-              <div className="drop-down-toggle" onClick={() => setOpenBack(openBack === false ? true : false)}></div>
+              <div className={`drop-down-toggle ${openBack && 'open'}`} onClick={() => setOpenBack(openBack === false ? true : false)}></div>
             </div>
-            <div className={`filters__drop-down ${openBack === true ? 'show-filter' : ''}`}>
+            <div className={`filters__drop-down ${openBack && 'show-filter'}`}>
               <div>
                 <span>Время отбытия</span>
                 <TimeRange getRange={(data) => {

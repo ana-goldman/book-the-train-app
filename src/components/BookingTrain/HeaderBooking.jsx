@@ -2,7 +2,7 @@ import BannerBooking from './BannerBooking';
 import TopNav from '../common/TopNav';
 import SearchFormBooking from './SearchFormBooking';
 
-export default function HeaderBooking() {
+export default function HeaderBooking(props) {
   return (
     <header className="container-fluid px-0">
     <div className="row">
@@ -20,19 +20,19 @@ export default function HeaderBooking() {
               <span>Билеты</span>
             </div>
         </li>
-        <li className="progress-line__item">
+        <li className={`progress-line__item ${(props.type === 'passengers' || props.type === 'payment' || props.type === 'check') && 'active'}`}>
           <div className="d-flex justify-content-center align-items-center">
             <div className="progress-line__item-number">2</div>
             <span>Пассажиры</span>
           </div>
         </li>
-        <li className="progress-line__item">
+        <li className={`progress-line__item ${(props.type === 'payment' || props.type === 'check') && 'active'}`}>
           <div className="d-flex justify-content-center align-items-center">
             <div className="progress-line__item-number">3</div>
             <span>Оплата</span>
           </div>
         </li>
-        <li className="progress-line__item">
+        <li className={`progress-line__item ${props.type === 'check' && 'active'}`}>
           <div className="d-flex justify-content-center align-items-center">
             <div className="progress-line__item-number">4</div>
             <span>Проверка</span>

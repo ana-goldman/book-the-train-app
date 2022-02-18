@@ -17,9 +17,16 @@ import { useQuantity } from './useQuantity';
 export default function BodyContainerTrains() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [disabled, setDisabled] = useState(true);
   const [open, setOpen] = useState('');
   const [openBack, setOpenBack] = useState('');
-  const { route, train, trainBack, activeType, activeTypeBack, seatsOneWay, seatsWayBack} = useSelector((store) => store.routeSlice);
+  const { route, train, trainBack, activeType, activeTypeBack } = useSelector((store) => store.routeSlice);
+  const { seatsOneWay, seatsWayBack } = useSelector((store) => store.seatsSlice);
+
+  useEffect(() => {
+    (seatsOneWay.length < 1 || seatsWayBack.length < 1) && setDisabled(true);
+    (seatsOneWay.length === 1 || seatsWayBack.length === 1) && setDisabled(false);
+  }, [seatsOneWay.length, seatsWayBack.length])
 
   const coaches = [];
   const coachesBack = [];
@@ -224,8 +231,14 @@ export default function BodyContainerTrains() {
             {(openBack === 'fourth' && route.arrival.have_fourth_class) && <Carriage class={openBack} type={'wayBack'}/>}
           </div>
         </div>}
-        <button type="button" className="btn btn-light text-uppercase btn-next">далее</button>
-       
+        <button 
+          type="button" 
+          className="btn btn-light text-uppercase btn-next" 
+          onClick={() => {
+            navigate('/booking/passengers');
+          }}
+          disabled={disabled}
+          >далее</button>
       </section>
     </Fragment>
   )

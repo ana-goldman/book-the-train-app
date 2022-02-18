@@ -4,6 +4,7 @@ import subscriptionSlice from './subscriptionSlice';
 import latestSlice from './latestSlice';
 import routeSlice from './routeSlice';
 import orderSlice from "./orderSlice";
+import seatsSlice from './seatsSlice';
 import {
   persistStore,
   persistReducer,
@@ -19,8 +20,8 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['searchSlice', ], //Things you want to persist
-  blacklist: ['latestSlice', 'subscriptionSlice', 'orderSlice', 'routeSlice'], //Things you dont
+  whitelist: ['searchSlice', 'routeSlice' ], //Things you want to persist
+  blacklist: ['latestSlice', 'subscriptionSlice', 'orderSlice', 'seatsSlice'], //Things you dont
 };
 
 const rootReducer = combineReducers({
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   latestSlice,
   routeSlice,
   orderSlice,
+  seatsSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

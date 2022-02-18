@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from 'nanoid';
-import { routeActions } from "../../redux/routeSlice";
+import { seatsActions } from "../../redux/seatsSlice";
 import { useQuantity } from './useQuantity';
 
 export default function CarriageThird(props) {
   const dispatch = useDispatch();
-  const { coach, coachBack, activeType, activeTypeBack, seatsOneWay, seatsWayBack } = useSelector((store) => store.routeSlice);
+  const { coach, coachBack, activeType, activeTypeBack } = useSelector((store) => store.routeSlice);
+  const { seatsOneWay, seatsWayBack } = useSelector((store) => store.seatsSlice);
 
   let chosenCoach;
   if(props.type === 'oneWay') chosenCoach = coach;
@@ -51,22 +52,28 @@ export default function CarriageThird(props) {
         "is_child": chosenType === 'adult' ? false : true,
         "include_children_seat": chosenType === 'child' ? true : false,
       }
+      let price = 0;
+    
+      if(data.index % 2 === 0) price = chosenCoach.coach.top_price; 
+      else price = chosenCoach.coach.bottom_price;
   
       if(props.type === 'oneWay') {
         if(seats.some(a => a.seat_number === seat.seat_number && a.coach_id === seat.coach_id)) {
-          dispatch(routeActions.addSeatWay(seat));
+          dispatch(seatsActions.addSeatWay(seat));
+          dispatch(seatsActions.subtractFromTotal(price));
         } else {
-          adults.length !== 5 && seat.is_child !== true && dispatch(routeActions.addSeatWay(seat));
-          children.length !== 4 && seat.is_child !== false && dispatch(routeActions.addSeatWay(seat));
+          adults.length !== 5 && seat.is_child !== true && dispatch(seatsActions.addSeatWay(seat)) && dispatch(seatsActions.addToTotal(price));
+          children.length !== 4 && seat.is_child !== false && dispatch(seatsActions.addSeatWay(seat));
         }
       }
   
       if(props.type === 'wayBack') {
         if(seats.some(a => a.seat_number === seat.seat_number && a.coach_id === seat.coach_id)) {
-          dispatch(routeActions.addSeatBack(seat));
+          dispatch(seatsActions.addSeatBack(seat));
+          dispatch(seatsActions.subtractFromTotalBack(price));
         } else {
-          adultsBack.length !== 5 && seat.is_child !== true && dispatch(routeActions.addSeatBack(seat));
-          childrenBack.length !== 4 && seat.is_child !== false && dispatch(routeActions.addSeatBack(seat));
+          adultsBack.length !== 5 && seat.is_child !== true && dispatch(seatsActions.addSeatBack(seat)) && dispatch(seatsActions.addToTotalBack(price));
+          childrenBack.length !== 4 && seat.is_child !== false && dispatch(seatsActions.addSeatBack(seat));
         }
       }
     }

@@ -9,6 +9,7 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/booking' element={<Booking type={'main'}/>}></Route>
         <Route path='/booking/route' element={<Booking type={'route'}/>}></Route>
+        <Route path='/booking/passengers' element={<Booking type={'passengers'}/>}></Route>
       </Routes>
     </Router>
   );

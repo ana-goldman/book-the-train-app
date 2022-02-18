@@ -517,8 +517,10 @@ ol > li:not(:last-child) > div:before {
 }
 
 .search__item-name,
-.filters__item-name{
+.filters__item-name,
+.details__item-name {
   font-size: 1.56vw;
+  font-weight: 700;
 }
 
 .search-form-filter .MuiInputBase-formControl {
@@ -649,14 +651,19 @@ ol > li:not(:last-child) > div:before {
 .drop-down-toggle:before, .drop-down-toggle:after {
   position: absolute;
   left: 7px;
+  top: 2px;
   content: ' ';
-  height: 17px;
+  height: 12px;
   width: 2px;
   background-color: #FFF;
 }
 
 .drop-down-toggle:after {
   transform: rotate(90deg);
+}
+
+.open.drop-down-toggle:before {
+  display: none;
 }
 
 .item__direction img{
@@ -1363,3 +1370,106 @@ ol > li:not(:last-child) > div:before {
   float: right;
   margin-top: 100px;
 }
+
+.btn-next:disabled {
+  background-color: #928F94;
+  color: #FFF;
+}
+
+/* passenger page  */
+.details__wrap {
+  width: 100%;
+  background-color: #3E3C41;
+  margin-bottom: 94px;
+  color: #FFF;
+}
+
+.details__title {
+  font-size: 1.56vw;
+  padding: 1.8vw 2.2vw 1.6vw;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.details__item {
+  padding: 0.8vw 1.4vw 2.6vw;
+  border-bottom: 1px solid #E5E5E5;
+  /* gap: 17px; */
+}
+
+.details__drop-down {
+  display: none;
+  padding: 50px 0 0;
+  font-size: 18px;
+}
+
+.details__drop-down.show {
+  display: block;
+}
+
+.drop-down__number {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.drop-down__name {
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 500;
+  /* padding-top: 10px; */
+}
+
+.drop-down__time {
+  padding: 50px 0 20px;
+}
+
+.drop-down__time-time {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.drop-down__station-name {
+  font-size: 16px;
+  line-height: 10px;
+  color: #928F94;
+}
+
+.drop-down__total {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.details__drop-down img {
+  width: 14px;
+  height: 17px;
+  margin-left: 5px;
+  vertical-align: baseline;
+}
+
+.details__item-name {
+  padding-left: 10px;
+}
+
+.details__date {
+  font-size: 0.93vw;
+}
+
+.details__footer {
+  padding: 1.56vw;
+  font-size: 1.56vw;
+  font-weight: 700;
+}
+
+.details__footer-price {
+  font-size: 2.5vw;
+  line-height: 56px;
+  color: #FFA800;
+}
+
+.details__footer img {
+  width: 26px;
+  height: 32px;
+  margin: 0 5px;
+  vertical-align: baseline;
+}
+

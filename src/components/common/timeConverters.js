@@ -2,6 +2,16 @@ const dateConverter = (sec) => {
   return new Date(sec * 1000).toISOString().substr(11, 5);
 }
 
+const getDate = (sec) => {
+  const date = new Date(sec * 1000).toISOString().substr(0, 10);
+  return formatDate(date);
+}
+
+const formatDate = (date) => {
+  const parts = date.split('-');
+  return [parts[2], parts[1], parts[0]].join('.');
+}
+
 const secConverter = (sec) => {
   return [3600, 60]
   .reduceRight(
@@ -32,4 +42,4 @@ const toWordsTime = (d) => {
   return [h, hDisplay, <br/>, m, mDisplay]; 
 }
 
-export { dateConverter, secConverter, toWordsTime }
+export { dateConverter, getDate, formatDate, secConverter, toWordsTime }

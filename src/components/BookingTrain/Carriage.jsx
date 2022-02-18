@@ -21,7 +21,7 @@ import CarriageFirst from './CarriageFirst';
 export default function Carriage(props) {
   const dispatch = useDispatch();
   const { train, trainBack, coach, coachBack } = useSelector((store) => store.routeSlice);
-  const { total, totalBack } = useSelector((store) => store.orderSlice);
+  const { total, totalBack } = useSelector((store) => store.seatsSlice);
   const [active, setActive] = useState([]);
   const [optional, setOptional] = useState([]);
   const [coachNum, setCoachNum] = useState('');
@@ -49,6 +49,12 @@ export default function Carriage(props) {
   const bottom = [];
 
   chosenCoach.seats.map(o => o.index % 2 === 0 ? top.push(o) : bottom.push(o));
+
+  const handleClick = (data) => {
+    if(active.includes(data)) return;
+    optional.includes(data) ? setOptional(optional.filter(o => o !== data)) : 
+    setOptional(prev => [...prev, data])
+  }
 
   return (
     <Fragment>
@@ -119,32 +125,16 @@ export default function Carriage(props) {
             <div className='qualities-range d-flex justify-content-between'>
               <img className={`qualities-item ${active.includes('aircon') && 'active'} ${optional.includes('aircon') && 'optional'}`} 
                    src={optional.includes('aircon') ? q11 :q1} alt='aircon'
-                   onClick={() => 
-                    active.includes('aircon') ? null : 
-                    (optional.includes('aircon') ? setOptional(optional.filter(o => o !== 'aircon')) : 
-                    setOptional(prev => [...prev, 'aircon'])
-                    )}/>
+                   onClick={() => handleClick('aircon')}/>
               <img className={`qualities-item ${active.includes('wifi') && 'active'} ${optional.includes('wifi') && 'optional'}`} 
                    src={optional.includes('wifi') ? q21 :q2} alt='wifi'
-                   onClick={() => 
-                    active.includes('wifi') ? null : 
-                    (optional.includes('wifi') ? setOptional(optional.filter(o => o !== 'wifi')) : 
-                    setOptional(prev => [...prev, 'wifi'])
-                    )}/>
+                   onClick={() => handleClick('wifi')}/>
               <img className={`qualities-item ${active.includes('linens') && 'active'} ${optional.includes('linens') && 'optional'}`} 
                    src={optional.includes('linens') ? q31 :q3} alt='linens'
-                   onClick={() => 
-                    active.includes('linens') ? null : 
-                    (optional.includes('linens') ? setOptional(optional.filter(o => o !== 'linens')) : 
-                    setOptional(prev => [...prev, 'linens'])
-                    )}/>
+                   onClick={() => handleClick('linens')}/>
               <img className={`qualities-item ${active.includes('food') && 'active'} ${optional.includes('food') && 'optional'}`} 
                    src={optional.includes('food') ? q41 :q4} alt='food'
-                   onClick={() => 
-                    active.includes('food') ? null : 
-                    (optional.includes('food') ? setOptional(optional.filter(o => o !== 'food')) : 
-                    setOptional(prev => [...prev, 'food'])
-                    )}/>
+                   onClick={() => handleClick('food')}/>
             </div>
           </div>
         </div>
@@ -154,10 +144,10 @@ export default function Carriage(props) {
       {props.class === 'second' && <CarriageSecond type={props.type}/>}
       {props.class === 'first'&& <CarriageFirst type={props.type}/>}
       <div className='carriage__total-price text-end'>
-        {props.type === 'oneWay' && total}
-        {props.type === 'wayBack' && totalBack}
-        {props.type === 'oneWay' && total &&<img src={currency} alt="" />}
-        {props.type === 'wayBack' && totalBack &&<img src={currency} alt="" />}
+        {props.type === 'oneWay' && total !== 0 && total}
+        {props.type === 'wayBack' && totalBack !== 0 && totalBack}
+        {props.type === 'oneWay' && total !== 0 &&<img src={currency} alt="" />}
+        {props.type === 'wayBack' && totalBack !== 0 &&<img src={currency} alt="" />}
       </div>
     </Fragment>
   )

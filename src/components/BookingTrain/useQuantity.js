@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const useQuantity = () => {
-  const { seatsOneWay, seatsWayBack} = useSelector((store) => store.routeSlice);
+  const { seatsOneWay, seatsWayBack } = useSelector((store) => store.seatsSlice);
 
   let adults = [];
   let children = [];
