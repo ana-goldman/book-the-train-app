@@ -7,15 +7,20 @@ import { useSelector } from "react-redux";
 import { dateConverter, getDate, formatDate, secConverter } from '../common/timeConverters';
 
 export default function Details() {
-  const [openThere, setOpenThere] = useState(false);
-  const [openBack, setOpenBack] = useState(false);
-  const [openPass, setOpenPass] = useState(false);
+  const [openThere, setOpenThere] = useState(true);
+  const [openBack, setOpenBack] = useState(true);
+  const [openPass, setOpenPass] = useState(true);
   const { dateThere, dateBack } = useSelector((store) => store.searchSlice);
-  const { total, totalBack } = useSelector((store) => store.seatsSlice);
-  const { route, train, trainBack, coach, coachBack } = useSelector((store) => store.routeSlice);
+  const { seatsOneWay, total, totalBack } = useSelector((store) => store.seatsSlice);
+  const { route } = useSelector((store) => store.routeSlice);
+
+  const adults = [];
+  const children = [];
+
+  seatsOneWay.forEach(o => o.is_child === false ? adults.push(o) : children.push(o));
 
   return (
-    <div className='details__wrap'>{console.log(route)}
+    <div className='details__wrap'>
       <h3 className='details__title text-uppercase'>Детали поездки</h3>
       <div className="details__item d-flex flex-column">
         <div className="d-flex justify-content-between align-items-center">
@@ -117,19 +122,19 @@ export default function Details() {
         </div>
         <div className={`details__drop-down ${openPass && 'show'}`}>
           <div className='d-flex justify-content-between'>
-            <span>2 Взрослых</span>
+            <span>{`${adults.length} ${adults.length > 1 ? 'Взрослых' : 'Взрослый'}`}</span>
             <div>
-              <span className='drop-down__total'>5 840</span>
+              <span className='drop-down__total'>{total + totalBack}</span>
               <img src={currency} alt="" />
             </div>
           </div>
-          <div className='d-flex justify-content-between'>
-            <span>1 Ребенок</span>
+          {children.length > 0 && <div className='d-flex justify-content-between'>
+            <span>{`${adults.length} ${adults.length > 1 ? 'Детских' : 'Детский'}`}</span>
             <div>
-              <span className='drop-down__total'>1 920</span>
+              <span className='drop-down__total'>??</span>
               <img src={currency} alt="" />
             </div>
-          </div>
+          </div>}
         </div>
       </div>
 

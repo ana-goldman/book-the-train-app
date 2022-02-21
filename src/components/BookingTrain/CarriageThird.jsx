@@ -71,7 +71,7 @@ export default function CarriageThird(props) {
         if(seats.some(a => a.seat_number === seat.seat_number && a.coach_id === seat.coach_id)) {
           dispatch(seatsActions.addSeatBack(seat));
           dispatch(seatsActions.subtractFromTotalBack(price));
-        } else {
+        } else if(seatsOneWay.length > seatsWayBack.length) {
           adultsBack.length !== 5 && seat.is_child !== true && dispatch(seatsActions.addSeatBack(seat)) && dispatch(seatsActions.addToTotalBack(price));
           childrenBack.length !== 4 && seat.is_child !== false && dispatch(seatsActions.addSeatBack(seat));
         }
