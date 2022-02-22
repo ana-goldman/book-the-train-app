@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function PassengerInfo(props) {
-  const [openPass, setOpenPass] = useState(true);
+  const [openPass, setOpenPass] = useState(false);
   const [passenger, setPassenger] = useState({
     is_adult: true,
     first_name: '',
@@ -12,19 +12,15 @@ export default function PassengerInfo(props) {
     document_type: 'Паспорт',
     document_data: ''
   });
-  const {
-    index,
-    handleDelete
-  } = props;
 
   return (
     <div className='passenger-container'>
       <div className={`passenger-container__header d-flex justify-content-between ${openPass && 'show'}`}>
         <div className='passenger-container__header-title d-flex align-items-center'>
           <div className={`drop-down-toggle__passenger ${openPass && 'open'}`} onClick={() => setOpenPass(openPass === false ? true : false)}></div>
-          <span className='passenger-title'>Пассажир {index}</span>
+          <span className='passenger-title'>Пассажир {props.index + 1}</span>
         </div>
-        <div className='remove-passenger' onClick={handleDelete}></div>
+        <div className='remove-passenger' onClick={props.handleDelete}></div>
       </div>
       <form className='passenger-container__body'>
         <div className='passenger-body__info d-flex flex-column'>
