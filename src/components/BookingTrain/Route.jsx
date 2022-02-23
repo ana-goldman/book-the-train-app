@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { dateConverter, secConverter } from '../common/timeConverters';
 import { routeActions } from '../../redux/routeSlice';
 
-export default function Route() {
+export default function Route(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { routes } = useSelector((store) => store.searchSlice);
@@ -15,7 +15,7 @@ export default function Route() {
     <Fragment>
       {routes.map( o => {
         return (
-          <div className="trains-group__item d-flex" key={o.departure._id}>
+          <div className={`d-flex ${props.type === 'check' ? 'check-train-item' : 'trains-group__item'}`} key={o.departure._id}>
             <div className="item__short-info d-flex flex-column align-items-center justify-content-evenly">
               <div className="item__short-info__logo"></div>
               <div className="item__short-info__number">{o.departure.train.name}</div>
@@ -166,10 +166,13 @@ export default function Route() {
               <div className="item__options-info__quality d-flex justify-content-end">
                 <img src={trainIncludes} alt="" />
               </div>
-              <button type="button" className="btn btn-light" onClick={() => {
+              {!props.type && <button type="button" className="btn btn-light" onClick={() => {
                 dispatch(routeActions.setRoute(o));
                 navigate('/booking/route');
-              }}>Выбрать места</button>
+              }}>Выбрать места</button>}
+              {props.type === 'check' && <button type="button" className="btn btn-light btn-change" onClick={() => {
+                navigate('/booking');
+              }}>Изменить</button>}
             </div>
           </div>
         )

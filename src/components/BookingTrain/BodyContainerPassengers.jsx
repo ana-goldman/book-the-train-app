@@ -11,7 +11,8 @@ export default function BodyContainerPassengers() {
   const { seatsOneWay } = useSelector((store) => store.seatsSlice);
 
   useEffect(() => {
-    (passengerArr.length === seatsOneWay.length) && setDisabled(true);
+    (passengerArr.length === seatsOneWay.length) && setDisabled(false);
+    (passengerArr.length !== seatsOneWay.length) && setDisabled(true);
   }, [passengerArr, seatsOneWay])
 
   const handleDelete = (key) => {
@@ -42,7 +43,7 @@ export default function BodyContainerPassengers() {
           type="button" 
           className="btn btn-light text-uppercase btn-next" 
           onClick={() => {
-            // navigate('/booking/payment');
+            navigate('/booking/payment');
           }}
           disabled={disabled}
           >далее</button>

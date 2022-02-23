@@ -7,6 +7,8 @@ import Details from '../components/BookingTrain/Details';
 import BodyContainer from '../components/BookingTrain/BodyContainer';
 import BodyContainerTrains from '../components/BookingTrain/BodyContainerTrains'
 import BodyContainerPassengers from '../components/BookingTrain/BodyContainerPassengers';
+import BodyContainerPayment from '../components/BookingTrain/BodyContainerPayment';
+import BodyContainerCheck from '../components/BookingTrain/BodyContainerCheck';
 
 export default function Booking(props) {
   return (
@@ -25,7 +27,9 @@ export default function Booking(props) {
           <aside className="side-container">
             <Details/>
           </aside>
-          {props.type === 'passengers' && <BodyContainerPassengers></BodyContainerPassengers>}       
+          {props.type === 'passengers' && <BodyContainerPassengers></BodyContainerPassengers>}
+          {props.type === 'payment' && <BodyContainerPayment></BodyContainerPayment>}
+          {props.type === 'check' && <BodyContainerCheck></BodyContainerCheck>}  
         </main>}
       <Footer/>
     </Fragment>
