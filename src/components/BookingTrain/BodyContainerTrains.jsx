@@ -233,7 +233,7 @@ export default function BodyContainerTrains() {
         </div>}
         <button 
           type="button" 
-          className="btn btn-light text-uppercase btn-next" 
+          className="btn text-uppercase btn-next" 
           onClick={() => {
             navigate('/booking/passengers');
           }}

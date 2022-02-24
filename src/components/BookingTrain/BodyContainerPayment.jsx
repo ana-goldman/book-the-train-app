@@ -78,7 +78,7 @@ export default function BodyContainerPassengers() {
 
         <button 
           type="button" 
-          className="btn btn-light text-uppercase btn-booking" 
+          className="btn text-uppercase btn-booking" 
           onClick={() => {
             navigate('/booking/check');
           }}

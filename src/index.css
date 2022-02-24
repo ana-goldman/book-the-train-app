@@ -17,6 +17,9 @@ a, a:hover, a:visited, a:active {
   text-decoration: none;
 }
 
+a:hover {
+  color: #FFA800;
+}
 /* Menu */
 .navbar-brand, .navbar {
   position: absolute;
@@ -105,6 +108,19 @@ form[data-id*="search-form-booking" i] .btn-submit {
   background-color: #FFA800;
   border: 1px solid #FFA800;
   border-radius: 5px;
+}
+
+form[data-id*="search-form-main" i] .btn-submit:hover,
+form[data-id*="search-form-booking" i] .btn-submit:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+form[data-id*="search-form-main" i] .btn-submit:active,
+form[data-id*="search-form-booking" i] .btn-submit:active {
+  color: #FFA800;
+  border: 1px solid #FFA800;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: transparent;
 }
 
 .search-form-place {
@@ -243,6 +259,17 @@ form[data-id*="subscription-form" i] button {
   height: 60px;
 }
 
+form[data-id*="subscription-form" i] button:hover {
+  color: #2D2B2F;
+  background-color: #FFCA62;
+  border: 1px solid #FFCA62;
+}
+
+form[data-id*="subscription-form" i] button:active {
+  background-color: #FFF;
+  border: 1px solid #FFF;
+}
+
 .footer-social-link {
   display: inline-block;
   width: 40px;
@@ -311,6 +338,21 @@ form[data-id*="subscription-form" i] button {
   height: 36rem;
   padding: 3.8% 13.4% 5%;
   color: #FFFFFF;
+}
+
+.about-process .btn {
+  font-size: 24px;
+}
+
+.about-process .btn:hover {
+  color: #2D2B2F;
+  background-color: #FFCA62;
+  border: 1px solid #FFCA62;
+}
+
+.about-process .btn:active {
+  background-color: #FFF;
+  border: 1px solid #FFF;
 }
 
 .about-process .text-uppercase {
@@ -488,6 +530,10 @@ ol > li:not(:last-child) > div:before {
   color: #FFF;
   background-color: #FFA800;
   border: 2px solid #FFA800;
+}
+
+.pages-control__item.active:hover {
+  background-color: transparent;
 }
 
 .pages-control__item:hover {
@@ -939,9 +985,20 @@ ol > li:not(:last-child) > div:before {
   width: 100%;
   height: 39px;
   background-color: #FFA800;
+  border: 1px solid #FFA800;
   border-radius: 5px;
   color: #FFF;
   margin-top: 10px;
+}
+
+.item__options-info .btn:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.item__options-info .btn:active {
+  border: 1px solid #FFA800;
+  background-color: transparent;
+  color: #FFA800;
 }
 
 .available-breakdown {
@@ -1374,6 +1431,19 @@ ol > li:not(:last-child) > div:before {
 .btn-next:disabled {
   background-color: #928F94;
   color: #FFF;
+}
+
+.btn-next:hover,
+.btn-booking:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #FFF;
+}
+
+.btn-next:active,
+.btn-booking:active {
+  border: 1px solid #FFA800;
+  background-color: transparent;
+  color: #FFA800;
 }
 
 /* passenger page  */
@@ -1834,6 +1904,20 @@ input[type=number] {
   line-height: 28px;
 }
 
+.item__options-info .btn-change:hover,
+.btn-change:hover {
+  border: 1px solid #292929;
+  color: #FFA800;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.item__options-info .btn-change:active,
+.btn-change:active {
+  background-color: #FFA800;
+  color: #292929;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .check-item__body {
   background-color: #FFF;
 }
@@ -2009,4 +2093,15 @@ input[type=number] {
   border: 1px solid #3E3C41;
   border-radius: 5px;
   background-color: transparent;
+}
+
+.btn-back:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-back:active {
+  color: #FFA800;
+  border: 1px solid #FFA800;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: #E5E5E5;
 }

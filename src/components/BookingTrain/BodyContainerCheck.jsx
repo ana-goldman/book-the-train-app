@@ -99,7 +99,7 @@ export default function BodyContainerCheck() {
 
         <button 
           type="button" 
-          className="btn btn-light text-uppercase btn-booking" 
+          className="btn text-uppercase btn-booking" 
           onClick={() => {
             navigate('/complete');
           }}
