@@ -54,7 +54,7 @@ export default function BodyComlete() {
                 <img src={star} alt="" />
               </div>
             </div>
-            <button type="button" className="btn btn-back text-uppercase" onClick={() => {
+            <button type="button" className="btn btn-back-to-main text-uppercase" onClick={() => {
                   navigate('/');
             }}>вернуться на главную</button>
           </div>

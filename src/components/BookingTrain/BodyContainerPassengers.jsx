@@ -9,11 +9,12 @@ export default function BodyContainerPassengers() {
   const [disabled, setDisabled] = useState(true);
   const [passengerArr, setPassengerArr] = useState([]);
   const { seatsOneWay } = useSelector((store) => store.seatsSlice);
+  const { passengers } = useSelector((store) => store.orderSlice);
 
   useEffect(() => {
-    (passengerArr.length === seatsOneWay.length) && setDisabled(false);
-    (passengerArr.length !== seatsOneWay.length) && setDisabled(true);
-  }, [passengerArr, seatsOneWay])
+    (passengers.length === seatsOneWay.length) && setDisabled(false);
+    (passengers.length !== seatsOneWay.length) && setDisabled(true);
+  }, [passengers, seatsOneWay])
 
   const handleDelete = (key) => {
     // delets everything below needed one

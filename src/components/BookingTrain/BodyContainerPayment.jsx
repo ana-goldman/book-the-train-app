@@ -1,5 +1,6 @@
 import { useState, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 export default function BodyContainerPassengers() {
   const navigate = useNavigate();
@@ -12,10 +13,11 @@ export default function BodyContainerPassengers() {
     email: '',
     payment_method: ''
   });
+  const { passengers } = useSelector((store) => store.orderSlice);
 
   return (
     <Fragment>
-      <section className="body-container">
+      <section className="body-container">{console.log(passengers)}
         <div className='payment-container'>
           <div className='payment-container__header d-flex justify-content-between'>
             <div className='payment-container__header-title d-flex align-items-center'>

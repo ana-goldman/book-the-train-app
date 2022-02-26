@@ -712,6 +712,24 @@ ol > li:not(:last-child) > div:before {
   display: none;
 }
 
+.drop-down-toggle:hover::after,
+.drop-down-toggle:hover:before {
+  background-color: #FFA800;
+}
+
+.drop-down-toggle:hover {
+  border-color: #FFA800;
+}
+
+.drop-down-toggle:active {
+  border-color: #C4C4C4;
+}
+
+.drop-down-toggle:active::after,
+.drop-down-toggle:active:before {
+  background-color: #C4C4C4;
+}
+
 .item__direction img{
   padding-right: 10px;
 }
@@ -1664,6 +1682,21 @@ ol > li:not(:last-child) > div:before {
 .passenger-body__next {
   height: 117px;
   padding: 1.9vw 1.6vw 1.5vw;
+  font-size: 18px;
+}
+
+.passenger-body__next.check-error {
+  background-color: rgba(255, 61, 0, 0.38);
+}
+
+.passenger-body__next.check-ok {
+  background-color: #B2F6A1;
+}
+
+.passenger-body__next img {
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
 }
 
 .btn-next-passenger {
@@ -1673,6 +1706,11 @@ ol > li:not(:last-child) > div:before {
   border-radius: 5px;
   font-size: 24px;
   color: #292929;
+  margin-left: auto;
+}
+
+.passenger-body__next.check-error .btn-next-passenger {
+  display: none;
 }
 
 .main-info__item input {
@@ -1905,14 +1943,17 @@ input[type=number] {
 }
 
 .item__options-info .btn-change:hover,
-.btn-change:hover {
+.btn-change:hover,
+.btn-back:hover {
   border: 1px solid #292929;
+  background-color: #FFF;
   color: #FFA800;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .item__options-info .btn-change:active,
-.btn-change:active {
+.btn-change:active,
+.btn-back:active {
   background-color: #FFA800;
   color: #292929;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -2087,7 +2128,7 @@ input[type=number] {
   margin: 0 10px;
 }
 
-.btn-back {
+.btn-back-to-main {
   width: 323px;
   height: 60px;
   border: 1px solid #3E3C41;
@@ -2095,11 +2136,11 @@ input[type=number] {
   background-color: transparent;
 }
 
-.btn-back:hover {
+.btn-back-to-main :hover {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.btn-back:active {
+.btn-back-to-main :active {
   color: #FFA800;
   border: 1px solid #FFA800;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));

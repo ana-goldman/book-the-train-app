@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = { 
-  
+  passengers: [],
   status: 'idle' 
 };
 
@@ -9,12 +9,9 @@ const orderSlice = createSlice({
   name: 'orderSlice',
   initialState,
   reducers: {
-    // setTotal(state, action) {
-    //   state.total = action.payload
-    // },
-    // setTotalBack(state, action) {
-    //   state.totalBack = action.payload
-    // },
+    addPassenger(state, action) {
+      state.passengers.push(action.payload);
+    },
   },
 });
 
