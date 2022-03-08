@@ -1,12 +1,11 @@
 import checkError from '../../images/check-error.svg';
 import checkOk from '../../images/check-ok.svg';
-import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useDispatch } from "react-redux";
 import { orderActions } from '../../redux/orderSlice';
 
 export default function PassengerInfo(props) {
   const dispatch = useDispatch();
-  const { passengers } = useSelector((store) => store.orderSlice);
   const [openPass, setOpenPass] = useState(false);
   const [error, setError] = useState(false);
   const [ok, setOk] = useState(false);
@@ -20,26 +19,44 @@ export default function PassengerInfo(props) {
   const [documentSeries, setDocumentSeries] = useState('');
   const [documentNumber, setDocumentNumber] = useState('');
 
-  const handleSubmit = (e) => {
-    const passenger = {
-      is_adult: isAdult,
-      first_name: firstName,
-      last_name: lastName,
-      patronymic: patronymic,
-      gender: gender,
-      birthday: birthday,
-      document_type: documentType,
-      document_data: (documentSeries && documentSeries + ' ' + documentNumber) || documentNumber
-    };
+  const passenger = {
+    is_adult: isAdult,
+    first_name: firstName,
+    last_name: lastName,
+    patronymic: patronymic,
+    gender: gender,
+    birthday: birthday,
+    document_type: documentType,
+    document_data: (documentSeries && documentSeries + ' ' + documentNumber) || documentNumber
+  };
 
+  useEffect(() => {
+    setOk(false)
+    setError(false)
+  }, [documentType, documentNumber, documentSeries])
+
+  useEffect(() => {
+    if (ok) dispatch(orderActions.addPassenger(passenger));
+  }, [ok])
+  
+
+  const handleCheck = (e) => {
     e.preventDefault();
     if (passenger.document_type === 'Свидетельство') {
       /[XIVLMC][XIVLMC][XIVLMC][XIVLMC]-[а-яА-Я][а-яА-Я]-[0-9][0-9][0-9][0-9][0-9][0-9]/.test(passenger.document_data) ?
       (setOk(true) && setError(false)) : setError(true);
     }
-    
-    // dispatch(orderActions.addPassenger(passenger));
+
+    if (passenger.document_type === 'Паспорт') {
+      passenger.document_data.length === 11 ? 
+      (setOk(true) && setError(false)) : (setError(true) && setOk(false));
+    }
   }
+
+  // const handleDelete = () => {
+  //   props.handleDelete(props.id)
+  //   dispatch(orderActions.removePassenger(passenger)); 
+  // }
 
   return (
     <div className='passenger-container'>
@@ -48,9 +65,9 @@ export default function PassengerInfo(props) {
           <div className={`drop-down-toggle__passenger ${openPass && 'open'}`} onClick={() => setOpenPass(openPass === false ? true : false)}></div>
           <span className='passenger-title'>Пассажир {props.index + 1}</span>
         </div>
-        <div className='remove-passenger' onClick={props.handleDelete}></div>
+        <div className='remove-passenger' onClick={() => props.handleDelete(passenger, props.id)}></div>
       </div>
-      <form className='passenger-container__body' onSubmit={handleSubmit}>
+      <form className='passenger-container__body' onSubmit={handleCheck}>
         <div className='passenger-body__info d-flex flex-column'>
           <select className="form-select" value={isAdult} onChange={(e) => setIsAdult( e.target.value)}>
             <option value={true}>Взрослый</option>
@@ -138,7 +155,8 @@ export default function PassengerInfo(props) {
         <div className={`passenger-body__next d-flex justify-content-between ${error && 'check-error'} ${ok && 'check-ok'}`}>
           {error && <div className='d-flex align-items-center'>
             <img src={checkError} alt="" />
-            <span>Номер свидетельства о рожденни указан некорректно<br/>Пример: <b>VIII-ЫП-123456</b></span>
+            {documentType === 'Свидетельство' && <span>Номер свидетельства о рожденни указан некорректно<br/>Пример: <b>VIII-ЫП-123456</b></span>}
+            {documentType === 'Паспорт' && <span>Номер паспорта указан некорректно<br/>Пример: <b>1234 567890</b></span>}
           </div>}
           {ok && <div className='d-flex align-items-center'>
             <img src={checkOk} alt="" />
@@ -147,7 +165,6 @@ export default function PassengerInfo(props) {
           <button 
             type="submit" 
             className="btn btn-next-passenger" 
-            onClick={() => handleSubmit}
           >Следующий пассажир</button>
         </div>
       </form>

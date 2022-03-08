@@ -1,11 +1,13 @@
 import { useState, useEffect, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PassengerInfo from './PassengerInfo';
 import { nanoid } from 'nanoid';
+import { orderActions } from '../../redux/orderSlice';
 
 export default function BodyContainerPassengers() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
   const [passengerArr, setPassengerArr] = useState([]);
   const { seatsOneWay } = useSelector((store) => store.seatsSlice);
@@ -16,9 +18,11 @@ export default function BodyContainerPassengers() {
     (passengers.length !== seatsOneWay.length) && setDisabled(true);
   }, [passengers, seatsOneWay])
 
-  const handleDelete = (key) => {
+  const handleDelete = (pass, id) => {
     // delets everything below needed one
-    setPassengerArr(passengerArr.filter(a => a.key !== key)); 
+    const filteredArr = passengerArr.filter(item => item.props.id !== id);
+    setPassengerArr(filteredArr);
+    dispatch(orderActions.removePassenger(pass)); 
   }
 
   return (
@@ -32,9 +36,9 @@ export default function BodyContainerPassengers() {
             </div>
             <div className='add-passenger' 
                 onClick={() => {
-                  const key = nanoid();          
+                  const id = nanoid();          
                   setPassengerArr(passengerArr.concat(
-                  <PassengerInfo key={key} index={passengerArr.length} handleDelete={() => handleDelete(key)}/>
+                  <PassengerInfo key={id} index={passengerArr.length} id={id} handleDelete={(pass, id) => handleDelete(pass, id)}/>
                 ))}}
             ></div>
           </div>

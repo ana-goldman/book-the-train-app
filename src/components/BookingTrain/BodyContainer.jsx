@@ -36,7 +36,7 @@ export default function BodyContainer() {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    let url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
+    let url = `${process.env.REACT_APP_BASE_URL}routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
     
     // limit 
     if(limit) url = `${url}&limit=${limit}`;

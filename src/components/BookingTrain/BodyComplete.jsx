@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 export default function BodyComlete() {
   const navigate = useNavigate();
   const { total, totalBack } = useSelector((store) => store.seatsSlice);
+  const { user } = useSelector((store) => store.orderSlice);
 
   return (
     <Fragment>
@@ -39,7 +40,7 @@ export default function BodyComlete() {
             </div>
           </div>
           <div className='order-main'>
-            <span className='order-main__name'>Ирина Эдуардовна!</span><br/>
+            <span className='order-main__name'>{user.first_name + ' ' + user.patronymic}!</span><br/>
             <p className='order-main__middle'>Ваш заказ успешно оформлен. <br/> В ближайшее время с вами свяжется наш оператор для подтверждения.</p><br/>
             <p className='order-main__tanks'>Благодарим Вас за оказанное доверие и желаем приятного путешествия!</p>
           </div>

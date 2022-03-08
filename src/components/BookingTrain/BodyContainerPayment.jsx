@@ -1,57 +1,76 @@
-import { useState, Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { orderActions } from '../../redux/orderSlice';
 
 export default function BodyContainerPassengers() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
-  const [user, setUser] = useState({
-    first_name: '',
-    last_name: '',
-    patronymic: '',
-    phone: '',
-    email: '',
-    payment_method: ''
-  });
-  const { passengers } = useSelector((store) => store.orderSlice);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [patronymic, setPatronymic] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('');
+
+  useEffect(() => {
+    if (firstName && lastName && phone && email && paymentMethod) setDisabled(false); 
+    else setDisabled(true);
+  }, [email, firstName, lastName, paymentMethod, phone])
+
+  const user = {
+    first_name: firstName,
+    last_name: lastName,
+    patronymic: patronymic,
+    phone: phone,
+    email: email,
+    payment_method: paymentMethod
+  };
+
+  const handleCheck = (e) => {
+    e.preventDefault();
+    dispatch(orderActions.setUser(user)); 
+    navigate('/booking/check');
+  }
 
   return (
     <Fragment>
-      <section className="body-container">{console.log(passengers)}
-        <div className='payment-container'>
+      <section className="body-container">
+        <form className='payment-container' onSubmit={handleCheck}>
           <div className='payment-container__header d-flex justify-content-between'>
             <div className='payment-container__header-title d-flex align-items-center'>
               <span className='payment-title'>Персональные данные</span>
             </div>
           </div>
-          <form className='payment-container__body'>
+          <div className='payment-container__body'>
             <div className='payment-body__info d-flex flex-column'>
               <div className='payment__main-info d-flex justify-content-between'>
                 <div className='main-info__item'>
                   <label htmlFor="last-name" className="form-label">Фамилия</label>
-                  <input className="form-control" id="last-name" placeholder="" value={user.last_name} onChange={(e) => setUser({...user,  last_name: e.target.value})} required/>
+                  <input className="form-control" id="last-name" placeholder="" value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
                 </div>
                 <div className='main-info__item'>
                   <label htmlFor="first-name" className="form-label">Имя</label>
-                  <input className="form-control" id="first-name" placeholder="" value={user.first_name} onChange={(e) => setUser({...user,  first_name: e.target.value})} required/>
+                  <input className="form-control" id="first-name" placeholder="" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
                 </div>
                 <div className='main-info__item'>
                   <label htmlFor="patronymic" className="form-label">Отчество</label>
-                  <input className="form-control" id="patronymic" placeholder="" value={user.patronymic} onChange={(e) => setUser({...user,  patronymic: e.target.value})}/>
+                  <input className="form-control" id="patronymic" placeholder="" value={patronymic} onChange={(e) => setPatronymic(e.target.value)}/>
                 </div>
               </div>
               <div className='payment__side-info'>
                 <div className='contacts__item'>
                   <label htmlFor="phone" className="form-label">Контактный телефон</label>
-                  <input className="form-control" id="phone" type="tel" maxLength={4} placeholder="+7 ___ ___ __ __" required/>
+                  <input className="form-control" id="phone" type="tel" maxLength={12} value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+7 ___ ___ __ __" required/>
                 </div>
                 <div className='contacts__item'>
                   <label htmlFor="email" className="form-label">E-mail</label>
-                  <input className="form-control" id="email" type="email" placeholder="inbox@gmail.ru" required/>
+                  <input className="form-control" id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="inbox@gmail.ru" required/>
                 </div>
               </div>
             </div>
-          </form>
+          </div>
           <div className='payment-container__header d-flex justify-content-between'>
             <div className='payment-container__header-title d-flex align-items-center'>
               <span className='payment-title'>Способ оплаты</span>
@@ -60,7 +79,7 @@ export default function BodyContainerPassengers() {
           <div className='payment-container__body'>
             <div className='payment-body__item d-flex flex-column'>
               <div className="payment form-check">
-                <input className="form-check-input" type="checkbox" value="online" id="online"/>
+                <input className="form-check-input" type="checkbox" value="online" id="online" onChange={(e) => setPaymentMethod(e.target.value)} checked={paymentMethod === 'online'}/>
                 <label className="form-check-label" htmlFor="online">Онлайн</label>
               </div>
               <div className='payment-online d-flex'>
@@ -71,21 +90,19 @@ export default function BodyContainerPassengers() {
             </div>
             <div className='payment-body__item d-flex flex-column'>
               <div className="payment form-check">
-                <input className="form-check-input" type="checkbox" value="cash" id="cash"/>
+                <input className="form-check-input" type="checkbox" value="cash" id="cash" onChange={(e) => setPaymentMethod(e.target.value)} checked={paymentMethod === 'cash'}/>
                 <label className="form-check-label" htmlFor="cash">Наличными</label>
               </div>
             </div>
           </div>
-        </div>
 
-        <button 
-          type="button" 
-          className="btn text-uppercase btn-booking" 
-          onClick={() => {
-            navigate('/booking/check');
-          }}
-          // disabled={disabled}
+          <button 
+            type="submit" 
+            className="btn text-uppercase btn-booking" 
+            onClick={handleCheck}
+            disabled={disabled}
           >КУПИТЬ БИЛЕТЫ</button>
+        </form>
       </section>
     </Fragment>
   )

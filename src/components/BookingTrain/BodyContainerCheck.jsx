@@ -2,12 +2,53 @@ import passengerIcon from '../../images/passenger-icon.svg';
 import currency from '../../images/currency.svg';
 import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Route from './Route';
+import { nanoid } from 'nanoid';
+import { postOrder } from '../../redux/orderSlice';
 
 export default function BodyContainerCheck() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { route } = useSelector((store) => store.routeSlice);
+  const { seatsOneWay, seatsWayBack } = useSelector((store) => store.seatsSlice);
   const { total, totalBack } = useSelector((store) => store.seatsSlice);
+  const { user, passengers } = useSelector((store) => store.orderSlice);
+  let body;
+
+  const seats = seatsOneWay.map(seat => {
+    return {
+    ...seat,
+    'person_info': passengers.find(pass => passengers.indexOf(pass) === seatsOneWay.indexOf(seat))
+    }
+  })
+
+  const seatsBack = seatsWayBack.map(seat => {
+    return {
+    ...seat,
+    'person_info': passengers.find(pass => passengers.indexOf(pass) === seatsWayBack.indexOf(seat))
+    }
+  })
+  
+  seatsWayBack ? 
+  body = {
+    "user": user,
+    "departure": {
+      "route_direction_id": route.departure._id,
+      "seats": seats
+    },
+    "arrival": {
+      "route_direction_id": route.arrival._id,
+      "seats": seatsBack
+    }
+  } : 
+  body = {
+    "user": user,
+    "departure": {
+      "route_direction_id": route.departure._id,
+      "seats": seats
+    }
+  }
 
   return (
     <Fragment>
@@ -21,49 +62,28 @@ export default function BodyContainerCheck() {
               <Route type={'check'}/>
             </div>
           </div>
-
           <div className='check-item'>
             <div className='check-item__header'>
               <span className='check-title'>Пассажиры</span>
             </div>
             <div className='check-item__body d-flex'>
               <div className='check-item__body-main'>
-                <div className='check-item__passenger d-flex'>
-                  <div className='d-flex flex-column passenger-icon align-items-center'>
-                    <img src={passengerIcon} alt="passengerIcon"/>
-                    <span>Взрослый</span>
-                  </div>
-                  <div className='passenger-info'>
-                    <span>Мартынюк Ирина Эдуардовна</span><br/>
-                    <span>Пол женский</span><br/>
-                    <span>Дата рождения 17.02.1985</span><br/>
-                    <span>Паспорт РФ 4204 380694</span>
-                  </div>
-                </div>
-                <div className='check-item__passenger d-flex'>
-                  <div className='d-flex flex-column passenger-icon align-items-center'>
-                    <img src={passengerIcon} alt="passengerIcon"/>
-                    <span>Взрослый</span>
-                  </div>
-                  <div className='passenger-info'>
-                    <span>Мартынюк Ирина Эдуардовна</span><br/>
-                    <span>Пол женский</span><br/>
-                    <span>Дата рождения 17.02.1985</span><br/>
-                    <span>Паспорт РФ 4204 380694</span>
-                  </div>
-                </div>
-                <div className='check-item__passenger d-flex'>
-                  <div className='d-flex flex-column passenger-icon align-items-center'>
-                    <img src={passengerIcon} alt="passengerIcon"/>
-                    <span>Взрослый</span>
-                  </div>
-                  <div className='passenger-info'>
-                    <span>Мартынюк Ирина Эдуардовна</span><br/>
-                    <span>Пол женский</span><br/>
-                    <span>Дата рождения 17.02.1985</span><br/>
-                    <span>Паспорт РФ 4204 380694</span>
-                  </div>
-                </div>
+                {passengers && passengers.map( o => {
+                  return (
+                    <div key={nanoid()} className='check-item__passenger d-flex'>
+                      <div className='d-flex flex-column passenger-icon align-items-center'>
+                        <img src={passengerIcon} alt="passengerIcon"/>
+                        <span>Взрослый</span>
+                      </div>
+                      <div className='passenger-info'>
+                        <span>{o.last_name + ' ' + o.first_name + ' ' + o.patronymic}</span><br/>
+                        <span>Пол {o.gender === true ? 'мужской' : 'женский'}</span><br/>
+                        <span>Дата рождения {o.birthday}</span><br/>
+                        <span>{o.document_type + ' ' + o.document_data}</span>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
               <div className='check-item__body-aside d-flex flex-column justify-content-end'>
                 <div className="d-flex justify-content-between align-items-baseline">
@@ -86,7 +106,7 @@ export default function BodyContainerCheck() {
             </div>
             <div className='check-item__body d-flex'>
               <div className='check-item__body-main check-payment-method'>
-                Наличными
+                {user.payment_method === 'cash' ? 'Наличными' : 'Онлайн'}
               </div>
               <div className='check-item__body-aside d-flex flex-column justify-content-end'>
                 <button type="button" className="btn btn-light btn-change" onClick={() => {
@@ -101,6 +121,7 @@ export default function BodyContainerCheck() {
           type="button" 
           className="btn text-uppercase btn-booking" 
           onClick={() => {
+            dispatch(postOrder(body))
             navigate('/complete');
           }}
           >подтвердить</button>
