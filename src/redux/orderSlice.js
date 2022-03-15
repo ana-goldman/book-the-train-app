@@ -40,9 +40,9 @@ const orderSlice = createSlice({
       })
     },
     setUser(state, action) {
-      console.log(action.payload)
       state.user = action.payload;
-    }
+    },
+    reset: () => initialState
   },
   extraReducers: (builder) => {
     builder.addCase(postOrder.pending, (state, action) => {

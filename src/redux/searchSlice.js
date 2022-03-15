@@ -133,6 +133,7 @@ const searchSlice = createSlice({
     setEndArrivalHourTo(state, action) {
       state.endArrivalHourTo = action.payload;
     },
+    reset: () => initialState
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRoutes.pending, (state) => {

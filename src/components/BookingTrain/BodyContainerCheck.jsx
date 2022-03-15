@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Route from './Route';
 import { nanoid } from 'nanoid';
 import { postOrder } from '../../redux/orderSlice';
+import { routeActions } from '../../redux/routeSlice';
+import { searchActions } from '../../redux/searchSlice';
+import { seatsActions } from '../../redux/seatsSlice';
 
 export default function BodyContainerCheck() {
   const dispatch = useDispatch();
@@ -30,16 +33,12 @@ export default function BodyContainerCheck() {
     }
   })
   
-  seatsWayBack ? 
+  seatsWayBack === [] ?
   body = {
     "user": user,
     "departure": {
       "route_direction_id": route.departure._id,
       "seats": seats
-    },
-    "arrival": {
-      "route_direction_id": route.arrival._id,
-      "seats": seatsBack
     }
   } : 
   body = {
@@ -47,6 +46,10 @@ export default function BodyContainerCheck() {
     "departure": {
       "route_direction_id": route.departure._id,
       "seats": seats
+    },
+    "arrival": {
+      "route_direction_id": route.arrival && route.arrival._id,
+      "seats": seatsBack
     }
   }
 
@@ -73,7 +76,7 @@ export default function BodyContainerCheck() {
                     <div key={nanoid()} className='check-item__passenger d-flex'>
                       <div className='d-flex flex-column passenger-icon align-items-center'>
                         <img src={passengerIcon} alt="passengerIcon"/>
-                        <span>Взрослый</span>
+                        <span>{o.is_adult === true ? 'Взрослый' : 'Детский'}</span>
                       </div>
                       <div className='passenger-info'>
                         <span>{o.last_name + ' ' + o.first_name + ' ' + o.patronymic}</span><br/>
@@ -110,7 +113,7 @@ export default function BodyContainerCheck() {
               </div>
               <div className='check-item__body-aside d-flex flex-column justify-content-end'>
                 <button type="button" className="btn btn-light btn-change" onClick={() => {
-                  navigate('/booking/passengers');
+                  navigate('/booking/payment');
                 }}>Изменить</button>
               </div>
             </div>
@@ -122,6 +125,9 @@ export default function BodyContainerCheck() {
           className="btn text-uppercase btn-booking" 
           onClick={() => {
             dispatch(postOrder(body))
+            dispatch(routeActions.reset());
+            dispatch(searchActions.reset());
+            dispatch(seatsActions.reset());
             navigate('/complete');
           }}
           >подтвердить</button>

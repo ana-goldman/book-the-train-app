@@ -1,36 +1,37 @@
 import { useState, useEffect, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { orderActions } from '../../redux/orderSlice';
 
 export default function BodyContainerPassengers() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((store) => store.orderSlice);
   const [disabled, setDisabled] = useState(true);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [patronymic, setPatronymic] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [firstName, setFirstName] = useState((user && user.first_name) || '');
+  const [lastName, setLastName] = useState((user && user.last_name) || '');
+  const [patronymic, setPatronymic] = useState((user && user.patronymic) || '');
+  const [phone, setPhone] = useState((user && user.phone) || '');
+  const [email, setEmail] = useState((user && user.email) || '');
+  const [paymentMethod, setPaymentMethod] = useState((user && user.payment_method) || '');
 
   useEffect(() => {
     if (firstName && lastName && phone && email && paymentMethod) setDisabled(false); 
     else setDisabled(true);
   }, [email, firstName, lastName, paymentMethod, phone])
 
-  const user = {
+  const newUser = {
     first_name: firstName,
     last_name: lastName,
     patronymic: patronymic,
     phone: phone,
     email: email,
     payment_method: paymentMethod
-  };
+  }
 
   const handleCheck = (e) => {
     e.preventDefault();
-    dispatch(orderActions.setUser(user)); 
+    dispatch(orderActions.setUser(newUser)); 
     navigate('/booking/check');
   }
 

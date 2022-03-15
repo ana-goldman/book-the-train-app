@@ -5,9 +5,11 @@ import order3 from '../../images/order3.svg';
 import star from '../../images/Star.svg';
 import { Fragment } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { orderActions } from '../../redux/orderSlice'; 
 
 export default function BodyComlete() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { total, totalBack } = useSelector((store) => store.seatsSlice);
   const { user } = useSelector((store) => store.orderSlice);
@@ -57,6 +59,7 @@ export default function BodyComlete() {
             </div>
             <button type="button" className="btn btn-back-to-main text-uppercase" onClick={() => {
                   navigate('/');
+                  dispatch(orderActions.reset());
             }}>вернуться на главную</button>
           </div>
         </div>

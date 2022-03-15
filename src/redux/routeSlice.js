@@ -54,6 +54,7 @@ const routeSlice = createSlice({
     setActiveTypeBack(state, action) {
       state.activeTypeBack = action.payload
     },
+    reset: () => initialState
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTrain.pending, (state) => {

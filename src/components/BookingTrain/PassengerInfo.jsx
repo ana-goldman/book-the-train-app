@@ -9,26 +9,26 @@ export default function PassengerInfo(props) {
   const [openPass, setOpenPass] = useState(false);
   const [error, setError] = useState(false);
   const [ok, setOk] = useState(false);
-  const [isAdult, setIsAdult] = useState(true);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [patronymic, setPatronymic] = useState('');
-  const [gender, setGender] = useState(true);
-  const [birthday, setBirthday] = useState('');
-  const [documentType, setDocumentType] = useState('Паспорт');
-  const [documentSeries, setDocumentSeries] = useState('');
-  const [documentNumber, setDocumentNumber] = useState('');
+  const [isAdult, setIsAdult] = useState((props.passenger && props.passenger.is_adult) ?? true);
+  const [firstName, setFirstName] = useState((props.passenger && props.passenger.first_name) ?? '');
+  const [lastName, setLastName] = useState((props.passenger && props.passenger.last_name ) ?? '');
+  const [patronymic, setPatronymic] = useState((props.passenger && props.passenger.patronymic) ?? '');
+  const [gender, setGender] = useState((props.passenger && props.passenger.gender) ?? true);
+  const [birthday, setBirthday] = useState((props.passenger && props.passenger.birthday) ?? '');
+  const [documentType, setDocumentType] = useState((props.passenger && props.passenger.document_type) ?? 'Паспорт');
+  const [documentSeries, setDocumentSeries] = useState((props.passenger && props.passenger.document_data.slice(0,4)) ?? '');
+  const [documentNumber, setDocumentNumber] = useState((props.passenger && props.passenger.document_data.slice(5)) ?? '');
 
   const passenger = {
-    is_adult: isAdult,
-    first_name: firstName,
-    last_name: lastName,
-    patronymic: patronymic,
-    gender: gender,
-    birthday: birthday,
-    document_type: documentType,
-    document_data: (documentSeries && documentSeries + ' ' + documentNumber) || documentNumber
-  };
+      is_adult: isAdult,
+      first_name: firstName,
+      last_name: lastName,
+      patronymic: patronymic,
+      gender: gender,
+      birthday: birthday,
+      document_type: documentType,
+      document_data: (documentSeries && documentSeries + ' ' + documentNumber) || documentNumber
+    };
 
   useEffect(() => {
     setOk(false)
@@ -69,7 +69,7 @@ export default function PassengerInfo(props) {
       </div>
       <form className='passenger-container__body' onSubmit={handleCheck}>
         <div className='passenger-body__info d-flex flex-column'>
-          <select className="form-select" value={isAdult} onChange={(e) => setIsAdult( e.target.value)}>
+          <select className="form-select" value={isAdult} onChange={(e) => setIsAdult(e.target.value === 'true' ? true : false)}>
             <option value={true}>Взрослый</option>
             <option value={false}>Детский</option>
           </select>
@@ -90,13 +90,13 @@ export default function PassengerInfo(props) {
           <div className='passenger__sub-info d-flex'>
             <div className='sub-info__item'>
               <label htmlFor="gender" className="form-label">Пол</label>
-              <div className='gender gender-group' onChange={(e) => setGender( e.target.value)}>
+              <div className='gender gender-group'>
                 <label>
-                  <input type="radio" name="options" value={true} defaultChecked/>
+                  <input type="radio" value={true} checked={gender === true} onChange={(e) => setGender(e.target.value === 'true' ? true : false)} name="options" />
                   <span>М</span>
                 </label>
                 <label>
-                  <input className='female' type="radio" value={false} name="options"/>
+                  <input className='female' type="radio" value={false} checked={gender === false} onChange={(e) => setGender(e.target.value === 'true' ? true : false)} name="options"/>
                   <span>Ж</span>
                 </label>
                 </div>
@@ -129,11 +129,11 @@ export default function PassengerInfo(props) {
           </div>
           {documentType === 'Паспорт' && <div className='document__item'>
             <label htmlFor="series" className="form-label">Серия</label>
-            <input className="form-control" id="series" type="tel" maxLength={4} placeholder="_ _ _ _" onChange={(e) => setDocumentSeries( e.target.value)} required/>
+            <input className="form-control" id="series" type="tel" value={documentSeries} maxLength={4} placeholder="_ _ _ _" onChange={(e) => setDocumentSeries( e.target.value)} required/>
           </div>}
           {documentType === 'Паспорт' && <div className='document__item'>
             <label htmlFor="number" className="form-label">Номер</label>
-            <input className="form-control" id="number" type="tel" maxLength={6} placeholder="_ _ _ _ _ _" onChange={(e) => setDocumentNumber(e.target.value)} required/>
+            <input className="form-control" id="number" type="tel" value={documentNumber} maxLength={6} placeholder="_ _ _ _ _ _" onChange={(e) => setDocumentNumber(e.target.value)} required/>
           </div>}
           {documentType === 'Свидетельство' && <div className='document__item'>
             <label htmlFor="number" className="form-label">Номер</label>

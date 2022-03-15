@@ -38,6 +38,7 @@ const seatsSlice = createSlice({
     subtractFromTotalBack(state, action) {
       state.totalBack -= action.payload
     },
+    reset: () => initialState
   },
 });
 

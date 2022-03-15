@@ -18,6 +18,17 @@ export default function BodyContainerPassengers() {
     (passengers.length !== seatsOneWay.length) && setDisabled(true);
   }, [passengers, seatsOneWay])
 
+  useEffect(() => {
+    setPassengerArr([]);
+    passengers && setPassengerArr(passengerArr.concat(
+      passengers.map(o => {
+        const id = nanoid();  
+        return <PassengerInfo key={id} index={passengers.indexOf(o)} id={id} passenger={o} handleDelete={(pass, id) => handleDelete(pass, id)}/>
+      })
+    )) 
+    passengers.map(o => dispatch(orderActions.removePassenger(o)));
+  }, [])
+
   const handleDelete = (pass, id) => {
     // delets everything below needed one
     const filteredArr = passengerArr.filter(item => item.props.id !== id);
@@ -48,6 +59,7 @@ export default function BodyContainerPassengers() {
           type="button" 
           className="btn text-uppercase btn-next" 
           onClick={() => {
+            console.log()
             navigate('/booking/payment');
           }}
           disabled={disabled}
