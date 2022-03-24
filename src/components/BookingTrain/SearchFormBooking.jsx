@@ -9,15 +9,11 @@ import { searchActions } from '../../redux/searchSlice';
 export default function SearchFormBooking() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { cityFrom, cityTo, dateThere, dateBack } = useSelector((store) => store.searchSlice);
+  const { cityFrom, cityTo } = useSelector((store) => store.searchSlice);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let url = `https://fe-diplom.herokuapp.com/routes?from_city_id=${cityFrom._id}&to_city_id=${cityTo._id}`;
-
-
-    if (dateThere) url = `${url}&date_start=${dateThere}`;
-    if(dateBack) url = `${url}&date_end=${dateBack}`;
     
     navigate('/booking')
     dispatch(fetchRoutes(url));

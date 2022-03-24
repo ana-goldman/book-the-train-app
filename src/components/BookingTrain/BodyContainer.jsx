@@ -46,7 +46,6 @@ export default function BodyContainer() {
     if(offset !== 0) url = `${url}&offset=${offset}`;
 
     dispatch(fetchRoutes(url));    
-    setPages(Math.floor((total / limit) % 2 === 0 ? total/limit : total/limit + 1));
   }, [dispatch,
     haveFourthClass,
     haveThirdClass,
@@ -64,10 +63,17 @@ export default function BodyContainer() {
     endDepartureHourTo,
     endArrivalHourFrom,
     endArrivalHourTo, 
-    limit,
     sortBy,
+    limit,
+    offset
+  ]);
+
+  useEffect(() => {   
+    setPages(Math.floor((total / limit) % 2 === 0 ? total/limit : total/limit + 1));
+  }, [limit,
     offset,
-    total
+    total,
+    sortBy
   ]);
 
   return (

@@ -12,7 +12,7 @@ export default function HeaderBooking(props) {
         <SearchFormBooking/>
       </div>
     </div>
-    <div className="progress-line d-flex">
+    {props.type && <div className="progress-line d-flex">
       <ol>
         <li className="progress-line__item active">
             <div className="d-flex justify-content-center align-items-center">
@@ -39,7 +39,7 @@ export default function HeaderBooking(props) {
           </div>
         </li>
       </ol>
-    </div>
+    </div>}
   </header>
   )
 }
