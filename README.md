@@ -1,7 +1,11 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0547d78c-8a44-434d-8c45-30c9f379bbe2/deploy-status)](https://app.netlify.com/sites/voluble-blancmange-42cf3f/deploys)
+
 # Railway ticket booking system
 
 ### Brief description of the task of the thesis:
 Create a React SPA for a railway ticketing service, made according to [ layouts in Figma ](https://www.figma.com/file/0vk5ji7mI2Beb1qvCrqEUC/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7-%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2-(Copy)?node-id=0%3A1)
+
+Deploy can be found [here](https://636bde95d2f32809389acf2c--voluble-blancmange-42cf3f.netlify.app/)
 
 ## Description
 
