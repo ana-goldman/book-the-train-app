@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useSelector, useDispatch } from "react-redux";
 import { searchActions } from '../../redux/searchSlice';
 
@@ -14,7 +14,7 @@ export default function BasicDatePicker(props) {
   } = props;
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         label={'ДД/ММ/ГГ'}
         value={type === 'dateThere' ? dateThere : dateBack}
@@ -25,7 +25,7 @@ export default function BasicDatePicker(props) {
           type === 'dateThere' ? dispatch(searchActions.setDateThere(newValue)) : dispatch(searchActions.setDateBack(newValue))
           
         }}
-        inputFormat={'dd/MM/yyyy'}
+        inputFormat={'DD/MM/YYYY'}
         renderInput={(params) => <TextField {...params} />}
       />
     </LocalizationProvider>

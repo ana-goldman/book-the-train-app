@@ -145,7 +145,7 @@ form[data-id*="search-form-booking" i] .btn-submit:active {
   padding: 0 38px 0 21px;
   background-image: url(../src/images/location.svg);
   background-repeat: no-repeat;
-  background-position: 95%;
+  background-position: 90%;
 }
 
 .search-form-place {
@@ -182,24 +182,33 @@ form[data-id*="search-form-booking" i] .btn-submit:active {
   line-height: 8px;
 }
 
-.search-form__date-group .fiirft{
+.search-form__date-group fieldset {
   background-color: #FFF;
-  width: 47%;
   border-radius: 3px;
+}
+.search-form__date-group > div {
+  width: 46%
 }
 
 .search-form__date-group [data-testid*="CalendarIcon" i] {
   font-size: 2.5rem;
   color: #E5E5E5;
+  z-index: 10;
 }
 
 .search-form__date-group input {
   height: 1.65em;
+  color: hsl(0, 0%, 20%);
+  z-index: 50; 
 }
 
 .search-form__date-group label {
   font-weight: 100;
   font-size: 18px;
+}
+
+.search-form__date-group button {
+  margin: 0;
 }
 
 .sc-hGPBjI.cwQmpu {

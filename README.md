@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Railway ticket booking system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Brief description of the task of the thesis:
+Create a React SPA for a railway ticketing service, made according to [ layouts in Figma ](https://www.figma.com/file/0vk5ji7mI2Beb1qvCrqEUC/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7-%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2-(Copy)?node-id=0%3A1)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+### Basic elements
+1. Carriage
+1. Direction
+1. Direction group
+1. Seat (ticket)
 
-### `npm start`
+### Carriage
+1. Carriage types: сидячий, люкс (СВ), купе, плацкарт
+1. Each type of carriage has its own seating chart.
+1. Each car has its own ticket price.
+1. For each carriage there is a choice of additional services:
+linen, air conditioning and Wi-Fi.
+1. For some carriages, the cost of linen is included in the ticket price
+(the cost of linen should not be added when forming the final cost of the ticket).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Direction
+1. Direction - the way the carriage moves from one city to another.
+1. The direction involves the movement of the train only in one direction.
+1. A destination has a departure date and an arrival date.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Direction group
+1. Used to enable travel from one city to another and back.
+1. Combines two directions
 
-### `npm test`
+## Seat (ticket)
+1. Has its own number on the carriage map
+1. May be occupied by another passenger
+1. Assigned to a specific direction
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### [API](https://fe-swagger-test.herokuapp.com/)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Start the app with `yarn install`, `yarn build` and `yarn start`
